@@ -61,4 +61,4 @@ nodemon start
 
 Agora, abre a página da aplicação em `http://localhost:{porta_server}`. E pronto a aplicação será executada de maneira local na sua máquina.        
 
-Fiquem à vontade em usar ou até mesmo testar ambas as conexões!! :)  
+Fiquem à vontade em usar ou ajudar no desenvolvimento!! :)  
