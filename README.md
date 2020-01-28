@@ -10,6 +10,7 @@ A intenção deste sistema é controlar as informações básicas de clientes, c
 - Mysql;
 - JSON;
 - PostMan;
+- Nodemon;
 
 ## Executar Localmente
 
