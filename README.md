@@ -5,7 +5,7 @@ A intenção deste sistema é controlar as informações básicas de clientes, c
 ## Recursos utilizados no desenvolvimento:
 
 - NodeJs;
-- Express.Js ~ v.4.17.1;
+- Express ~ v.4.17.1;
 - EJS;
 - Mysql;
 - JSON;
@@ -24,7 +24,7 @@ Para começar, você deve simplesmente clonar o repositório do projeto na sua m
 
 Antes de instalar as dependências no projeto, você precisa já ter instalado na sua máquina:
 
-* **Node.Js**: Caso não tenha, basta realizar o download [Aqui](https://nodejs.org/en/)
+* **NodeJs**: Caso não tenha, basta realizar o download [Aqui](https://nodejs.org/en/)
 * **Mysql**: Caso também não tenha, basta realizar o download [Aqui](https://www.mysql.com/downloads/)
 
 ### Instalando as Dependências
