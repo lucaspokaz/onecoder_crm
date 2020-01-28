@@ -1,0 +1,31 @@
+<%
+    if (locals && locals.session) {
+
+        if (locals.success_msg && locals.success_msg != '') { %>
+            <div class="alert round bg-success alert-arrow-left alert-dismissible alert-auto-close" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%= locals.success_msg %>
+            </div>
+        <% } %>
+
+        <% if (locals.error_msg && locals.error_msg != '') { %>
+            <div class="alert round bg-danger alert-arrow-left alert-dismissible alert-auto-close" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%= locals.error_msg %>
+            </div>
+        <% } %>
+
+        <% if (locals.alert_msg && locals.alert_msg != '') { %>
+            <div class="alert round bg-alert alert-arrow-left alert-dismissible alert-auto-close" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%= locals.alert_msg %>
+            </div>
+        <% } %>
+
+<% } %>

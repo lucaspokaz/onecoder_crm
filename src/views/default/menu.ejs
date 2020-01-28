@@ -1,0 +1,42 @@
+    <!-- BEGIN: Main Menu-->
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+
+                <li class=" nav-item"><a href="/index">
+                    <i class="la la-home"></i><span class="menu-title" data-i18n="">Dashboard</span><span class="badge badge badge-info badge-pill float-right">5</span></a>
+                </li>
+
+                <li class=" nav-item"><a href="#"> <i class="fas fa-ticket-alt"></i> <span class="menu-title" data-i18n=""> Tarefas </span></a>
+                    <ul class="menu-content">
+                        <li class="nav-item <% if (menu === 'tarefas_quadro'){ %> active <% } %> "> <a href="/tarefas/quadro"> <i class="fas fa-chalkboard"></i> Quadro de Tarefas </a> </li>
+
+                        <li class="has-sub is-shown"><a class="menu-item" href="#"><i></i><span data-i18n="nav.templates.horz.main">Acompanhamento</span></a>
+                            <ul class="menu-content">
+                                <li class="is-shown <% if (menu === 'tarefas_minhas'){ %> active <% } %> "> <a href="/tarefas/acompanhamento/minhas">
+                                    <i class="fas fa-user-tag"></i> Minhas Tarefas </a>
+                                </li>
+                                <li class="is-shown <% if (menu === 'tarefas_todas'){ %> active <% } %> "> <a href="/tarefas/acompanhamento/todas">
+                                    <i class="fas fa-list-alt"></i> Todas as Tarefas </a>
+                                </li>
+                                <li class="is-shown <% if (menu === 'tarefas_pendentes'){ %> active <% } %> "> <a href="/tarefas/acompanhamento/pendentes">
+                                    <i class="far fa-list-alt"></i> Tarefas Pendentes </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <% if (session.codigo_usuario == 1 || session.codigo_usuario == 3) { %>
+                <!-- somente administrador e lucas -->
+                <li class=" nav-item"><a href="#"> <i class="fas fa-id-card"></i> <span class="menu-title" data-i18n=""> Gestão </span></a>
+                    <ul class="menu-content">
+                        <li class="nav-item <% if (menu === 'lista_cliente'){ %> active <% } %> "> <a href="/clientes"> <i class="fas fa-store-alt"></i> Clientes </a> </li>
+                        <li class="nav-item <% if (menu === 'lista_contrato'){ %> active <% } %> "> <a href="/contratos"> <i class="far fa-newspaper"></i> Contratos </a> </li>
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <!-- END: Main Menu-->

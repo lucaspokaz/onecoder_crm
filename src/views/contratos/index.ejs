@@ -1,0 +1,196 @@
+<% include ../default/header.ejs %>
+
+<body class="vertical-layout vertical-menu content-detached-left-sidebar fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="content-detached-left-sidebar">
+
+    <% include ../default/navbar.ejs %>
+
+    <% include ../default/menu.ejs %>
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <% include ../default/messages.ejs %>
+
+            <div class="content-body">
+
+                <div class="content-header row mb-1">
+                    <div class="content-header-left col-md-12 mb-2">
+                        <h3 class="content-header-title">Contratos</h3>
+                        <div class="row breadcrumbs-top">
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/index">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="/contratos">Contratos</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Lista de Contratos
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+
+                                        <div class="card-header">
+                                            <h4 class="card-title">Contratos</h4>
+                                            <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+                                            <div class="heading-elements">
+                                                <a href="/contratos/criar" class="btn btn-primary round btn-sm"><i class="la la-plus font-small-2"></i>
+                                                    Novo Contrato
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-content collapse show">
+                                            <div class="card-body">
+                                                <% if (data.length > 0) { %>
+
+                                                <div class="form-group">
+                                                    <label>Pesquisa</label>
+                                                    <input type="text" class="form-control" name="filtro_pesquisa" id="filtro_pesquisa" placeholder="Digite aqui sua pesquisa" />
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Código</th>
+                                                                <th>Sistema</th>
+                                                                <th>Cliente</th>
+                                                                <th class="text-center">Data Início</th>
+                                                                <th class="text-center">Data Fim</th>
+                                                                <th class="text-center">Vencimento</th>
+                                                                <th class="text-center" >Ações</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% data.forEach(function(user){ %>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="<%- '/contratos/editar/' + user.id_contrato %>" class="text-bold-600">
+                                                                            # <%- formatter.zero_esquerda(user.id_contrato, 4) %>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%- user.fonte_atendimento %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="<%- '/clientes/editar/' + user.id_cliente %>" class="text-bold-600">
+                                                                            <i class="fas fa-link"></i> <%- user.nome %>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <%= moment(user.data_inicio).format('DD/MM/YYYY')  %>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <%= moment(user.data_fim).format('DD/MM/YYYY')  %>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <div class="text-muted font-small-2">
+                                                                            <%- user.dias_restantes %> dias %> <br>
+                                                                        </div>
+                                                                        <% if (user.dias_restantes < 0) { %>
+                                                                            <span class="badge badge-danger">Vencido</span>
+                                                                        <% } %>
+
+                                                                        <% if (user.dias_restantes >= 0 && user.dias_restantes < 30) { %>
+                                                                            <span class="badge badge-warning">Vencimento Próximo</span>
+                                                                        <% } %>
+
+                                                                        <% if (user.dias_restantes >= 30 && user.dias_restantes <= 60 ) { %>
+                                                                            <span class="badge badge-warning">Vencimento Próximo</span>
+                                                                        <% } %>
+
+                                                                        <% if (user.dias_restantes > 60) { %>
+                                                                            <span class="badge badge-success">Em dia</span>
+                                                                        <% } %>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <button class="btn btn-outline-info btn-sm round dropdown-toggle dropdown-menu-right box-shadow-1"
+                                                                                id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="ft-settings icon-left"></i> Opções
+                                                                        </button>
+
+                                                                        <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="btnGroupDrop1">
+                                                                            <a class="dropdown-item" id="remover" title="Remover" data-id="<%= user.id_contrato %>">
+                                                                                <i class="far fa-trash-alt" style="margin-right: 10px;"></i> Remover Contrato
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <% }) %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <% } else { %>
+
+                                                <p class="text-center text-muted">Nenhum registro encontrado!</p>
+
+                                                <% } %>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <% include ../default/footer.ejs %>
+
+    <script>
+
+        $(document).ready(function () {
+
+            var dataTable = $('.dataTables-example').DataTable({
+                lengthMenu: [[200, 300, -1], [200, 300, "All"]],
+                bPaginate: false,
+                bProcessing: true,
+                bLengthChange: false,
+                bInfo: false,
+                bFilter: true,
+                responsive: false,
+                rowReorder: false,
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [],
+                order: [[ 5, "asc" ]],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Pesquisar...",
+                    paginate: {
+                        previous: "Anterior",
+                        next: "Próximo"
+                    }
+                }
+            });
+
+            $('.dataTables_filter').addClass('pull-left');
+
+            $('#filtro_pesquisa').on('keyup change clear', function(){
+                dataTable.search(this.value).draw();
+            });
+        });
+    </script>
+
+    <!-- Modal -->
+    <% include acoes_contratos.ejs %>
+    <!-- Modal -->
+
+</body>
+
+</html>

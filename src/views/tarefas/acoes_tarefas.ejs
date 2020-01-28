@@ -1,0 +1,143 @@
+<script>
+    // RETORNAR PARA FILA DE ATENDIMENTO
+    $(document).on('click', "#retorna_para_fila", function () {
+
+        event.preventDefault();
+
+        var vIdAtendimento = $(this).attr('data-id-atendimento');
+        var vIdAndamento = $(this).attr('data-id-andamento');
+        var vIdDepartamento = $(this).attr('data-id-departamento');
+        var vIdTipoAndamento = $(this).attr('data-id-tipo-andamento');
+
+        swal.fire({
+            title: 'Retornar a tarefa #' + vIdAtendimento + ' para fila?',
+            type: "question",
+            showCancelButton: true,
+            confirmButtonText: "Retornar",
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+            preConfirm: function(text_conclusao) {
+                return new Promise(function(resolve) {
+                    setTimeout(function() {
+                        resolve()
+                    }, 500)
+                })
+            }
+        }).then(result => {
+            if (result.value) {
+                var vData = {
+                    id_andamento: vIdAndamento,
+                    id_atendimento: vIdAtendimento,
+                    id_departamento: vIdDepartamento
+                };
+
+                $.ajax({
+                    type: 'POST', url: "/tarefas/retornar-para-fila", data: vData
+                })
+                .done(function(response) {
+                    console.log(response);
+                    swal.fire({
+                        title: response.mensagem, type: "success", timer: 1000
+                    })
+                    .then(function() {
+                        location.reload();
+                    });
+                })
+                .fail(function(response) {
+                    console.log(response);
+                    swal.fire({
+                        title: 'Erro ao retornar a tarefa para fila.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+                    });
+                });
+            }
+        })
+    });
+</script>
+
+
+<script>
+    // ATENDER TAREFA
+    $(document).on('click', "#atender", function () {
+
+        event.preventDefault();
+
+        var vIdAtendimento = $(this).attr('data-id-atendimento');
+        var vIdAndamento = $(this).attr('data-id-andamento');
+
+        swal.fire({
+            title: 'Atender a tarefa #' + vIdAtendimento + '?',
+            type: "question",
+            showCancelButton: true,
+            confirmButtonText: "Atender",
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+            preConfirm: function(text_conclusao) {
+                return new Promise(function(resolve) {
+                    setTimeout(function() {
+                        resolve()
+                    }, 500)
+                })
+            }
+        }).then(result => {
+            if (result.value) {
+                var vData = {
+                    id_andamento: vIdAndamento, id_atendimento: vIdAtendimento
+                };
+
+                $.ajax({
+                    type: 'POST', url: "/tarefas/atender", data: vData
+                })
+                .done(function(response) {
+                    swal.fire({
+                        title: response.mensagem, type: "success", timer: 1000
+                    })
+                    .then(function() {
+                        location.reload();
+                    });
+                })
+                .fail(function(response) {
+                    swal.fire({
+                        title: 'Erro ao atender tarefa.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+                    });
+                });
+            }
+        })
+    });
+</script>
+
+<script>
+    // ENVIO TAREFA
+
+    $(document).on('click', "#enviar_tarefa", function () {
+
+        var depto = document.getElementById('departamento_envio').value;
+        var obs = document.getElementById('observacao_envio').value;
+        var atendimento = document.getElementById('id_atendimento_envio').value;
+        var andamento = document.getElementById('id_andamento_envio').value;
+
+        var vData = {
+            id_departamento: depto,
+            observacao: obs,
+            id_andamento: andamento,
+            id_atendimento: atendimento
+        };
+
+        $.ajax({
+            type: 'POST', url: "/tarefas/enviar-tarefa", data: vData
+        })
+        .done(function(response) {
+            swal.fire({
+                title: response.mensagem, type: "success", timer: 1000
+            })
+            .then(function() {
+                location.reload();
+            });
+        })
+        .fail(function(response) {
+            swal.fire({
+                title: 'Erro ao enviar tarefa.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+            });
+        });
+    });
+
+</script>

@@ -1,0 +1,157 @@
+<% include ../default/header.ejs %>
+
+<body class="vertical-layout vertical-menu content-detached-left-sidebar fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="content-detached-left-sidebar">
+
+    <% include ../default/navbar.ejs %>
+
+    <% include ../default/menu.ejs %>
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <div class="content-header row mb-1">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <h3 class="content-header-title">Nova Tarefa</h3>
+                    <div class="row breadcrumbs-top">
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index">Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="/tarefas">Tarefas</a>
+                                </li>
+                                <li class="breadcrumb-item active">Nova Tarefa
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <% include ../default/messages.ejs %>
+
+            <div class="content-body">
+                <!-- Basic form layout section start -->
+                <section id="basic-rm-layouts">
+
+                    <div class="row match-height">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-content collapse show">
+                                    <div class="card-header bg-secondary">
+                                        <h4 class="card-title text-white">Nova Tarefa</h4>
+                                        <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+                                        <div class="heading-elements">
+                                            <% if (data.status == 'Concluído') { %>
+                                                <span class="badge badge-success">Tarefa Concluída</span>
+                                            <% } %>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <form class="form" method="post">
+                                            <div class="form-body">
+
+                                                <div class="form-group">
+                                                    <label>Assunto</label>
+                                                    <input type="text" class="form-control" name="assunto" id="assunto" value="" required />
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Cliente</label>
+                                                        <div>
+                                                            <input type="hidden" required />
+                                                            <select class="select2 form-control" id="cliente" name="cliente" required>
+                                                                <option value=""></option>
+                                                                <% if (data_clientes) { %>
+                                                                    <% data_clientes.forEach(function(c){ %>
+                                                                        <option value="<%= c.id_cliente %>"><%= c.nome %></option>
+                                                                    <% }) %>
+                                                                <% }; %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label>Sistema</label>
+                                                        <div>
+                                                            <input type="hidden" required />
+                                                            <select class="select2 form-control" id="sistema" name="sistema" required>
+                                                                <option value=""></option>
+                                                                <% if (data_fontes) { %>
+                                                                    <% data_fontes.forEach(function(c){ %>
+                                                                        <option value="<%= c.id_fonte_atendimento %>"><%= c.descricao %></option>
+                                                                    <% }) %>
+                                                                <% }; %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="form-group col-md-6">
+                                                        <label>Tipo de Atendimento</label>
+                                                        <div>
+                                                            <input type="hidden" required />
+                                                            <select class="select2 form-control" id="tipo" name="tipo" required>
+                                                                <option value=""></option>
+                                                                <% if (data_tipos) { %>
+                                                                    <% data_tipos.forEach(function(c){ %>
+                                                                        <option value="<%= c.id_tipo_atendimento %>"><%= c.descricao %></option>
+                                                                    <% }) %>
+                                                                <% }; %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label>Prioridade</label>
+                                                        <div>
+                                                            <input type="hidden" required />
+                                                            <select class="select2 form-control" id="prioridade" name="prioridade" required>
+                                                                <option value=""></option>
+                                                                <option value="Baixa">Baixa</option>
+                                                                <option value="Média">Média</option>
+                                                                <option value="Alta">Alta</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        <label>Observação</label>
+                                                        <textarea type="text" class="form-control" name="observacao" id="observacao" rows="15" required><%- data.observacao %></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-actions">
+                                                <a href="/tarefas" class="btn btn-danger"><i class="ft-x"></i> Cancelar</a>
+                                                <button type="submit" class="btn btn-info">
+                                                    <i class="la la-check-square-o"></i> Salvar
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <% include ../default/footer.ejs %>
+
+</body>
+
+</html>

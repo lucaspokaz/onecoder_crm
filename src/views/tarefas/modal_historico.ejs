@@ -1,0 +1,72 @@
+<!-- Modal -->
+<div class="modal fade text-left" id="myModalHistorico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel1">Histórico de Tarefas</h4>
+            </div>
+            <div class="modal-body">
+                <div id="accordionWrapa1" role="tablist" aria-multiselectable="true">
+                    <div class="modal_historico" id="modal_historico"> </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<script>
+    function mostraModalHistorico(id_atendimento) {
+
+        document.getElementById("modal_historico").innerHTML = '';
+
+        let url = "/tarefas/historico/" + id_atendimento;
+
+        fetch(url)
+        .then(res => res.json())
+        .then((out) => {
+
+            let html = '';
+            let seq = 0;
+            let turnCollapse = 'collapse show';
+            out.forEach(function(row) {
+
+                let dt_inicio = new Date(row.data_inicio);
+                dt_inicio = dt_inicio.toLocaleString();
+
+                seq = seq + 1;
+
+                if (seq > 1) {
+                    turnCollapse = 'collapse'
+                }
+
+                html = html +  `
+                    <div id="heading${seq}" class="card-header" role="tab">
+                        <a data-toggle="collapse" href="#accordion${seq}" aria-expanded="false" aria-controls="accordion${seq}" class="card-title">
+                            <div class="pull-left"> <i class="far fa-user"></i> ${row.nome_usuario} </div>
+                            <div style="float: right;"> <i class="far fa-clock" aria-hidden="true"></i> ${dt_inicio} </div>
+                        </a>
+                    </div>
+                    <div id="accordion${seq}" role="tabpanel" data-parent="#accordionWrapa1" aria-labelledby="heading${seq}" class="${turnCollapse}">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <p>Para: <strong>${row.depto_descricao}</strong></p>
+                                <p>${row.observacao}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById("modal_historico").innerHTML = html;
+        })
+        .catch(err => {
+            throw err
+        });
+
+        event.preventDefault();
+    }
+</script>

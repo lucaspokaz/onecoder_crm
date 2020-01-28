@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade text-left" id="myModalEnvio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel1">Enviar Tarefa</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="post">
+
+                    <div class="form-group">
+                        <label>Departamento</label>
+                        <div>
+                            <input type="hidden" required />
+                            <select class="select2 form-control" id="departamento_envio" name="departamento_envio" required>
+                                <option value=""></option>
+                                <% if (data_departamentos) { %>
+                                    <% data_departamentos.forEach(function(c){ %>
+                                        <option value="<%= c.id_departamento %>"><%= c.descricao %></option>
+                                    <% }) %>
+                                <% }; %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Observação</label>
+                        <textarea type="text" class="form-control" name="observacao_envio" id="observacao_envio" rows="8" style="resize: none;" required></textarea>
+                    </div>
+
+                    <div class="itens_modal" id="itens_modal"></div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info" id="enviar_tarefa" name="enviar_tarefa">
+                            <i class="far fa-paper-plane"></i> Enviar Tarefa
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<script>
+    function mostraModalEnvio(id_atendimento, id_andamento, id_tipo) {
+        document.getElementById("itens_modal").innerHTML = `<input type="hidden" id="id_andamento_envio" name="id_andamento_envio" value="${id_andamento}"></input>
+                                                            <input type="hidden" id="id_atendimento_envio" name="id_atendimento_envio" value="${id_atendimento}"></input>
+                                                            <input type="hidden" id="id_tipo_envio" name="id_tipo_envio" value="${id_tipo}"></input>`;
+    }
+</script>

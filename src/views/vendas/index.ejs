@@ -1,0 +1,149 @@
+<% include ../default/header.ejs %>
+
+<body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
+
+    <% include ../default/navbar.ejs %>
+
+    <% include ../default/menu.ejs %>
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <% include ../default/topbar.ejs %>
+
+            <div class="content-body">
+
+                <section>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Filtros</h4>
+                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="card-content collapse show">
+                                    <div class="card-body card-dashboard dataTables_wrapper dt-bootstrap">
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="dom">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Resumo de Vendas</h4>
+                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body card-dashboard dataTables_wrapper dt-bootstrap">
+                                        <div id="lista-vendas" class="table-responsive">
+                                            <table class="table table-striped" id="mytable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Código</th>
+                                                        <th>Data</th>
+                                                        <th>Cliente</th>
+                                                        <th>Status</th>
+                                                        <th class="text-right">Desconto</th>
+                                                        <th class="text-right">Valor Total</th>
+                                                        <th class="text-center">Gerencial</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% if (data) { %>
+                                                    <% data.forEach(function(user){ %>
+                                                        <tr>
+                                                            <td> <%- format.zero_esquerda(user.id_venda, 6) %> </td>
+                                                            <td> <%- moment(user.dt_venda).format('DD/MM/YYYY') %> </td>
+                                                            <td> <%- user.desc_cliente %> </td>
+
+                                                            <% if (user.status === 'Cancelada') { %>
+                                                                <td> <button type="button" class="btn btn-sm btn-outline-danger round"><%- user.status %></button> </td>
+                                                            <% } else { %>
+                                                            <%      if (user.status === 'Fechada') { %>
+                                                                        <td> <button type="button" class="btn btn-sm btn-outline-success round"><%- user.status %></button> </td>
+                                                                    <% } else { %>
+                                                                        <td> <button type="button" class="btn btn-sm btn-outline-default round"><%- user.status %></button> </td>
+                                                                    <% } %>
+                                                            <% } %>
+
+                                                            <td class="text-right"> <%- format.format_money(user.vlr_desconto) %> </td>
+                                                            <td class="text-right"> <%- format.format_money(user.vlr_total) %> </td>
+                                                            <td class="text-center"> <%- user.gerencial %> </td>
+                                                        </tr>
+                                                    <% }) %>
+                                                    <% }; %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <% include ../default/footer.ejs %>
+
+    <script src="/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
+    <script src="/app-assets/js/scripts/tables/datatables/datatable-advanced.js"></script>
+
+    <!-- BEGIN: Page JS-->
+    <script src="/app-assets/js/scripts/pagination/pagination.js"></script>
+    <script src="/app-assets/vendors/js/pagination/bootstrap-datepaginator.min.js"></script>
+    <!-- END: Page JS-->
+
+    <script>
+        $(document).ready(function() {
+            definirConfiguracoes();
+        });
+    </script>
+
+    <script>
+        function definirConfiguracoes() {
+            var options = {
+                paging: false,
+                dom: '<"pull-left"f><"pull-right"l>tip',
+                language: {
+                    decimal:        "",
+                    search:         "Pesquisar:",
+                    infoEmpty:      "Nenhum resultado encontrado",
+                    info:           "Mostrando _START_ até _END_ de _TOTAL_ registros.",
+                    infoFiltered:   "(filtrado de _MAX_ registros)",
+                    emptyTable:     "...",
+                    thousands:      "."
+                }
+            }
+            $('#mytable').DataTable(options);
+        }
+    </script>
+
+</body>
+
+</html>

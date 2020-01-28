@@ -1,0 +1,344 @@
+<% include ../default/header.ejs %>
+
+<body class="vertical-layout vertical-menu content-detached-left-sidebar fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="content-detached-left-sidebar">
+
+    <% include ../default/navbar.ejs %>
+
+    <% include ../default/menu.ejs %>
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <% include ../default/messages.ejs %>
+
+            <div class="content-body">
+
+
+                <div class="content-header row mb-1">
+                    <div class="content-header-left col-md-12 mb-2">
+                        <h3 class="content-header-title">Quadro de Tarefas</h3>
+                        <div class="row breadcrumbs-top">
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/index">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="/tarefas">Tarefas</a>
+                                    </li>
+                                    <li class="breadcrumb-item active"> Quadro de Tarefas
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+
+                                        <div class="card-header">
+                                            <h4 class="card-title">Tarefas que estou Atendendo</h4>
+                                            <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+                                            <div class="heading-elements">
+                                                <ul class="list-inline mb-0">
+                                                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-content collapse show">
+                                            <div class="card-body">
+                                                <!-- Task List table -->
+
+                                                <% if (data_atendimento.length > 0) { %>
+
+                                                <div class="table-responsive">
+                                                    <table class="table dataTables-example dataTables_filter" id="mytable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tarefa</th>
+                                                                <th>Tipo</th>
+                                                                <th>Assunto</th>
+                                                                <th>Sistema</th>
+                                                                <th>Situação</th>
+                                                                <th>Abertura</th>
+                                                                <th>Prior.</th>
+                                                                <th> </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% data_atendimento.forEach(function(user){ %>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600">
+                                                                            # <%- formatter.zero_esquerda(user.id_atendimento, 4) %>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= user.tipo_atendimento %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a aria-expanded="true" href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600" >
+                                                                            <%= user.assunto %>
+                                                                        </a>
+                                                                        <p class="text-muted font-small-2">
+                                                                            <strong> Cliente: <%= user.nome_cliente %> </strong> <br>
+                                                                            Solicitante: <%= user.nome_contato %> <br>
+                                                                            Observação: <%= user.observacao %>
+                                                                        </p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= user.fonte_atendimento %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if (user.status === 'Não Iniciado') { %> <span class="badge badge-secondary"><%- user.status %></span> <% } %>
+                                                                        <% if (user.status === 'Concluído') { %> <span class="badge badge-success"><%- user.status %></span> <% } %>
+                                                                        <% if (user.status === 'Em Andamento') { %> <span class="badge badge-warning"><%- user.status %></span> <% } %>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <%= moment(user.abertura).format('DD/MM/YYYY') %>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <% if (user.prioridade === 'Alta') { %> <span class="badge badge-danger"><%- user.prioridade %></span> <% } %>
+                                                                        <% if (user.prioridade === 'Média') { %> <span class="badge badge-warning"><%- user.prioridade %></span> <% } %>
+                                                                        <% if (user.prioridade === 'Baixa') { %> <span class="badge badge-info"><%- user.prioridade %></span> <% } %>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <button class="btn btn-outline-info btn-sm round dropdown-toggle dropdown-menu-right box-shadow-1"
+                                                                                id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="ft-settings icon-left"></i> Opções
+                                                                        </button>
+
+                                                                        <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="btnGroupDrop1">
+                                                                            <a class="dropdown-item" id="historico" title="Histórico"
+                                                                                onclick="mostraModalHistorico(<%- user.id_atendimento %>)"
+                                                                                data-toggle="modal" data-target="#myModalHistorico" >
+                                                                                <i class="far fa-clock" aria-hidden="true" style="margin-right: 10px;"></i> Visualizar Histórico
+                                                                            </a>
+
+                                                                            <div class="dropdown-divider"></div>
+
+                                                                            <a class="dropdown-item" id="retorna_para_fila" title="Retornar para Fila"
+                                                                                data-id-atendimento="<%= user.id_atendimento %>"
+                                                                                data-id-andamento="<%= user.id_andamento %>"
+                                                                                data-id-departamento="<%= user.id_departamento %>"
+                                                                                data-id-tipo-andamento="<%= user.id_tipo_atendimento %>">
+                                                                                <i class="fa fa-arrow-down" aria-hidden="true" style="margin-right: 10px;"></i> Retornar para Fila
+                                                                            </a>
+
+                                                                            <a class="dropdown-item" id="envio" title="Enviar Tarefa"
+                                                                                onclick="mostraModalEnvio(<%- user.id_atendimento + ', ' + user.id_andamento + ', ' + user.id_tipo_atendimento %>)"
+                                                                                data-toggle="modal" data-target="#myModalEnvio" >
+                                                                                <i class="far fa-paper-plane" style="margin-right: 10px;"></i> Enviar Tarefa
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <% }) %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <% } else { %>
+
+                                                <p class="text-center text-muted">Nenhum registro encontrado!</p>
+
+                                                <% } %>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+
+                                        <div class="card-header">
+                                            <h4 class="card-title">Tarefas na Fila de Atendimento</h4>
+                                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                            <div class="heading-elements">
+                                                <ul class="list-inline mb-0">
+                                                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-content collapse show">
+                                            <div class="card-body">
+
+                                                <!-- Task List table -->
+                                                <% if (data_sem_atendimento.length > 0) { %>
+
+                                                <div class="form-group">
+                                                    <label>Pesquisa</label>
+                                                    <input type="text" class="form-control" name="filtro_pesquisa" id="filtro_pesquisa" placeholder="Digite aqui sua pesquisa, exemplo: problema, teste, desconto, ..." />
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tarefa</th>
+                                                                <th>Tipo</th>
+                                                                <th>Assunto</th>
+                                                                <th>Sistema</th>
+                                                                <th>Situação</th>
+                                                                <th>Abertura</th>
+                                                                <th>Prior.</th>
+                                                                <th> </th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+
+                                                            <% data_sem_atendimento.forEach(function(user){ %>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600">
+                                                                            # <%- formatter.zero_esquerda(user.id_atendimento, 4) %>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= user.tipo_atendimento %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a aria-expanded="true" href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600" >
+                                                                            <%= user.assunto %>
+                                                                        </a>
+                                                                        <p class="text-muted font-small-2">
+                                                                            <strong> Cliente: <%= user.nome_cliente %> </strong> <br>
+                                                                            Solicitante: <%= user.nome_contato %> <br>
+                                                                            Observação: <%= user.observacao %>
+                                                                        </p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= user.fonte_atendimento %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if (user.status === 'Não Iniciado') { %> <span class="badge badge-secondary"><%- user.status %></span> <% } %>
+                                                                        <% if (user.status === 'Concluído') { %> <span class="badge badge-success"><%- user.status %></span> <% } %>
+                                                                        <% if (user.status === 'Em Andamento') { %> <span class="badge badge-warning"><%- user.status %></span> <% } %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= moment(user.abertura).format('DD/MM/YYYY') %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if (user.prioridade === 'Alta') { %> <span class="badge badge-danger"><%- user.prioridade %></span> <% } %>
+                                                                        <% if (user.prioridade === 'Média') { %> <span class="badge badge-warning"><%- user.prioridade %></span> <% } %>
+                                                                        <% if (user.prioridade === 'Baixa') { %> <span class="badge badge-info"><%- user.prioridade %></span> <% } %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="btn btn-outline-info btn-sm round dropdown-toggle dropdown-menu-right box-shadow-1"
+                                                                                id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="ft-settings icon-left"></i> Opções
+                                                                        </button>
+
+                                                                        <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="btnGroupDrop1">
+                                                                            <a class="dropdown-item" id="historico" title="Histórico"
+                                                                                onclick="mostraModalHistorico(<%- user.id_atendimento %>)"
+                                                                                data-toggle="modal" data-target="#myModalHistorico" >
+                                                                                <i class="far fa-clock" aria-hidden="true" style="margin-right: 10px;"></i> Visualizar Histórico
+                                                                            </a>
+
+                                                                            <div class="dropdown-divider"></div>
+
+                                                                            <a class="dropdown-item" id="atender" title="Atender"
+                                                                                data-id-atendimento="<%= user.id_atendimento %>"
+                                                                                data-id-andamento="<%= user.id_andamento %>" >
+                                                                                <i class="fa fa-arrow-up" aria-hidden="true" style="margin-right: 10px;"></i> Atender Tarefa
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <% }) %>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <% } else { %>
+
+                                                <p class="text-center text-muted">Nenhum registro encontrado!</p>
+
+                                                <% } %>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <!-- Modal -->
+    <% include modal_historico.ejs %>
+    <!-- Modal -->
+
+    <!-- Modal -->
+    <% include modal_envio.ejs %>
+    <!-- Modal -->
+
+    <% include ../default/footer.ejs %>
+
+    <script>
+
+        $(document).ready(function () {
+
+            var dataTable = $('.dataTables-example').DataTable({
+                lengthMenu: [[200, 300, -1], [200, 300, "All"]],
+                bPaginate: false,
+                bProcessing: true,
+                bLengthChange: false,
+                bInfo: false,
+                bFilter: true,
+                responsive: false,
+                rowReorder: false,
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [],
+                order: [[ 0, "desc" ]],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Pesquisar...",
+                    paginate: {
+                        previous: "Anterior",
+                        next: "Próximo"
+                    }
+                }
+            });
+
+            $('.dataTables_filter').addClass('pull-left');
+
+            $('#filtro_pesquisa').on('keyup change clear', function(){
+                dataTable.search(this.value).draw();
+            });
+        });
+    </script>
+
+    <!-- acoes -->
+    <% include acoes_tarefas.ejs %>
+    <!-- acoes -->
+
+</body>
+
+</html>
