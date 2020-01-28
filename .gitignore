@@ -3,3 +3,4 @@ sshkeygen.pub
 keygen
 keygen.pub
 config/configuration.js
+node_modules
