@@ -70,8 +70,8 @@ const clientesRoute = require('./src/routes/clientesRoute');
 const contratosRoute = require('./src/routes/contratosRoute');
 
 // Uso das Rotas
+app.use('/', loginRoute);
 app.use('/login', loginRoute);
-app.use('/', indexRoute);
 app.use('/index', indexRoute);
 app.use('/tarefas', tarefasRoute);
 app.use('/clientes', clientesRoute);

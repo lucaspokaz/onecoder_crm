@@ -4,10 +4,7 @@ const session = require('express-session');
 
 exports.get = async (req, res, next) => {
     if (req.session.esta_logado == true) {
-        res.render('index', {
-            menu: 'principal',
-            session: req.session
-        });
+        res.redirect('/index');
     } else {
         res.render('login', {
             menu: 'principal',
@@ -22,7 +19,7 @@ exports.logout = async (req, res, next) => {
     req.session.nome_usuario = '';
 
     req.flash('success', `Usuário desconectado.`);
-    res.redirect('login');
+    res.redirect('/login');
 };
 
 exports.post = async (req, res, next) => {
@@ -54,7 +51,7 @@ exports.post = async (req, res, next) => {
             res.session = req.session;
 
             req.flash('success', `Login efetivado com sucesso.`);
-            res.redirect('index');
+            res.redirect('/index');
         }
     }
 };
