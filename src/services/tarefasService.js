@@ -88,6 +88,46 @@ exports.get_minhas_tarefas_acompanhamento = (idUsuario) => {
     return retorno;
 }
 
+exports.get_tarefas_abertas_por_mim = (idUsuario) => {
+
+    let SQL =
+        `SELECT
+            at.id_atendimento,
+            at.inicio as abertura,
+            c.nome AS nome_cliente,
+            t.descricao AS tipo_atendimento,
+            f.descricao as fonte_atendimento,
+            REPLACE(REPLACE(at.observacao, CHAR(13), '\r\n'), CHAR(10),'') as observacao,
+            d.descricao as departamento,
+            at.assunto,
+            at.prioridade,
+            u.nome as nome_contato,
+            at.status,
+            at.id_cliente,
+            an.id_andamento,
+            at.id_tipo_atendimento
+        FROM
+            atendimento at
+        LEFT JOIN andamento an ON at.id_atendimento = an.id_atendimento
+                              AND an.id_andamento = (select max(id_andamento) from andamento
+                                                      where andamento.id_atendimento = at.id_atendimento)
+        LEFT JOIN cliente c ON c.id_cliente = at.id_cliente
+        LEFT JOIN tipo_atendimento t ON t.id_tipo_atendimento = at.id_tipo_atendimento
+        LEFT JOIN fonte_atendimento f ON f.id_fonte_atendimento = at.id_fonte
+        LEFT JOIN departamento d ON d.id_departamento = an.id_departamento
+        LEFT JOIN usuario u ON u.id_usuario = at.id_usuario
+
+        WHERE
+            at.id_usuario = ${idUsuario}
+            AND at.status <> 'Concluído'
+
+        ORDER BY
+            f.descricao, at.inicio, assunto
+          `;
+
+    let retorno = db.exec_promise_json(SQL, [], 'Minhas Tarefas');
+    return retorno;
+}
 
 exports.get_tarefas_visao_geral = () => {
 
