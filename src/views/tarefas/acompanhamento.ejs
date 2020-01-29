@@ -156,6 +156,13 @@
                                                                                 <%= user.tipo_atendimento %>
                                                                             </td>
                                                                             <td>
+                                                                                <% if (user.qtd_anexo > 0) { %>
+                                                                                    <a title="Visualizar Anexos" onclick="mostraModalAnexo(<%- user.id_atendimento %>)"
+                                                                                        id="historico" style="margin-right: 10px; color: goldenrod;"
+                                                                                        data-toggle="modal" data-target="#myModalAnexo">
+                                                                                        <i class="far fa-images"></i>
+                                                                                    </a>
+                                                                                <% } %>
                                                                                 <label data-toggle="popover" data-trigger="hover" data-html="true"
                                                                                     data-original-title="<h6> Cliente: <%= user.nome_cliente %> </h6>"
                                                                                     data-content="<p> <b> Solicitante: <%= user.nome_contato %> </b> </p>
@@ -213,6 +220,11 @@
                             </div>
                         </div>
                     </section>
+
+
+
+
+
                 </div>
             </div>
         </div>
@@ -221,6 +233,10 @@
 
     <!-- Modal -->
     <% include modal_historico.ejs %>
+    <!-- Modal -->
+
+    <!-- Modal -->
+    <% include modal_anexo.ejs %>
     <!-- Modal -->
 
     <% include ../default/footer.ejs %>

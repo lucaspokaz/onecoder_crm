@@ -30,7 +30,8 @@ exports.get_tarefas_acompanhamento = (idUsuario, SomentePendentes) => {
             at.status,
             at.id_cliente,
             an.id_andamento,
-            at.id_tipo_atendimento
+            at.id_tipo_atendimento,
+            (select count(*) from atendimento_anexo a where at.id_atendimento = a.id_atendimento) as qtd_anexo
         FROM
             atendimento at
         LEFT JOIN andamento an ON at.id_atendimento = an.id_atendimento
@@ -70,7 +71,8 @@ exports.get_minhas_tarefas_acompanhamento = (idUsuario) => {
             at.status,
             at.id_cliente,
             an.id_andamento,
-            at.id_tipo_atendimento
+            at.id_tipo_atendimento,
+            (select count(*) from atendimento_anexo a where at.id_atendimento = a.id_atendimento) as qtd_anexo
         FROM
             atendimento at
         LEFT JOIN andamento an ON at.id_atendimento = an.id_atendimento
@@ -105,7 +107,8 @@ exports.get_tarefas_abertas_por_mim = (idUsuario) => {
             at.status,
             at.id_cliente,
             an.id_andamento,
-            at.id_tipo_atendimento
+            at.id_tipo_atendimento,
+            (select count(*) from atendimento_anexo a where at.id_atendimento = a.id_atendimento) as qtd_anexo
         FROM
             atendimento at
         LEFT JOIN andamento an ON at.id_atendimento = an.id_atendimento
