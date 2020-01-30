@@ -116,7 +116,6 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>Tarefa</th>
-                                                                <th>Sistema</th>
                                                                 <th>Assunto</th>
                                                                 <th>Abertura</th>
                                                                 <th>Situação</th>
@@ -131,9 +130,9 @@
                                                                 <% data.forEach(function(user) { %>
 
                                                                     <% if (ultimo_sistema !== user.fonte_atendimento) { %>
-                                                                        <tr class="group">
+                                                                        <tr class="group" style="background-color: #f7f7f7 !important;">
                                                                             <td colspan="8">
-                                                                                <h6 class="mb-0"> <span class="text-bold-600">Sistema: </span> <%= user.fonte_atendimento %> </h6>
+                                                                                <h6 class="mb-0" style="color: #e83030;"> <span class="text-bold-600">Sistema: <%= user.fonte_atendimento %> </span> </h6>
                                                                             </td>
                                                                         </tr>
                                                                     <% } %>
@@ -145,9 +144,6 @@
                                                                             <a href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600">
                                                                                 # <%- formatter.zero_esquerda(user.id_atendimento, 4) %>
                                                                             </a>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= user.fonte_atendimento %>
                                                                         </td>
                                                                         <td>
                                                                             <label class="text-bold-600"><%= user.assunto %></label>
