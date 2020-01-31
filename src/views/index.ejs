@@ -66,11 +66,11 @@
                                     <div class="card-body">
                                         <div class="media d-flex">
                                             <div class="align-self-center">
-                                                <i class="fas fa-medal success font-large-2"></i>
+                                                <i class="fas fa-wrench warning font-large-2"></i>
                                             </div>
                                             <div class="media-body text-right">
-                                                <h5 class="text-muted text-bold-500">Tarefas Concluídas</h5>
-                                                <h3 class="text-bold-600"><%- data_geral[0].tarefas_concluidas %></h3>
+                                                <h5 class="text-muted text-bold-500">Tarefas em Atendimento</h5>
+                                                <h3 class="text-bold-600"><%- data_geral[0].tarefas_em_aberto %></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -83,11 +83,11 @@
                                     <div class="card-body">
                                         <div class="media d-flex">
                                             <div class="align-self-center">
-                                                <i class="fas fa-wrench warning font-large-2"></i>
+                                                <i class="fas fa-medal success font-large-2"></i>
                                             </div>
                                             <div class="media-body text-right">
-                                                <h5 class="text-muted text-bold-500">Tarefas em Atendimento</h5>
-                                                <h3 class="text-bold-600"><%- data_geral[0].tarefas_em_aberto %></h3>
+                                                <h5 class="text-muted text-bold-500">Tarefas Concluídas</h5>
+                                                <h3 class="text-bold-600"><%- data_geral[0].tarefas_concluidas %></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -97,6 +97,82 @@
                     </div>
                 <% }; %>
 
+
+                <!-- Statistics with grouped cards -->
+                <% if (data_geral) { %>
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" id="heading-select">Visão Mensal de Tarefas</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="form-group col-md-3">
+                                                <label>Mês</label>
+                                                <select class="select2 form-control" id="select2-mes" name="mes" id="mes" required>
+                                                    <option value="01">Janeiro</option>
+                                                    <option value="02">Fevereiro</option>
+                                                    <option value="03">Março</option>
+                                                    <option value="04">Abril</option>
+                                                    <option value="05">Maio</option>
+                                                    <option value="06">Junho</option>
+                                                    <option value="07">Julho</option>
+                                                    <option value="08">Agosto</option>
+                                                    <option value="09">Setembro</option>
+                                                    <option value="10">Outubro</option>
+                                                    <option value="11">Novembro</option>
+                                                    <option value="12">Dezembro</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label>Ano</label>
+                                                <select class="select2 form-control" id="select2-ano" name="ano" id="ano" required>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <div class="card">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-6 col-md-6 col-12 border-right-blue-grey border-right-lighten-5">
+                                                                    <div class="float-left pl-2">
+                                                                        <span class="font-large-3 text-bold-300 warning">XXX</span>
+                                                                    </div>
+                                                                    <div class="float-left mt-2 ml-1">
+                                                                        <span class="blue-grey darken-1 block">Tarefas</span>
+                                                                        <span class="blue-grey darken-1 block">Abertas</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-12">
+                                                                    <div class="float-left pl-2">
+                                                                        <span class="font-large-3 text-bold-300 success">XXX</span>
+                                                                    </div>
+                                                                    <div class="float-left mt-2 ml-1">
+                                                                        <span class="blue-grey darken-1 block">Tarefas</span>
+                                                                        <span class="blue-grey darken-1 block">Concluídas</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                <% }; %>
 
                 <section class="row">
                     <div class="col-12">

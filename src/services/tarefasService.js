@@ -253,6 +253,22 @@ exports.get_tarefas_sem_atendimento = (IdUsuario) => {
     return retorno;
 }
 
+exports.get_tarefas_por_mes = (ano, mes) => {
+
+    let SQL =
+        `select
+                (select count(*) from atendimento
+                  where extract(year from inicio) = ${ano}
+                    and extract(month from inicio) = ${mes}) as tarefas_abertas,
+
+                (select count(*) from atendimento
+                  where extract(year from final) = ${ano}
+                    and extract(month from final) = ${mes}) as tarefas_fechadas `;
+
+    let retorno = db.exec_promise_json(SQL, [], 'Tarefas por mes');
+    return retorno;
+}
+
 exports.insert = async (req, res) => {
 
     try {
