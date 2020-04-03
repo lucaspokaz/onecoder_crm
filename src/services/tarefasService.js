@@ -351,7 +351,15 @@ exports.edit = async (req, res) => {
 
 exports.update_status_tarefa = (IdAtendimento, Status) => {
 
-    let SQL = `update atendimento set status = ${Status} where id_atendimento = ${IdAtendimento}`;
+    let SQL = `update atendimento set status = '${Status}' where id_atendimento = ${IdAtendimento}`;
+    db.exec_promise(SQL);
+    return {status: 200, mensagem: 'Atualizado com sucesso.'}
+
+}
+
+exports.conclui_status_tarefa = (IdAtendimento, Status, Conclusao) => {
+
+    let SQL = `update atendimento set status = '${Status}', conclusao = '${Conclusao}' where id_atendimento = ${IdAtendimento}`;
     db.exec_promise(SQL);
     return {status: 200, mensagem: 'Atualizado com sucesso.'}
 

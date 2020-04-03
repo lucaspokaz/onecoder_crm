@@ -141,3 +141,60 @@
     });
 
 </script>
+
+<script>
+    // CONCLUIR TAREFA
+
+    $(document).on('click', "#concluir_tarefa", function () {
+
+        event.preventDefault();
+
+        var vIdAtendimento = $(this).attr('data-id-atendimento');
+        var vIdAndamento = $(this).attr('data-id-andamento');
+        var vIdDepartamento = $(this).attr('data-id-departamento');
+        var vIdTipoAndamento = $(this).attr('data-id-tipo-andamento');
+
+        var vData = {
+            id_andamento: vIdAndamento,
+            id_atendimento: vIdAtendimento,
+            id_departamento: vIdDepartamento,
+            id_tipo_andamento: vIdTipoAndamento
+        };
+
+        swal.fire({
+            title: 'Concluir a tarefa #' + vIdAtendimento + '?',
+            type: "question",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            cancelButtonText: "Não",
+            showLoaderOnConfirm: true,
+            preConfirm: function(text_conclusao) {
+                return new Promise(function(resolve) {
+                    setTimeout(function() {
+                        resolve()
+                    }, 500)
+                })
+            }
+        }).then(result => {
+            if (result.value) {
+                $.ajax({
+                    type: 'POST', url: "/tarefas/concluir-tarefa", data: vData
+                })
+                .done(function(response) {
+                    swal.fire({
+                        title: response.mensagem, type: "success", timer: 1000
+                    })
+                    .then(function() {
+                        location.reload();
+                    });
+                })
+                .fail(function(response) {
+                    swal.fire({
+                        title: 'Erro ao atender tarefa.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+                    });
+                });
+            }
+        });
+    });
+
+</script>

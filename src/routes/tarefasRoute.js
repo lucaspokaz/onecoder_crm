@@ -19,5 +19,6 @@ router.post('/editar/(:id)', auth.loggedIn, controller.editar);
 router.post('/atender', auth.loggedIn, controller.atender_tarefa);
 router.post('/retornar-para-fila', auth.loggedIn, controller.retornar_para_fila);
 router.post('/enviar-tarefa', auth.loggedIn, controller.enviar_tarefa);
+router.post('/concluir-tarefa', auth.loggedIn, controller.concluir_tarefa);
 
 module.exports = router;

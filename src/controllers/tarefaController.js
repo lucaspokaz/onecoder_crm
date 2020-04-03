@@ -202,7 +202,7 @@ exports.get_quadro_tarefas = async (req, res, next) => {
 
 exports.atender_tarefa = async (req, res, next) => {
 
-    let retorno = await tarefasService.update_status_tarefa(req.body.id_atendimento);
+    let retorno = await tarefasService.update_status_tarefa(req.body.id_atendimento, 'Em Andamento');
 
     if (retorno.status == 200) {
 
@@ -242,6 +242,22 @@ exports.enviar_tarefa = async (req, res, next) => {
         req.body.id_departamento,
         req.session.codigo_usuario,
         req.body.observacao
+    );
+
+    if (retorno.status == 200) {
+        return res.status(200).send(retorno);
+    } else {
+        return res.status(400).send(retorno);
+    }
+};
+
+exports.concluir_tarefa = async (req, res, next) => {
+
+    let retorno = await andamentosService.concluir_tarefa(
+        req.body.id_andamento,
+        req.body.id_atendimento,
+        req.body.id_departamento,
+        req.session.codigo_usuario
     );
 
     if (retorno.status == 200) {
