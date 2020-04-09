@@ -68,6 +68,7 @@ const loginRoute = require('./src/routes/loginRoute');
 const tarefasRoute = require('./src/routes/tarefasRoute');
 const clientesRoute = require('./src/routes/clientesRoute');
 const contratosRoute = require('./src/routes/contratosRoute');
+const updatesRoute = require('./src/routes/updatesRoute');
 
 // Uso das Rotas
 app.use('/', loginRoute);
@@ -76,6 +77,7 @@ app.use('/index', indexRoute);
 app.use('/tarefas', tarefasRoute);
 app.use('/clientes', clientesRoute);
 app.use('/contratos', contratosRoute);
+app.use('/updates', updatesRoute);
 
 try {
     conn = db.connect();
