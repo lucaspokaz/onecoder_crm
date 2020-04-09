@@ -101,7 +101,7 @@
                                                                     </td>
 
                                                                     <td>
-                                                                        <%= moment(user.abertura).format('DD/MM/YYYY') %>
+                                                                        <%= moment(user.data_inicio).format('DD/MM/YYYY') %>
                                                                     </td>
 
                                                                     <td>
@@ -235,7 +235,7 @@
                                                                         <% if (user.status === 'Em Andamento') { %> <span class="badge badge-warning"><%- user.status %></span> <% } %>
                                                                     </td>
                                                                     <td>
-                                                                        <%= moment(user.abertura).format('DD/MM/YYYY') %>
+                                                                        <%= moment(user.data_inicio).format('DD/MM/YYYY') %>
                                                                     </td>
                                                                     <td>
                                                                         <% if (user.prioridade === 'Alta') { %> <span class="badge badge-danger"><%- user.prioridade %></span> <% } %>
