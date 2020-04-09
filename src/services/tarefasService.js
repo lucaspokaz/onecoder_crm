@@ -86,7 +86,7 @@ exports.get_minhas_tarefas_acompanhamento = (idUsuario) => {
 
         WHERE
             status <> 'Concluído'
-            at.id_usuario = ${idUsuario} `;
+            AND at.id_usuario = ${idUsuario} `;
 
     let retorno = db.exec_promise_json(SQL, [], 'Minhas Tarefas');
     return retorno;
