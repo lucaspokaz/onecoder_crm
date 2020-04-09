@@ -84,7 +84,9 @@ exports.get_minhas_tarefas_acompanhamento = (idUsuario) => {
         LEFT JOIN departamento d ON d.id_departamento = an.id_departamento
         LEFT JOIN usuario u ON u.id_usuario = at.id_usuario
 
-        WHERE at.id_usuario = ${idUsuario} `;
+        WHERE
+            status <> 'Concluído'
+            at.id_usuario = ${idUsuario} `;
 
     let retorno = db.exec_promise_json(SQL, [], 'Minhas Tarefas');
     return retorno;
