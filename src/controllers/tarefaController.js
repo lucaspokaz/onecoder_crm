@@ -11,6 +11,10 @@ let
     dados_fonte,
     dados_tipo;
 
+var
+    moment = require('moment');
+    moment.locale('pt-br');
+
 exports.acompanhamento_pendentes = async (req, res, next) => {
 
     let results = await tarefasService.get_tarefas_acompanhamento(req.session.codigo_usuario, true);
@@ -27,7 +31,7 @@ exports.acompanhamento_pendentes = async (req, res, next) => {
         info: {
             titulo: 'Acompanhamento de Tarefas Pendentes'
         },
-        moment: require('moment'),
+        moment: moment,
         formatter: require('../utils/formatter')
     });
 
@@ -50,7 +54,7 @@ exports.acompanhamento_minhas = async (req, res, next) => {
         info: {
             titulo: 'Acompanhamento das Minhas Tarefas'
         },
-        moment: require('moment'),
+        moment: moment,
         formatter: require('../utils/formatter')
     });
 };
@@ -71,7 +75,7 @@ exports.acompanhamento_todas = async (req, res, next) => {
         info: {
             titulo: 'Acompanhamento de Todas as Tarefas',
         },
-        moment: require('moment'),
+        moment: moment,
         formatter: require('../utils/formatter')
     });
 };
@@ -91,6 +95,8 @@ exports.carregar = async (req, res, next) => {
 
         let tarefa = await tarefasService.get_tarefa_by_id(req.params.id);
         let dados_tarefa = JSON.parse(tarefa);
+        let historico = await tarefasService.get_historico_tarefa(req.params.id);
+        let dados_historico = JSON.parse(historico);
 
         res.render('tarefas/editar', {
             session: req.session,
@@ -99,7 +105,8 @@ exports.carregar = async (req, res, next) => {
             data_clientes: dados_cliente,
             data_fontes: dados_fonte,
             data_tipos: dados_tipo,
-            moment: require('moment'),
+            data_historico: dados_historico,
+            moment: moment,
             formatter: require('../utils/formatter')
         })
 
@@ -112,7 +119,7 @@ exports.carregar = async (req, res, next) => {
             data_clientes: dados_cliente,
             data_fontes: dados_fonte,
             data_tipos: dados_tipo,
-            moment: require('moment'),
+            moment: moment,
             formatter: require('../utils/formatter')
         })
 
@@ -141,7 +148,7 @@ exports.criar = async (req, res, next) => {
             data_clientes: dados_cliente,
             data_fontes: dados_fonte,
             data_tipos: dados_tipo,
-            moment: require('moment'),
+            moment: moment,
             formatter: require('../utils/formatter')
         })
     }
@@ -167,7 +174,7 @@ exports.editar = async (req, res, next) => {
             data_clientes: dados_cliente,
             data_fontes: dados_fonte,
             data_tipos: dados_tipo,
-            moment: require('moment'),
+            moment: moment,
             formatter: require('../utils/formatter')
         })
     }
@@ -195,7 +202,7 @@ exports.get_quadro_tarefas = async (req, res, next) => {
         data_atendimento: dados_atendimento,
         data_sem_atendimento: dados_sem_atendimento,
         data_departamentos: dados_departamento,
-        moment: require('moment'),
+        moment: moment,
         formatter: require('../utils/formatter')
     });
 };
