@@ -1,4 +1,4 @@
-const service = require('../services/loginService');
+const service = require('../services/login_service');
 const package_json = require('../../package.json');
 const session = require('express-session');
 

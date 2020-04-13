@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/tarefaController')
+const controller = require('../controllers/tarefa_controller')
 const auth = require('../../config/auth');
 
 router.get('/', auth.loggedIn, controller.acompanhamento_minhas);

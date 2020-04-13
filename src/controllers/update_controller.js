@@ -1,4 +1,4 @@
-const updatesService = require('../services/updatesService');
+const updatesService = require('../services/update_service');
 
 exports.get_versions = async (req, res, next) => {
 

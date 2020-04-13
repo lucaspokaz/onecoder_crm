@@ -1,7 +1,7 @@
 const
-    clientesService = require('../services/clientesService'),
-    tarefasService = require('../services/tarefasService'),
-    contratosService = require('../services/contratosService');
+    clientesService = require('../services/cliente_service'),
+    tarefasService = require('../services/tarefa_service'),
+    contratosService = require('../services/contrato_service');
 
 exports.listar = async (req, res, next) => {
 

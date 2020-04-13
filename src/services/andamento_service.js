@@ -1,8 +1,8 @@
 const db = require('../../config/database');
 const moment = require('moment');
 
-const tarefasService = require('../services/tarefasService');
-const loginService = require('../services/loginService');
+const tarefasService = require('./tarefa_service');
+const loginService = require('./login_service');
 
 exports.get_andamento_by_id = async (IdAndamento) => {
 
@@ -15,7 +15,7 @@ exports.get_andamento_by_id = async (IdAndamento) => {
 exports.insert = (andamento, id_tarefa) => {
     let SQL = 'insert into andamento set ?';
     andamento['id_atendimento'] = id_tarefa;
-    db.exec_promise(SQL, andamento);
+    db.exec_promise(SQL, andamento, 'Inserção de andamento');
 }
 
 exports.update_andamento_atendimento = async (IdUsuario, IdAndamento) => {
@@ -23,7 +23,7 @@ exports.update_andamento_atendimento = async (IdUsuario, IdAndamento) => {
     let SQL = `update andamento set id_responsavel = ${IdUsuario} where id_andamento = ${IdAndamento}`;
 
     try {
-        await db.exec_promise(SQL);
+        await db.exec_promise(SQL, [], 'Update andamento responsável');
         return {status: 200, mensagem: 'Andamento atualizado com sucesso.'}
     } catch (error) {
         return {status: 400, mensagem: error}
@@ -55,7 +55,7 @@ exports.enviar_tarefa = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsu
 
     try {
         let SQL = `update andamento set data_fim = now() where id_andamento = ${IdAndamento}`;
-        await db.exec_promise(SQL);
+        await db.exec_promise(SQL, [], 'Update andamento conclusão');
 
         let andamento = {
             id_atendimento: IdAtendimento,

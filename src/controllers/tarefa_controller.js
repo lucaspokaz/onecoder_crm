@@ -1,10 +1,10 @@
 const
-    clienteService = require('../services/clientesService'),
-    fontesService = require('../services/fontesService'),
-    tiposAtendimentoService = require('../services/tiposAtendimentoService'),
-    tarefasService = require('../services/tarefasService'),
-    andamentosService = require('../services/andamentosService'),
-    departamentosService = require('../services/departamentosService');
+    clienteService = require('../services/cliente_service'),
+    fontesService = require('../services/fonte_service'),
+    tiposAtendimentoService = require('../services/tipoatendimento_service'),
+    tarefasService = require('../services/tarefa_service'),
+    andamentosService = require('../services/andamento_service'),
+    departamentosService = require('../services/departamento_service');
 
 let
     dados_cliente,

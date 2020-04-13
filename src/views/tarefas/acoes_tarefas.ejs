@@ -110,6 +110,11 @@
 
     $(document).on('click', "#enviar_tarefa", function () {
 
+        // desabilitando para não clicar novamente
+        $(this).prop('disabled', true);
+
+        event.preventDefault();
+
         var depto = document.getElementById('departamento_envio').value;
         var obs = document.getElementById('observacao_envio').value;
         var atendimento = document.getElementById('id_atendimento_envio').value;
@@ -138,6 +143,7 @@
                 title: 'Erro ao enviar tarefa.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
             });
         });
+
     });
 
 </script>

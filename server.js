@@ -63,12 +63,12 @@ app.use(function(req, res, next) {
 })
 
 // Rotas
-const indexRoute = require('./src/routes/indexRoute');
-const loginRoute = require('./src/routes/loginRoute');
-const tarefasRoute = require('./src/routes/tarefasRoute');
-const clientesRoute = require('./src/routes/clientesRoute');
-const contratosRoute = require('./src/routes/contratosRoute');
-const updatesRoute = require('./src/routes/updatesRoute');
+const indexRoute = require('./src/routes/index_route');
+const loginRoute = require('./src/routes/login_route');
+const tarefasRoute = require('./src/routes/tarefa_route');
+const clientesRoute = require('./src/routes/cliente_route');
+const contratosRoute = require('./src/routes/contrato_route');
+const updatesRoute = require('./src/routes/update_route');
 
 // Uso das Rotas
 app.use('/', loginRoute);

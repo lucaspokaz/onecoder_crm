@@ -1,7 +1,7 @@
 const
-    contratosService = require('../services/contratosService'),
-    clienteService = require('../services/clientesService'),
-    fontesService = require('../services/fontesService');
+    contratosService = require('../services/contrato_service'),
+    clienteService = require('../services/cliente_service'),
+    fontesService = require('../services/fonte_service');
 
 let
     dados_fonte,

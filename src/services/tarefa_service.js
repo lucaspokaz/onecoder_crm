@@ -1,6 +1,6 @@
 const db = require('../../config/database');
-const andamentosService = require('../services/andamentosService');
-const tiposAtendimentoService = require('../services/tiposAtendimentoService');
+const andamentosService = require('./andamento_service');
+const tiposAtendimentoService = require('./tipoatendimento_service');
 const moment = require('moment');
 
 exports.get_tarefa_by_id = async (IdAtendimento) => {

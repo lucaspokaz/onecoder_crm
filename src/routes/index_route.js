@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../config/auth');
-const tarefasService = require('../services/tarefasService')
+const tarefasService = require('../services/tarefa_service')
 
 router.get('/', auth.loggedIn, async function (req, res, next) {
 
