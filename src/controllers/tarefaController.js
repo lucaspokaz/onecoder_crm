@@ -100,7 +100,7 @@ exports.carregar = async (req, res, next) => {
 
         res.render('tarefas/editar', {
             session: req.session,
-            menu: 'tarefasa_minhas',
+            menu: 'tarefas_editar',
             data: dados_tarefa[0],
             data_clientes: dados_cliente,
             data_fontes: dados_fonte,
@@ -114,7 +114,7 @@ exports.carregar = async (req, res, next) => {
 
         res.render('tarefas/criar', {
             session: req.session,
-            menu: 'tarefas_minhas',
+            menu: 'tarefas_criar',
             data: [],
             data_clientes: dados_cliente,
             data_fontes: dados_fonte,
