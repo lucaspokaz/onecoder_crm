@@ -231,11 +231,11 @@ input:focus ~ .bg-black {
 }
 
 .btn-primary.btn-lighten-5 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #D5D7F9 !important;
 }
 .btn-primary.btn-lighten-5:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-lighten-5:focus, .btn-primary.btn-lighten-5:active {
@@ -295,11 +295,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-lighten-4 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #BFC2F5 !important;
 }
 .btn-primary.btn-lighten-4:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-lighten-4:focus, .btn-primary.btn-lighten-4:active {
@@ -359,11 +359,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-lighten-3 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #A9ADF2 !important;
 }
 .btn-primary.btn-lighten-3:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-lighten-3:focus, .btn-primary.btn-lighten-3:active {
@@ -423,11 +423,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-lighten-2 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #9298EF !important;
 }
 .btn-primary.btn-lighten-2:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-lighten-2:focus, .btn-primary.btn-lighten-2:active {
@@ -475,11 +475,11 @@ input:focus ~ .bg-primary {
 }
 
 .primary.lighten-1 {
-  color : #7C83EB !important;
+  color : #2690d4 !important;
 }
 
 .bg-primary.bg-lighten-1 {
-  background-color : #7C83EB !important;
+  background-color : #2690d4 !important;
 }
 .bg-primary.bg-lighten-1.bg-glow {
   -webkit-box-shadow : 0 1px 20px 1px rgba(124, 131, 235, 0.6);
@@ -487,11 +487,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-lighten-1 {
-  border-color : #3A44E1 !important;
-  background-color : #7C83EB !important;
+  border-color : #3c84b3 !important;
+  background-color : #2690d4 !important;
 }
 .btn-primary.btn-lighten-1:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-lighten-1:focus, .btn-primary.btn-lighten-1:active {
@@ -500,36 +500,36 @@ input:focus ~ .bg-primary {
 }
 
 .btn-outline-primary.btn-outline-lighten-1 {
-  border-color : #7C83EB !important;
-  color : #7C83EB !important;
+  border-color : #2690d4 !important;
+  color : #2690d4 !important;
 }
 .btn-outline-primary.btn-outline-lighten-1:hover {
-  background-color : #7C83EB !important;
+  background-color : #2690d4 !important;
 }
 
 input:focus ~ .bg-primary {
-  -webkit-box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #7C83EB !important;
-          box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #7C83EB !important;
+  -webkit-box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #2690d4 !important;
+          box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #2690d4 !important;
 }
 
 .border-primary.border-lighten-1 {
-  border : 1px solid #7C83EB !important;
+  border : 1px solid #2690d4 !important;
 }
 
 .border-top-primary.border-top-lighten-1 {
-  border-top : 1px solid #7C83EB !important;
+  border-top : 1px solid #2690d4 !important;
 }
 
 .border-bottom-primary.border-bottom-lighten-1 {
-  border-bottom : 1px solid #7C83EB !important;
+  border-bottom : 1px solid #2690d4 !important;
 }
 
 .border-left-primary.border-left-lighten-1 {
-  border-left : 1px solid #7C83EB !important;
+  border-left : 1px solid #2690d4 !important;
 }
 
 .border-right-primary.border-right-lighten-1 {
-  border-right : 1px solid #7C83EB !important;
+  border-right : 1px solid #2690d4 !important;
 }
 
 .overlay-primary.overlay-lighten-1 {
@@ -539,11 +539,11 @@ input:focus ~ .bg-primary {
 }
 
 .primary {
-  color : #666EE8 !important;
+  color : #288aca !important;
 }
 
 .bg-primary {
-  background-color : #666EE8 !important;
+  background-color : #288aca !important;
 }
 .bg-primary .card-header, .bg-primary .card-footer {
   background-color : transparent;
@@ -554,11 +554,11 @@ input:focus ~ .bg-primary {
 }
 
 .selectboxit.selectboxit-btn.bg-primary {
-  background-color : #666EE8 !important;
+  background-color : #288aca !important;
 }
 
 .alert-primary {
-  border-color : #666EE8 !important;
+  border-color : #288aca !important;
   background-color : #A4A9F1 !important;
   color : #141B87 !important;
 }
@@ -567,31 +567,31 @@ input:focus ~ .bg-primary {
 }
 
 .border-primary {
-  border-color : #666EE8;
+  border-color : #288aca;
 }
 
 .overlay-primary {
-  background : #666EE8;
+  background : #288aca;
   /* The Fallback */
   background : rgba(102, 110, 232, 0.8);
 }
 
 .color-info.primary {
-  background-color : #666EE8 !important;
+  background-color : #288aca !important;
 }
 
 .btn-primary {
-  border-color : #3A44E1 !important;
-  background-color : #666EE8 !important;
+  border-color : #3c84b3 !important;
+  background-color : #288aca !important;
   color : #FFFFFF;
 }
 .btn-primary:hover {
   border-color : #5059E5 !important;
-  background-color : #7C83EB !important;
+  background-color : #2690d4 !important;
   color : #FFFFFF !important;
 }
 .btn-primary:focus, .btn-primary:active {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
   color : #FFFFFF !important;
 }
@@ -601,12 +601,12 @@ input:focus ~ .bg-primary {
 }
 
 .btn-outline-primary {
-  border-color : #666EE8;
+  border-color : #288aca;
   background-color : transparent;
-  color : #666EE8;
+  color : #288aca;
 }
 .btn-outline-primary:hover {
-  background-color : #666EE8;
+  background-color : #288aca;
   color : #FFFFFF !important;
 }
 .btn-outline-primary.btn-glow {
@@ -615,7 +615,7 @@ input:focus ~ .bg-primary {
 }
 
 input[type='checkbox'].bg-primary + .custom-control-label:before, input[type='radio'].bg-primary + .custom-control-label:before {
-  background-color : #666EE8 !important;
+  background-color : #288aca !important;
 }
 
 /* .custom-control-label{
@@ -624,28 +624,28 @@ input[type='checkbox'].bg-primary + .custom-control-label:before, input[type='ra
         }
       } */
 input:focus ~ .bg-primary {
-  -webkit-box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #666EE8 !important;
-          box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #666EE8 !important;
+  -webkit-box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #288aca !important;
+          box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #288aca !important;
 }
 
 .border-primary {
-  border : 1px solid #666EE8 !important;
+  border : 1px solid #288aca !important;
 }
 
 .border-top-primary {
-  border-top : 1px solid #666EE8;
+  border-top : 1px solid #288aca;
 }
 
 .border-bottom-primary {
-  border-bottom : 1px solid #666EE8;
+  border-bottom : 1px solid #288aca;
 }
 
 .border-left-primary {
-  border-left : 1px solid #666EE8;
+  border-left : 1px solid #288aca;
 }
 
 .border-right-primary {
-  border-right : 1px solid #666EE8;
+  border-right : 1px solid #288aca;
 }
 
 .primary.darken-1 {
@@ -661,11 +661,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-darken-1 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #5059E5 !important;
 }
 .btn-primary.btn-darken-1:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-darken-1:focus, .btn-primary.btn-darken-1:active {
@@ -713,11 +713,11 @@ input:focus ~ .bg-primary {
 }
 
 .primary.darken-2 {
-  color : #3A44E1 !important;
+  color : #3c84b3 !important;
 }
 
 .bg-primary.bg-darken-2 {
-  background-color : #3A44E1 !important;
+  background-color : #3c84b3 !important;
 }
 .bg-primary.bg-darken-2.bg-glow {
   -webkit-box-shadow : 0 1px 20px 1px rgba(58, 68, 225, 0.6);
@@ -725,11 +725,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-darken-2 {
-  border-color : #3A44E1 !important;
-  background-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
+  background-color : #3c84b3 !important;
 }
 .btn-primary.btn-darken-2:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-darken-2:focus, .btn-primary.btn-darken-2:active {
@@ -738,36 +738,36 @@ input:focus ~ .bg-primary {
 }
 
 .btn-outline-primary.btn-outline-darken-2 {
-  border-color : #3A44E1 !important;
-  color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
+  color : #3c84b3 !important;
 }
 .btn-outline-primary.btn-outline-darken-2:hover {
-  background-color : #3A44E1 !important;
+  background-color : #3c84b3 !important;
 }
 
 input:focus ~ .bg-primary {
-  -webkit-box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #3A44E1 !important;
-          box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #3A44E1 !important;
+  -webkit-box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #3c84b3 !important;
+          box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #3c84b3 !important;
 }
 
 .border-primary.border-darken-2 {
-  border : 1px solid #3A44E1 !important;
+  border : 1px solid #3c84b3 !important;
 }
 
 .border-top-primary.border-top-darken-2 {
-  border-top : 1px solid #3A44E1 !important;
+  border-top : 1px solid #3c84b3 !important;
 }
 
 .border-bottom-primary.border-bottom-darken-2 {
-  border-bottom : 1px solid #3A44E1 !important;
+  border-bottom : 1px solid #3c84b3 !important;
 }
 
 .border-left-primary.border-left-darken-2 {
-  border-left : 1px solid #3A44E1 !important;
+  border-left : 1px solid #3c84b3 !important;
 }
 
 .border-right-primary.border-right-darken-2 {
-  border-right : 1px solid #3A44E1 !important;
+  border-right : 1px solid #3c84b3 !important;
 }
 
 .overlay-primary.overlay-darken-2 {
@@ -789,11 +789,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-darken-3 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-darken-3:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-darken-3:focus, .btn-primary.btn-darken-3:active {
@@ -853,11 +853,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-darken-4 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #1E29CA !important;
 }
 .btn-primary.btn-darken-4:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-darken-4:focus, .btn-primary.btn-darken-4:active {
@@ -917,11 +917,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-accent-1 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #EFEFFF !important;
 }
 .btn-primary.btn-accent-1:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-accent-1:focus, .btn-primary.btn-accent-1:active {
@@ -981,11 +981,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-accent-2 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #DBDBFF !important;
 }
 .btn-primary.btn-accent-2:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-accent-2:focus, .btn-primary.btn-accent-2:active {
@@ -1045,11 +1045,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-accent-3 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #BCBFFF !important;
 }
 .btn-primary.btn-accent-3:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-accent-3:focus, .btn-primary.btn-accent-3:active {
@@ -1109,11 +1109,11 @@ input:focus ~ .bg-primary {
 }
 
 .btn-primary.btn-accent-4 {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #A2A6FF !important;
 }
 .btn-primary.btn-accent-4:hover {
-  border-color : #3A44E1 !important;
+  border-color : #3c84b3 !important;
   background-color : #232FDE !important;
 }
 .btn-primary.btn-accent-4:focus, .btn-primary.btn-accent-4:active {
