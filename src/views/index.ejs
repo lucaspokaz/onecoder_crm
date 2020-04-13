@@ -181,6 +181,79 @@
                                 <div class="col-sm-12">
                                     <div class="card">
                                         <div class="card-header">
+                                            <h4 class="card-title"> Últimos andamentos </h4>
+                                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <!-- Task List table -->
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tarefa</th>
+                                                                <th>Assunto</th>
+                                                                <th>Abertura</th>
+                                                                <th>Situação</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <% if (data) { %>
+
+                                                                <% ultimo_sistema = '' %>
+
+                                                                <% data.forEach(function(user) { %>
+
+                                                                    <% if (ultimo_sistema !== user.fonte_atendimento) { %>
+                                                                        <tr class="group" style="background-color: #f7f7f7 !important;">
+                                                                            <td colspan="8">
+                                                                                <h6 class="mb-0" style="color: #e83030;"> <span class="text-bold-600">Sistema: <%= user.fonte_atendimento %> </span> </h6>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <% } %>
+
+                                                                    <% ultimo_sistema = user.fonte_atendimento %>
+
+                                                                    <tr>
+                                                                        <td>
+                                                                            <a href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600">
+                                                                                # <%- formatter.zero_esquerda(user.id_atendimento, 4) %>
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <label class="text-bold-600"><%= user.assunto %></label>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= moment(user.abertura).format('DD/MM/YYYY') %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <% if (user.status === 'Não Iniciado') { %> <span class="badge badge-secondary"><%- user.status %></span> <% } %>
+                                                                            <% if (user.status === 'Concluído') { %> <span class="badge badge-success"><%- user.status %></span> <% } %>
+                                                                            <% if (user.status === 'Em Andamento') { %> <span class="badge badge-warning"><%- user.status %></span> <% } %>
+                                                                        </td>
+                                                                    </tr>
+                                                                <% }) %>
+                                                            <% }; %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
                                             <h4 class="card-title">Tarefas Pendentes abertas por mim</h4>
                                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         </div>

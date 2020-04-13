@@ -12,6 +12,18 @@ exports.get_andamento_by_id = async (IdAndamento) => {
     return await db.exec_promise(SQL);
 }
 
+exports.get_ultimos_andamentos = async (IdUsuario) => {
+
+    let SQL = `select id_andamento, id_atendimento, data_inicio, observacao, usuario.nome
+                 from andamento
+                 left join usuario
+                      on usuario.id_usuario = andamento.id_usuario_andamento
+                where andamento.data_inicio  > (NOW() - INTERVAL 30 DAY)
+                  and andamento.id_usuario_andamento <> ${IdUsuario} `;
+
+    return await db.exec_promise(SQL);
+}
+
 exports.insert = (andamento, id_tarefa) => {
     let SQL = 'insert into andamento set ?';
     andamento['id_atendimento'] = id_tarefa;
