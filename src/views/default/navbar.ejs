@@ -19,12 +19,14 @@
                 <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
              </ul>
              <ul class="nav navbar-nav float-right">
+
                 <li class="dropdown dropdown-user nav-item">
                    <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                      <span class="mr-1 user-name text-bold-700">
-                        <%  if (locals.session) { %>
+                     <%  if (locals.session) { %>
                         <%= locals.session.nome_usuario %>
-                        <% } %>
+                     <% } %>
+                     <span class="avatar mr-1" style="background-color: <%= locals.session.nome_cor %> ;">
+                        <span class="avatar-content"> <%= locals.session.nome_curto %> </span>
                      </span>
                   </a>
                    <div class="dropdown-menu dropdown-menu-right">

@@ -1,5 +1,6 @@
 const service = require('../services/login_service');
 const package_json = require('../../package.json');
+const formatter = require('../utils/formatter')
 const session = require('express-session');
 
 exports.get = async (req, res, next) => {
@@ -47,6 +48,8 @@ exports.post = async (req, res, next) => {
             req.session.codigo_usuario = user.id_usuario;
             req.session.nome_usuario = user.nome;
             req.session.versao_sistema = package_json.version;
+            req.session.nome_curto = user.nome.substr(0, 2).toUpperCase();
+            req.session.nome_cor = formatter.stringToHslColor(req.session.nome_curto, 170, 70);
 
             res.session = req.session;
 
