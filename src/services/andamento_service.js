@@ -14,14 +14,25 @@ exports.get_andamento_by_id = async (IdAndamento) => {
 
 exports.get_ultimos_andamentos = async (IdUsuario) => {
 
-    let SQL = `select id_andamento, id_atendimento, data_inicio, observacao, usuario.nome
+    let SQL = `select andamento.id_andamento,
+                      andamento.id_atendimento,
+                      andamento.data_inicio,
+                      andamento.observacao,
+                      usuario.nome,
+                      atendimento.assunto,
+                      UPPER(SUBSTRING(usuario.nome FROM 1 FOR 2)) as nome_curto
                  from andamento
                  left join usuario
                       on usuario.id_usuario = andamento.id_usuario_andamento
-                where andamento.data_inicio  > (NOW() - INTERVAL 30 DAY)
-                  and andamento.id_usuario_andamento <> ${IdUsuario} `;
+                 left join atendimento
+                      on atendimento.id_atendimento = andamento.id_atendimento
+                where andamento.data_inicio  > (NOW() - INTERVAL 7 DAY)
+                  and andamento.id_usuario_andamento <> ${IdUsuario}
+                order by data_inicio desc`;
 
-    return await db.exec_promise(SQL);
+    let retorno = db.exec_promise_json(SQL, [], 'Tarefa');
+
+    return retorno;
 }
 
 exports.insert = (andamento, id_tarefa) => {

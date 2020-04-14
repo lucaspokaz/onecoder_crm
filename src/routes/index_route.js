@@ -3,6 +3,9 @@ const router = express.Router();
 const auth = require('../../config/auth');
 const tarefasService = require('../services/tarefa_service');
 const andamentosService = require('../services/andamento_service')
+const moment = require('moment');
+
+moment.locale('pt-br');
 
 router.get('/', auth.loggedIn, async function (req, res, next) {
 
@@ -20,7 +23,7 @@ router.get('/', auth.loggedIn, async function (req, res, next) {
         data: dados,
         data_geral: dados_geral,
         data_ultimos_andamentos: dados_ultimos_andamentos,
-        moment: require('moment'),
+        moment: moment,
         formatter: require('../utils/formatter')
     });
 });

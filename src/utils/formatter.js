@@ -72,3 +72,14 @@ exports.format_hora = (v) => {
 exports.format_money = (v) => {
     return 'R$ ' + (+v).toFixed(2).replace('.', ',')
 }
+
+/*Função que randomiza a cor a partir de uma string*/
+exports.stringToHslColor = (str, s, l) => {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    var h = hash % 360;
+    return 'hsl('+h+', '+s+'%, '+l+'%)';
+  }
