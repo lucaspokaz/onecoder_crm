@@ -8,32 +8,38 @@
             <div class="modal-body">
                 <form class="form" method="post">
 
-                    <div class="form-group">
-                        <label>Departamento</label>
-                        <div>
-                            <input type="hidden" required />
-                            <select class="select2 form-control" id="departamento_envio" name="departamento_envio" required>
-                                <option value=""></option>
-                                <% if (data_departamentos) { %>
-                                    <% data_departamentos.forEach(function(c){ %>
-                                        <option value="<%= c.id_departamento %>"><%= c.descricao %></option>
-                                    <% }) %>
-                                <% }; %>
-                            </select>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Departamento</label>
+                                <div>
+                                    <input type="hidden" required />
+                                    <select class="select2 form-control" id="departamento_envio" style="width: 100%;" name="departamento_envio" required>
+                                        <option value=""></option>
+                                        <% if (data_departamentos) { %>
+                                            <% data_departamentos.forEach(function(c){ %>
+                                                <option value="<%= c.id_departamento %>"><%= c.descricao %></option>
+                                            <% }) %>
+                                        <% }; %>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Observação</label>
-                        <textarea type="text" class="form-control" name="observacao_envio" id="observacao_envio" rows="8" style="resize: none;" required></textarea>
-                    </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Observação</label>
+                                <textarea type="text" class="form-control" name="observacao_envio" id="observacao_envio" rows="8" style="resize: none;" required></textarea>
+                            </div>
+                        </div>
 
-                    <div class="itens_modal" id="itens_modal"></div>
+                        <div class="itens_modal" id="itens_modal"></div>
 
-                    <div class="form-group">
-                        <button type="button" class="btn btn-info" id="enviar_tarefa" name="enviar_tarefa">
-                            <i class="far fa-paper-plane"></i> Enviar Tarefa
-                        </button>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-info" id="enviar_tarefa" name="enviar_tarefa">
+                                <i class="far fa-paper-plane"></i> Enviar Tarefa
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
