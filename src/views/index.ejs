@@ -196,7 +196,10 @@
                                                                 <span class="avatar-content"> <%= user.nome_curto %> </span>
                                                             </div>
                                                             <div class="media-body">
-                                                                <strong> <%= user.assunto %> </strong>
+                                                                <a href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600">
+                                                                    <strong> <%= formatter.zero_esquerda(user.id_atendimento, 4) + ' - ' + user.assunto %> </strong>
+                                                                </a>
+
                                                                 <div class="media-notation mb-1">
                                                                     <p class="text-muted font-small-2">
                                                                         <%= moment(user.data_inicio).format('LLLL') %>

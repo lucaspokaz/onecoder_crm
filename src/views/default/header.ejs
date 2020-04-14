@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<% const version_file = '1.00'; %>
+
 <html class="loading" lang="pt-BR" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
@@ -16,52 +18,52 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/vendors.min.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/tables/datatable/datatables.min.css?v=<%- version_file %>">
 
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap-extended.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/colors.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/components.css?v=<%- version_file %>">
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-menu.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-gradient.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/animate/animate.css?v=<%- version_file %>">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=<%- version_file %>">
     <!-- END: Custom CSS-->
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/selects/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/selects/select2.min.css?v=<%- version_file %>">
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/fonts/fontawesome-5.12.0/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/fonts/fontawesome-5.12.0/css/all.css?v=<%- version_file %>">
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/plugins/sweetalert2/sweetalert2.min.css?v=<%- version_file %>">
 
 
     <!-- END: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/toastr.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/extensions/toastr.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/toastr.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/extensions/toastr.css?v=<%- version_file %>">
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/icheck/icheck.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/icheck/custom.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/forms/checkboxes-radios.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/icheck/icheck.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/icheck/custom.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/forms/checkboxes-radios.css?v=<%- version_file %>">
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/plugins/datapicker/css/bootstrap-datepicker3.css" >
+    <link rel="stylesheet" type="text/css" href="/app-assets/plugins/datapicker/css/bootstrap-datepicker3.css?v=<%- version_file %>">
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/toastr.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/extensions/toastr.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/toastr.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/extensions/toastr.css?v=<%- version_file %>">
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-tooltip.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-tooltip.css?v=<%- version_file %>">
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/js/gallery/photo-swipe/photoswipe.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/js/gallery/photo-swipe/default-skin/default-skin.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/js/gallery/photo-swipe/photoswipe.css?v=<%- version_file %>">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/js/gallery/photo-swipe/default-skin/default-skin.css?v=<%- version_file %>">
 
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/pages/gallery.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/pages/gallery.css?v=<%- version_file %>">
 </head>
