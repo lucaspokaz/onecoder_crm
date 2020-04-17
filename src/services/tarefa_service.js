@@ -2,6 +2,7 @@ const db = require('../../config/database');
 const andamentosService = require('./andamento_service');
 const tiposAtendimentoService = require('./tipoatendimento_service');
 const moment = require('moment');
+const mail = require('../utils/mail');
 
 exports.get_tarefa_by_id = async (IdAtendimento) => {
 
@@ -335,6 +336,8 @@ exports.edit = async (req, res) => {
 
         let SQL_UPDATE = `update atendimento set ? where id_atendimento = ${user.id_atendimento}`;
         let result_update = await db.exec_promise(SQL_UPDATE, user);
+
+        mail.send('lucaspokaz@gmail.com', user.assunto, user.observacao);
 
         return {
             status: 200,
