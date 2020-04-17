@@ -88,7 +88,9 @@
                                                                         <%= user.tipo_atendimento %>
                                                                     </td>
                                                                     <td>
-                                                                        <a aria-expanded="true" href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600" >
+                                                                        <a aria-expanded="true" href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600"
+                                                                            data-toggle="popover" data-trigger="hover" data-html="true"
+                                                                            data-content="<p> <b> Solicitante: <%= user.nome_contato %> </b> </p> <p> <%= user.observacao %> <p>">
                                                                             <%= user.assunto %>
                                                                         </a>
                                                                         <p class="text-muted font-small-2">
@@ -174,7 +176,7 @@
                                     <div class="card">
 
                                         <div class="card-header">
-                                            <h4 class="card-title">Tarefas na Fila de Atendimento</h4>
+                                            <h4 class="card-title">Tarefas na Fila de Atendimento <span class="badge badge-info"> <%= data_sem_atendimento.length %> </span> </h4>
                                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                             <div class="heading-elements">
                                                 <ul class="list-inline mb-0">
@@ -222,13 +224,16 @@
                                                                         <%= user.tipo_atendimento %>
                                                                     </td>
                                                                     <td>
-                                                                        <a aria-expanded="true" href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600" >
+                                                                        <a aria-expanded="true" href="<%- '/tarefas/editar/' + user.id_atendimento  %>" class="text-bold-600"
+                                                                            data-toggle="popover" data-trigger="hover" data-html="true"
+                                                                            data-content="<p> <b> Solicitante: <%= user.nome_contato %> </b> </p> <p> <%= user.observacao %> <p>">
                                                                             <%= user.assunto %>
                                                                         </a>
                                                                         <p class="text-muted font-small-2">
                                                                             Cliente: <strong> <%= user.nome_cliente %> </strong> <br>
                                                                             Solicitante: <%= user.nome_contato %>
                                                                         </p>
+
                                                                     </td>
                                                                     <td>
                                                                         <%= user.fonte_atendimento %>
