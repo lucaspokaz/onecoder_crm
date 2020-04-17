@@ -2,7 +2,7 @@ var nodemailer = require('nodemailer');
 
 var remetente = nodemailer.createTransport({
     host: 'mail.onecoderti.com.br',
-    port: 587,
+    port: 465,
     secure: true,
     auth:{
         user: 'crm@onecoderti.com.br',
