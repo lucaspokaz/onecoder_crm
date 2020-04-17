@@ -160,14 +160,21 @@ exports.get_tarefas_visao_geral_por_cliente = (idCliente) => {
 
 exports.get_historico_tarefa = (IdAtendimento) => {
 
-    let SQL = `select andamento.*,
-                      departamento.descricao as depto_descricao,
-                      usuario.nome as nome_usuario
-                 from andamento
-                 left join departamento on departamento.id_departamento = andamento.id_departamento
-                 left join usuario on usuario.id_usuario = andamento.id_usuario_andamento
-                where andamento.id_atendimento = ${IdAtendimento}
-                order by andamento.id_andamento desc`;
+    let SQL = `select
+                    andamento.*,
+                    departamento.descricao as depto_descricao,
+                    usuario.nome as nome_usuario,
+                    UPPER(SUBSTRING(usuario.nome FROM 1 FOR 2)) as nome_curto
+                from
+                    andamento
+                left join
+                    departamento on departamento.id_departamento = andamento.id_departamento
+                left join
+                    usuario on usuario.id_usuario = andamento.id_usuario_andamento
+                where
+                    andamento.id_atendimento = ${IdAtendimento}
+                order by
+                    andamento.id_andamento desc`;
 
     let retorno = db.exec_promise_json(SQL, [], 'Historico de tarefa');
     return retorno;

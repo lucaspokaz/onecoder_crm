@@ -178,6 +178,10 @@
                                                     <% if (data_historico.length > 0) { %>
                                                        <% data_historico.forEach(function(user){ %>
                                                             <div class="media">
+                                                                <div class="avatar avatar-sm mr-1"
+                                                                    style="background-color: <%= formatter.stringToHslColor(user.nome_curto, 170, 70) %> ;">
+                                                                    <span class="avatar-content"> <%= user.nome_curto %> </span>
+                                                                </div>
                                                                 <div class="media-body">
                                                                     <h5 class="media-heading mb-0 text-bold-600">
                                                                         <%= user.nome_usuario %>

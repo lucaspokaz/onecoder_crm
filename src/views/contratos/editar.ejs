@@ -122,7 +122,7 @@
                                                                 <option value=""></option>
                                                                 <% if (data_fontes) { %>
                                                                 <% data_fontes.forEach(function(f){ %>
-                                                                    <option value="<%= f.id_fonte_atendimento %>" <%= data.id_fonte_atendimento== f.id_fonte ? 'selected' : '' %> > <%= f.descricao %> </option>
+                                                                    <option value="<%= f.id_fonte_atendimento %>" <%= data.id_fonte == f.id_fonte_atendimento ? 'selected' : '' %> > <%= f.descricao %> </option>
                                                                 <% }) %>
                                                                 <% }; %>
                                                             </select>
