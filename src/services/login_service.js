@@ -16,3 +16,20 @@ exports.get_usuario = async (IdUsuario) => {
     return JSON.stringify(results[0]);
 
 }
+
+exports.get_emails_notificao = async (IdUsuario, IdDepto) => {
+
+    let SQL = ` select
+                    distinct email, usuario.nome, notificar_andamento
+                  from
+                    departamento_usuario
+                  left join
+                    usuario on usuario.id_usuario = departamento_usuario.id_usuario
+                    or usuario.id_usuario = ${IdUsuario}
+                 where
+                    departamento_usuario.id_departamento = ${IdDepto} `;
+
+    let results = await db.exec_promise(SQL, [], 'Emails Notificação');
+    return JSON.stringify(results);
+
+}

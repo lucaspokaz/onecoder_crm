@@ -1,5 +1,6 @@
 const db = require('../../config/database');
 const andamentosService = require('./andamento_service');
+const loginService = require('./login_service');
 const tiposAtendimentoService = require('./tipoatendimento_service');
 const moment = require('moment');
 const mail = require('../utils/mail');
@@ -313,6 +314,32 @@ exports.insert = async (req, res) => {
         let id_inserido = result_insert.insertId;
         let andamento_inserido = await andamentosService.insert(andamento, id_inserido);
 
+
+        let usuarios = await loginService.get_emails_notificao(andamento.id_usuario_andamento, andamento.id_departamento);
+        dados_usuario = JSON.parse(usuarios);
+
+        let texto_email =
+        ` Olá, a tarefa ${id_inserido} foi criada.
+
+        Assunto: ${user.assunto}
+
+        Observação: ${user.observacao}
+
+        Atenciosamente,
+
+        Equipe Onecoder.
+
+        Esse é um e-mail automático. Por favor, não responda.
+        `;
+
+        for (var u in dados_usuario) {
+            mail.send(
+                u.email,
+                '[CRM] Nova tarefa criada: ' + id_inserido,
+                texto_email
+            );
+        }
+
         return {
             status: 200,
             mensagem: 'Salvo com sucesso.'
@@ -343,8 +370,6 @@ exports.edit = async (req, res) => {
 
         let SQL_UPDATE = `update atendimento set ? where id_atendimento = ${user.id_atendimento}`;
         let result_update = await db.exec_promise(SQL_UPDATE, user);
-
-        mail.send('lucaspokaz@gmail.com', user.assunto, user.observacao);
 
         return {
             status: 200,
