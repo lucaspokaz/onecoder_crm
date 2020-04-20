@@ -1,10 +1,10 @@
 const
     contratosService = require('../services/contrato_service'),
     clienteService = require('../services/cliente_service'),
-    fontesService = require('../services/fonte_service');
+    projetosService = require('../services/projeto_service');
 
 let
-    dados_fonte,
+    dados_projeto,
     dados_cliente;
 
 exports.listar = async (req, res, next) => {
@@ -23,8 +23,8 @@ exports.listar = async (req, res, next) => {
 
 exports.carregar = async (req, res, next) => {
 
-    let fontes = await fontesService.get_all();
-    dados_fonte = JSON.parse(fontes);
+    let projetos = await projetosService.get_all();
+    dados_projeto = JSON.parse(projetos);
 
     let clientes = await clienteService.get_clientes_responsaveis(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
@@ -38,7 +38,7 @@ exports.carregar = async (req, res, next) => {
             session: req.session,
             menu: 'lista_contrato',
             data: dados_contrato[0],
-            data_fontes: dados_fonte,
+            data_projetos: dados_projeto,
             data_clientes: dados_cliente,
             moment: require('moment'),
             formatter: require('../utils/formatter')
@@ -50,7 +50,7 @@ exports.carregar = async (req, res, next) => {
             session: req.session,
             menu: 'cria_contrato',
             data: [],
-            data_fontes: dados_fonte,
+            data_projetos: dados_projeto,
             data_clientes: dados_cliente,
             moment: require('moment'),
             formatter: require('../utils/formatter')
@@ -70,8 +70,8 @@ exports.criar = async (req, res, next) => {
 
     } else {
 
-        let fontes = await fontesService.get_all();
-        dados_fonte = JSON.parse(fontes);
+        let projetos = await projetosService.get_all();
+        dados_projeto = JSON.parse(projetos);
 
         let clientes = await clienteService.get_clientes_responsaveis(req.session.codigo_usuario);
         dados_cliente = JSON.parse(clientes);
@@ -83,7 +83,7 @@ exports.criar = async (req, res, next) => {
             session: req.session,
             menu: 'cria_contrato',
             data: req.body,
-            data_fontes: dados_fonte,
+            data_projetos: dados_projeto,
             data_clientes: dados_cliente,
             moment: require('moment'),
             formatter: require('../utils/formatter')
@@ -102,8 +102,8 @@ exports.editar = async (req, res, next) => {
 
     } else {
 
-        let fontes = await fontesService.get_all();
-        dados_fonte = JSON.parse(fontes);
+        let projetos = await projetosService.get_all();
+        dados_projeto = JSON.parse(projetos);
 
         let clientes = await clienteService.get_clientes_responsaveis(req.session.codigo_usuario);
         dados_cliente = JSON.parse(clientes);

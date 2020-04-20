@@ -23,7 +23,7 @@ exports.get_tarefas_acompanhamento = (idUsuario, SomentePendentes) => {
             at.inicio as abertura,
             c.nome AS nome_cliente,
             t.descricao AS tipo_atendimento,
-            f.descricao as fonte_atendimento,
+            p.descricao as desc_projeto,
             REPLACE(REPLACE(at.observacao, CHAR(13), '\r\n'), CHAR(10),'') as observacao,
             d.descricao as departamento,
             at.assunto,
@@ -41,7 +41,7 @@ exports.get_tarefas_acompanhamento = (idUsuario, SomentePendentes) => {
                                                        where andamento.id_atendimento = at.id_atendimento)
         LEFT JOIN cliente c ON c.id_cliente = at.id_cliente
         LEFT JOIN tipo_atendimento t ON t.id_tipo_atendimento = at.id_tipo_atendimento
-        LEFT JOIN fonte_atendimento f ON f.id_fonte_atendimento = at.id_fonte
+        LEFT JOIN projeto p ON p.id_projeto = at.id_projeto
         LEFT JOIN departamento d ON d.id_departamento = an.id_departamento
         LEFT JOIN usuario u ON u.id_usuario = at.id_usuario
 
@@ -64,7 +64,7 @@ exports.get_minhas_tarefas_acompanhamento = (idUsuario) => {
             at.inicio as abertura,
             c.nome AS nome_cliente,
             t.descricao AS tipo_atendimento,
-            f.descricao as fonte_atendimento,
+            p.descricao as desc_projeto,
             REPLACE(REPLACE(at.observacao, CHAR(13), '\r\n'), CHAR(10),'') as observacao,
             d.descricao as departamento,
             at.assunto,
@@ -82,7 +82,7 @@ exports.get_minhas_tarefas_acompanhamento = (idUsuario) => {
                                                       where andamento.id_atendimento = at.id_atendimento)
         LEFT JOIN cliente c ON c.id_cliente = at.id_cliente
         LEFT JOIN tipo_atendimento t ON t.id_tipo_atendimento = at.id_tipo_atendimento
-        LEFT JOIN fonte_atendimento f ON f.id_fonte_atendimento = at.id_fonte
+        LEFT JOIN projeto p ON p.id_projeto = at.id_projeto
         LEFT JOIN departamento d ON d.id_departamento = an.id_departamento
         LEFT JOIN usuario u ON u.id_usuario = at.id_usuario
 
@@ -102,7 +102,7 @@ exports.get_tarefas_abertas_por_mim = (idUsuario) => {
             at.inicio as abertura,
             c.nome AS nome_cliente,
             t.descricao AS tipo_atendimento,
-            f.descricao as fonte_atendimento,
+            p.descricao as desc_projeto,
             REPLACE(REPLACE(at.observacao, CHAR(13), '\r\n'), CHAR(10),'') as observacao,
             d.descricao as departamento,
             at.assunto,
@@ -120,7 +120,7 @@ exports.get_tarefas_abertas_por_mim = (idUsuario) => {
                                                       where andamento.id_atendimento = at.id_atendimento)
         LEFT JOIN cliente c ON c.id_cliente = at.id_cliente
         LEFT JOIN tipo_atendimento t ON t.id_tipo_atendimento = at.id_tipo_atendimento
-        LEFT JOIN fonte_atendimento f ON f.id_fonte_atendimento = at.id_fonte
+        LEFT JOIN projeto p ON p.id_projeto = at.id_projeto
         LEFT JOIN departamento d ON d.id_departamento = an.id_departamento
         LEFT JOIN usuario u ON u.id_usuario = at.id_usuario
 
@@ -129,7 +129,7 @@ exports.get_tarefas_abertas_por_mim = (idUsuario) => {
             AND at.status <> 'Concluído'
 
         ORDER BY
-            f.descricao, at.inicio, assunto
+            p.descricao, at.inicio, assunto
           `;
 
     let retorno = db.exec_promise_json(SQL, [], 'Minhas Tarefas');
@@ -142,7 +142,7 @@ exports.get_tarefas_visao_geral = () => {
         `select (select count(*) from atendimento) as tarefas_total,
                 (select count(*) from atendimento where atendimento.status = 'Concluído') as tarefas_concluidas,
                 (select count(*) from atendimento where atendimento.status <> 'Concluído') as tarefas_em_aberto,
-                (select count(*) from fonte_atendimento where id_fonte_atendimento in (select id_fonte from atendimento)) as sistemas_em_atendimento `;
+                (select count(*) from projeto where id_projeto in (select id_projeto from atendimento)) as sistemas_em_atendimento `;
 
     let retorno = db.exec_promise_json(SQL, [], 'Visao Geral');
     return retorno;
@@ -193,7 +193,7 @@ exports.get_tarefas_atendendo = (IdUsuario) => {
         	coalesce(an.observacao, at.observacao) as obs_andamento,
         	at.observacao as obs_atendimento,
         	t.descricao AS tipo_atendimento,
-        	f.descricao as fonte_atendimento,
+        	p.descricao as desc_projeto,
         	at.assunto,
         	at.status,
         	an.id_departamento,
@@ -207,7 +207,7 @@ exports.get_tarefas_atendendo = (IdUsuario) => {
         	inner join atendimento at on at.id_atendimento = an.id_atendimento
         	left join cliente c on c.id_cliente = at.id_cliente
         	left join tipo_atendimento t on t.id_tipo_atendimento = at.id_tipo_atendimento
-            left join fonte_atendimento f on f.id_fonte_atendimento = at.id_fonte
+            left join projeto p on p.id_projeto = at.id_projeto
             left join usuario u ON u.id_usuario = at.id_usuario
         WHERE
            an.id_responsavel = ${IdUsuario}
@@ -230,7 +230,7 @@ exports.get_tarefas_sem_atendimento = (IdUsuario) => {
         	coalesce(an.observacao, at.observacao) as obs_andamento,
         	at.observacao as obs_atendimento,
         	t.descricao AS tipo_atendimento,
-        	f.descricao as fonte_atendimento,
+        	p.descricao as desc_projeto,
         	at.assunto,
         	at.status,
         	at.prioridade,
@@ -244,7 +244,7 @@ exports.get_tarefas_sem_atendimento = (IdUsuario) => {
         	LEFT JOIN andamento an ON at.id_atendimento = an.id_atendimento
         	LEFT JOIN cliente c ON c.id_cliente = at.id_cliente
         	LEFT JOIN tipo_atendimento t ON t.id_tipo_atendimento = at.id_tipo_atendimento
-            LEFT JOIN fonte_atendimento f ON f.id_fonte_atendimento = at.id_fonte
+            LEFT JOIN projeto p ON p.id_projeto = at.id_projeto
             LEFT JOIN usuario u ON u.id_usuario = at.id_usuario
         WHERE
         	an.data_fim IS NULL
@@ -292,7 +292,7 @@ exports.insert = async (req, res) => {
             inicio: l_data_inicio,
             id_usuario: req.session.codigo_usuario,
             id_cliente: req.body.cliente,
-            id_fonte: req.body.sistema,
+            id_projeto: req.body.projeto,
             id_tipo_atendimento: req.body.tipo,
             observacao: req.body.observacao,
             assunto: req.body.assunto,
@@ -362,7 +362,7 @@ exports.edit = async (req, res) => {
             id_atendimento: req.params.id,
             assunto: req.body.assunto,
             id_cliente: req.body.cliente,
-            id_fonte: req.body.sistema,
+            id_projeto: req.body.projeto,
             id_tipo_atendimento: req.body.tipo,
             prioridade: req.body.prioridade,
             observacao: req.body.observacao

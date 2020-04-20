@@ -35,7 +35,7 @@
                                                 <i class="far fa-window-restore info font-large-2"></i>
                                             </div>
                                             <div class="media-body text-right">
-                                                <h5 class="text-muted text-bold-500">Sistemas</h5>
+                                                <h5 class="text-muted text-bold-500">Projetos</h5>
                                                 <h3 class="text-bold-600"><%- data_geral[0].sistemas_em_atendimento %></h3>
                                             </div>
                                         </div>
@@ -252,15 +252,15 @@
 
                                                                 <% data.forEach(function(user) { %>
 
-                                                                    <% if (ultimo_sistema !== user.fonte_atendimento) { %>
+                                                                    <% if (ultimo_sistema !== user.desc_projeto) { %>
                                                                         <tr class="group" style="background-color: #f7f7f7 !important;">
                                                                             <td colspan="8">
-                                                                                <h6 class="mb-0" style="color: #e83030;"> <span class="text-bold-600">Sistema: <%= user.fonte_atendimento %> </span> </h6>
+                                                                                <h6 class="mb-0" style="color: #e83030;"> <span class="text-bold-600">Sistema: <%= user.desc_projeto %> </span> </h6>
                                                                             </td>
                                                                         </tr>
                                                                     <% } %>
 
-                                                                    <% ultimo_sistema = user.fonte_atendimento %>
+                                                                    <% ultimo_sistema = user.desc_projeto %>
 
                                                                     <tr>
                                                                         <td>

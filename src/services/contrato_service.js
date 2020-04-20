@@ -25,11 +25,11 @@ exports.get_contratos = () => {
     let SQL = `select
                     contrato.*,
                     cliente.nome,
-                    fonte_atendimento.descricao as fonte_atendimento,
+                    projeto.descricao as desc_projeto,
                     datediff(data_fim, curdate()) as dias_restantes
                 from
                     contrato
-                left join fonte_atendimento on fonte_atendimento.id_fonte_atendimento = contrato.id_fonte
+                left join projeto on projeto.id_projeto = contrato.id_projeto
                 left join cliente on cliente.id_cliente = contrato.id_cliente
                 where
                     contrato.ativo = 'S'
@@ -53,7 +53,7 @@ exports.insert = async (req, res) => {
             data_fim: data_fim_formatada,
             observacao: req.body.observacao,
             renovacao: req.body.renovacao,
-            id_fonte: req.body.fonte,
+            id_projeto: req.body.projeto,
             valor: req.body.valor,
             ativo: req.body.ativo
         }
@@ -91,7 +91,7 @@ exports.edit = async (req, res) => {
             data_fim: data_fim_formatada,
             observacao: req.body.observacao,
             renovacao: req.body.renovacao,
-            id_fonte: req.body.fonte,
+            id_projeto: req.body.projeto,
             valor: req.body.valor,
             ativo: req.body.ativo
         }

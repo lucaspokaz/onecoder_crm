@@ -1,6 +1,6 @@
 const
     clienteService = require('../services/cliente_service'),
-    fontesService = require('../services/fonte_service'),
+    projetosService = require('../services/projeto_service'),
     tiposAtendimentoService = require('../services/tipoatendimento_service'),
     tarefasService = require('../services/tarefa_service'),
     andamentosService = require('../services/andamento_service'),
@@ -8,7 +8,7 @@ const
 
 let
     dados_cliente,
-    dados_fonte,
+    dados_projeto,
     dados_tipo;
 
 var
@@ -85,8 +85,8 @@ exports.carregar = async (req, res, next) => {
     let clientes = await clienteService.get_clientes_responsaveis(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
 
-    let fontes = await fontesService.get_all();
-    dados_fonte = JSON.parse(fontes);
+    let projetos = await projetosService.get_all();
+    dados_projeto = JSON.parse(projetos);
 
     let tipos = await tiposAtendimentoService.get_all();
     dados_tipo = JSON.parse(tipos);
@@ -103,7 +103,7 @@ exports.carregar = async (req, res, next) => {
             menu: 'tarefas_editar',
             data: dados_tarefa[0],
             data_clientes: dados_cliente,
-            data_fontes: dados_fonte,
+            data_projetos: dados_projeto,
             data_tipos: dados_tipo,
             data_historico: dados_historico,
             moment: moment,
@@ -117,7 +117,7 @@ exports.carregar = async (req, res, next) => {
             menu: 'tarefas_criar',
             data: [],
             data_clientes: dados_cliente,
-            data_fontes: dados_fonte,
+            data_projetos: dados_projeto,
             data_tipos: dados_tipo,
             moment: moment,
             formatter: require('../utils/formatter')
@@ -146,7 +146,7 @@ exports.criar = async (req, res, next) => {
             menu: 'tarefas_minhas',
             data: req.body,
             data_clientes: dados_cliente,
-            data_fontes: dados_fonte,
+            data_projetos: dados_projeto,
             data_tipos: dados_tipo,
             moment: moment,
             formatter: require('../utils/formatter')
@@ -172,7 +172,7 @@ exports.editar = async (req, res, next) => {
             menu: 'tarefas_minhas',
             data: req.body,
             data_clientes: dados_cliente,
-            data_fontes: dados_fonte,
+            data_projetos: dados_projeto,
             data_tipos: dados_tipo,
             moment: moment,
             formatter: require('../utils/formatter')

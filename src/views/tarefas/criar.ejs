@@ -75,14 +75,14 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label>Sistema</label>
+                                                        <label>Projeto</label>
                                                         <div>
                                                             <input type="hidden" required />
-                                                            <select class="select2 form-control" id="sistema" name="sistema" required>
+                                                            <select class="select2 form-control" id="projeto" name="projeto" required>
                                                                 <option value=""></option>
-                                                                <% if (data_fontes) { %>
-                                                                    <% data_fontes.forEach(function(c){ %>
-                                                                        <option value="<%= c.id_fonte_atendimento %>"><%= c.descricao %></option>
+                                                                <% if (data_projetos) { %>
+                                                                    <% data_projetos.forEach(function(c){ %>
+                                                                        <option value="<%= c.id_projeto %>"><%= c.descricao %></option>
                                                                     <% }) %>
                                                                 <% }; %>
                                                             </select>

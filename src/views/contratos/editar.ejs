@@ -116,13 +116,13 @@
                                                     </div>
 
                                                     <div class="form-group col-md-3">
-                                                        <label>Sistema</label>
+                                                        <label>Projeto</label>
                                                         <div>
-                                                            <select data-placeholder=" " class="select2 form-control" name="fonte" id="fonte">
+                                                            <select data-placeholder=" " class="select2 form-control" name="projeto" id="projeto">
                                                                 <option value=""></option>
-                                                                <% if (data_fontes) { %>
-                                                                <% data_fontes.forEach(function(f){ %>
-                                                                    <option value="<%= f.id_fonte_atendimento %>" <%= data.id_fonte == f.id_fonte_atendimento ? 'selected' : '' %> > <%= f.descricao %> </option>
+                                                                <% if (data_projetos) { %>
+                                                                <% data_projetos.forEach(function(f){ %>
+                                                                    <option value="<%= f.id_projeto %>" <%= data.id_projeto == f.id_projeto ? 'selected' : '' %> > <%= f.descricao %> </option>
                                                                 <% }) %>
                                                                 <% }; %>
                                                             </select>

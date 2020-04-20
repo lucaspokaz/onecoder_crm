@@ -105,14 +105,14 @@
                                                                     </div>
 
                                                                     <div class="form-group col-md-6">
-                                                                        <label>Sistema</label>
+                                                                        <label>Projeto</label>
                                                                         <div>
                                                                             <input type="hidden" required />
-                                                                            <select class="select2 form-control" id="select3-icons" name="sistema" id="sistema" required>
+                                                                            <select class="select2 form-control" id="select3-icons" name="projeto" id="projeto" required>
                                                                                 <option value=""></option>
-                                                                                <% if (data_fontes) { %>
-                                                                                    <% data_fontes.forEach(function(c){ %>
-                                                                                        <option value="<%= c.id_fonte_atendimento %>" <%= data.id_fonte == c.id_fonte_atendimento ? 'selected' : '' %> ><%= c.descricao %></option>
+                                                                                <% if (data_projetos) { %>
+                                                                                    <% data_projetos.forEach(function(c){ %>
+                                                                                        <option value="<%= c.id_projeto %>" <%= data.id_projeto == c.id_projeto ? 'selected' : '' %> ><%= c.descricao %></option>
                                                                                     <% }) %>
                                                                                 <% }; %>
                                                                             </select>

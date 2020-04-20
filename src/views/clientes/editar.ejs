@@ -79,12 +79,15 @@
                                         </div>
                                         <div class="media-body text-right">
                                             <h5 class="text-muted text-bold-500">Vencimento do Contrato</h5>
-                                            <% if (data_contratos.ativo === 'S') { %>
-                                                <h3 class="text-bold-600"><%- moment(data_contratos.data_fim).format('DD/MM/YYYY') %></h3>
+                                            <% if (data_contratos) { %>
+                                                <% if (data_contratos.ativo === 'S') { %>
+                                                    <h3 class="text-bold-600"><%- moment(data_contratos.data_fim).format('DD/MM/YYYY') %></h3>
+                                                <% } else { %>
+                                                    <h3 class="text-bold-600"> Sem contrato </h3>
+                                                <% } %>
                                             <% } else { %>
-                                                <h3 class="text-bold-600">Sem contrato.</h3>
+                                                <h3 class="text-bold-600"> Sem contrato </h3>
                                             <% } %>
-
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +175,7 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
                                                         <label>CNPJ</label>
-                                                        <input type="text" data-mask="99.999.999/9999-99" class="form-control" value="<%- formatter.format_cnpj(data.cnpj) %>"  id="cnpj" name="cnpj" required />
+                                                        <input type="text" data-mask="99.999.999/9999-99" class="form-control" value="<%- formatter.format_cnpj(data.cnpj) %>"  id="cnpj" name="cnpj" />
                                                     </div>
 
                                                     <div class="form-group col-md-6">

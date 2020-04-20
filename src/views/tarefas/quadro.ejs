@@ -69,7 +69,7 @@
                                                                 <th>Tarefa</th>
                                                                 <th>Tipo</th>
                                                                 <th>Assunto</th>
-                                                                <th>Sistema</th>
+                                                                <th>Projeto</th>
                                                                 <th>Situação</th>
                                                                 <th>Abertura</th>
                                                                 <th>Prior.</th>
@@ -100,7 +100,7 @@
                                                                         </p>
                                                                     </td>
                                                                     <td>
-                                                                        <%= user.fonte_atendimento %>
+                                                                        <%= user.desc_projeto %>
                                                                     </td>
                                                                     <td>
                                                                         <% if (user.status === 'Não Iniciado') { %> <span class="badge badge-secondary"><%- user.status %></span> <% } %>
@@ -204,7 +204,7 @@
                                                                 <th>Tarefa</th>
                                                                 <th>Tipo</th>
                                                                 <th>Assunto</th>
-                                                                <th>Sistema</th>
+                                                                <th>Projeto</th>
                                                                 <th>Situação</th>
                                                                 <th>Abertura</th>
                                                                 <th>Prior.</th>
@@ -238,7 +238,7 @@
 
                                                                     </td>
                                                                     <td>
-                                                                        <%= user.fonte_atendimento %>
+                                                                        <%= user.desc_projeto %>
                                                                     </td>
                                                                     <td>
                                                                         <% if (user.status === 'Não Iniciado') { %> <span class="badge badge-secondary"><%- user.status %></span> <% } %>
