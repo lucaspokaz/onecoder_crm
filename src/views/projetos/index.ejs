@@ -1,0 +1,166 @@
+<% include ../default/header.ejs %>
+
+<body class="vertical-layout vertical-menu content-detached-left-sidebar fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="content-detached-left-sidebar">
+
+    <% include ../default/navbar.ejs %>
+
+    <% include ../default/menu.ejs %>
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <% include ../default/messages.ejs %>
+
+            <div class="content-body">
+
+                <div class="content-header row mb-1">
+                    <div class="content-header-left col-md-12 mb-2">
+                        <h3 class="content-header-title">Projetos</h3>
+                        <div class="row breadcrumbs-top">
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/index">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="/projetos">Projetos</a>
+                                    </li>
+                                    <li class="breadcrumb-item active"> Lista de Projetos
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+
+                                        <div class="card-header">
+                                            <h4 class="card-title">Projetos</h4>
+                                            <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+                                            <div class="heading-elements">
+                                                <a href="/projetos/criar" class="btn btn-primary round btn-sm"><i class="la la-plus font-small-2"></i>
+                                                    Novo Projeto
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-content collapse show">
+                                            <div class="card-body">
+                                                <% if (data.length > 0) { %>
+
+                                                <div class="form-group">
+                                                    <label>Pesquisa</label>
+                                                    <input type="text" class="form-control" name="filtro_pesquisa" id="filtro_pesquisa" placeholder="Digite aqui sua pesquisa" />
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Código</th>
+                                                                <th>Descrição</th>
+                                                                <th>Cliente</th>
+                                                                <th>Data de Início</th>
+                                                                <th>Data de Fim</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% data.forEach(function(user){ %>
+                                                                <tr>
+                                                                    <td>
+                                                                        <%- user.id_projeto %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="<%- '/projetos/editar/' + user.id_projeto %>" class="text-bold-600">
+                                                                            <%- user.descricao %>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%- user.nome_cliente %>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <% if (user.inicio != null) { %>
+                                                                        <%- moment(user.inicio).format('DD/MM/YYYY') %>
+                                                                        <% } %>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <% if (user.fim != null) { %>
+                                                                        <%- moment(user.fim).format('DD/MM/YYYY') %>
+                                                                        <% } %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if (user.ativo == 0) { %> <span class="badge badge-danger">Inativo <% } %>
+                                                                        <% if (user.ativo == 1) { %> <span class="badge badge-success">Ativo</span> <% } %>
+                                                                        <% if (user.ativo == 2) { %> <span class="badge badge-warning">Lead</span> <% } %>
+                                                                    </td>
+                                                                </tr>
+                                                            <% }) %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <% } else { %>
+
+                                                <p class="text-center text-muted">Nenhum registro encontrado!</p>
+
+                                                <% } %>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <% include ../default/footer.ejs %>
+
+    <script>
+
+        $(document).ready(function () {
+
+            var dataTable = $('.dataTables-example').DataTable({
+                lengthMenu: [[200, 300, -1], [200, 300, "All"]],
+                bPaginate: false,
+                bProcessing: true,
+                bLengthChange: false,
+                bInfo: false,
+                bFilter: true,
+                responsive: false,
+                rowReorder: false,
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [],
+                order: [[ 1, "asc" ]],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Pesquisar...",
+                    paginate: {
+                        previous: "Anterior",
+                        next: "Próximo"
+                    }
+                }
+            });
+
+            $('.dataTables_filter').addClass('pull-left');
+
+            $('#filtro_pesquisa').on('keyup change clear', function(){
+                dataTable.search(this.value).draw();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

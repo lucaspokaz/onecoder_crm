@@ -93,8 +93,9 @@ exports.carregar = async (req, res, next) => {
 
     if ((req.params.id) && (req.params.id > 0)) {
 
-        let tarefa = await tarefasService.get_tarefa_by_id(req.params.id);
+        let tarefa = await tarefasService.get_by_id(req.params.id);
         let dados_tarefa = JSON.parse(tarefa);
+
         let historico = await tarefasService.get_historico_tarefa(req.params.id);
         let dados_historico = JSON.parse(historico);
 

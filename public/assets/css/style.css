@@ -28,3 +28,8 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .round {
     border-radius: 0.5rem !important;
 }
+
+.select2-container {
+	width: 100% !important;
+	padding: 0;
+}

@@ -67,7 +67,7 @@ exports.criar = async (req, res, next) => {
         req.flash('error', inserted.statusMessage);
         res.locals.message = req.flash();
 
-        res.render('tarefas/criar', {
+        res.render('clientes/criar', {
             session: req.session,
             menu: 'cria_cliente',
             data: req.body,

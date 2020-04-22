@@ -5,7 +5,7 @@ const tiposAtendimentoService = require('./tipoatendimento_service');
 const moment = require('moment');
 const mail = require('../utils/mail');
 
-exports.get_tarefa_by_id = async (IdAtendimento) => {
+exports.get_by_id = async (IdAtendimento) => {
 
     let SQL = `select atendimento.*, usuario.nome as nome_usuario from atendimento
                  left join usuario on usuario.id_usuario = atendimento.id_usuario
