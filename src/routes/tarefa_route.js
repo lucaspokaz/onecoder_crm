@@ -3,22 +3,23 @@ const router = express.Router();
 const controller = require('../controllers/tarefa_controller')
 const auth = require('../../config/auth');
 
-router.get('/', auth.loggedIn, controller.acompanhamento_minhas);
+router.get('/', auth.loggedIn, controller.list_my_list);
 
-router.get('/acompanhamento', auth.loggedIn, controller.acompanhamento_todas);
-router.get('/acompanhamento/todas', auth.loggedIn, controller.acompanhamento_todas);
-router.get('/acompanhamento/pendentes', auth.loggedIn, controller.acompanhamento_pendentes);
-router.get('/acompanhamento/minhas', auth.loggedIn, controller.acompanhamento_minhas);
-router.get('/criar', auth.loggedIn, controller.carregar);
-router.get('/editar/(:id)', auth.loggedIn, controller.carregar);
-router.get('/historico/(:id)', auth.loggedIn, controller.get_historico);
-router.get('/quadro', auth.loggedIn, controller.get_quadro_tarefas);
+router.get('/criar', auth.loggedIn, controller.load);
+router.get('/editar/(:id)', auth.loggedIn, controller.load);
+router.post('/criar', auth.loggedIn, controller.create);
+router.post('/editar/(:id)', auth.loggedIn, controller.edit);
 
-router.post('/criar', auth.loggedIn, controller.criar);
-router.post('/editar/(:id)', auth.loggedIn, controller.editar);
-router.post('/atender', auth.loggedIn, controller.atender_tarefa);
-router.post('/retornar-para-fila', auth.loggedIn, controller.retornar_para_fila);
-router.post('/enviar-tarefa', auth.loggedIn, controller.enviar_tarefa);
-router.post('/concluir-tarefa', auth.loggedIn, controller.concluir_tarefa);
+router.get('/historico/(:id)', auth.loggedIn, controller.list_task_history);
+router.get('/acompanhamento', auth.loggedIn, controller.list_all);
+router.get('/acompanhamento/todas', auth.loggedIn, controller.list_all);
+router.get('/acompanhamento/pendentes', auth.loggedIn, controller.list_pending);
+router.get('/acompanhamento/minhas', auth.loggedIn, controller.list_my_list);
+router.get('/quadro', auth.loggedIn, controller.list_task_board);
+
+router.post('/atender', auth.loggedIn, controller.take_task);
+router.post('/retornar-para-fila', auth.loggedIn, controller.return_task);
+router.post('/enviar-tarefa', auth.loggedIn, controller.send_task);
+router.post('/concluir-tarefa', auth.loggedIn, controller.finish_task);
 
 module.exports = router;

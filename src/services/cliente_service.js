@@ -1,13 +1,13 @@
 const db = require('../../config/database');
 
-exports.get_cliente_by_id = (idCliente) => {
+exports.get_client_by_id = (idCliente) => {
 
     let SQL = `select * from cliente where id_cliente = ${idCliente}`;
     let retorno = db.exec_promise_json(SQL, [], 'Cliente');
     return retorno;
 }
 
-exports.get_clientes_responsaveis = (idUsuario) => {
+exports.get_clients_owners = (idUsuario) => {
 
     let SQL = '';
 

@@ -1,15 +1,13 @@
-const
-    contratosService = require('../services/contrato_service'),
-    clienteService = require('../services/cliente_service'),
-    projetosService = require('../services/projeto_service');
+const contratosService = require('../services/contrato_service');
+const clienteService = require('../services/cliente_service');
+const projetosService = require('../services/projeto_service');
 
-let
-    dados_projeto,
-    dados_cliente;
+let dados_projeto;
+let dados_cliente;
 
-exports.listar = async (req, res, next) => {
+exports.list = async (req, res, next) => {
 
-    let results = await contratosService.get_contratos();
+    let results = await contratosService.get_contracts_active();
     let dados = JSON.parse(results);
 
     res.render('contratos/index', {
@@ -21,17 +19,17 @@ exports.listar = async (req, res, next) => {
     });
 };
 
-exports.carregar = async (req, res, next) => {
+exports.load = async (req, res, next) => {
 
     let projetos = await projetosService.get_all();
     dados_projeto = JSON.parse(projetos);
 
-    let clientes = await clienteService.get_clientes_responsaveis(req.session.codigo_usuario);
+    let clientes = await clienteService.get_clients_owners(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
 
     if ((req.params.id) && (req.params.id > 0)) {
 
-        let contratos = await contratosService.get_contrato_by_id(req.params.id);
+        let contratos = await contratosService.get_contract_by_id(req.params.id);
         dados_contrato = JSON.parse(contratos);
 
         res.render('contratos/editar', {
@@ -59,7 +57,7 @@ exports.carregar = async (req, res, next) => {
     }
 };
 
-exports.criar = async (req, res, next) => {
+exports.create = async (req, res, next) => {
 
     let inserted = await contratosService.insert(req, res);
 
@@ -73,7 +71,7 @@ exports.criar = async (req, res, next) => {
         let projetos = await projetosService.get_all();
         dados_projeto = JSON.parse(projetos);
 
-        let clientes = await clienteService.get_clientes_responsaveis(req.session.codigo_usuario);
+        let clientes = await clienteService.get_clients_owners(req.session.codigo_usuario);
         dados_cliente = JSON.parse(clientes);
 
         req.flash('error', inserted.statusMessage);
@@ -91,7 +89,7 @@ exports.criar = async (req, res, next) => {
     }
 };
 
-exports.editar = async (req, res, next) => {
+exports.edit = async (req, res, next) => {
 
     let edited = await contratosService.edit(req, res);
 
@@ -105,7 +103,7 @@ exports.editar = async (req, res, next) => {
         let projetos = await projetosService.get_all();
         dados_projeto = JSON.parse(projetos);
 
-        let clientes = await clienteService.get_clientes_responsaveis(req.session.codigo_usuario);
+        let clientes = await clienteService.get_clients_owners(req.session.codigo_usuario);
         dados_cliente = JSON.parse(clientes);
 
         req.flash('success', `Erro ao salvar.`);
@@ -120,7 +118,7 @@ exports.editar = async (req, res, next) => {
     }
 };
 
-exports.remover = async (req, res, next) => {
+exports.delete = async (req, res, next) => {
 
     let idContrato = req.body.id;
     let deleted = await contratosService.delete(idContrato);

@@ -9,9 +9,9 @@ moment.locale('pt-br');
 
 router.get('/', auth.loggedIn, async function (req, res, next) {
 
-    let results = await tarefasService.get_tarefas_abertas_por_mim(req.session.codigo_usuario);
-    let geral = await tarefasService.get_tarefas_visao_geral();
-    let ultimos = await andamentosService.get_ultimos_andamentos(req.session.codigo_usuario);
+    let results = await tarefasService.get_mytasks_created(req.session.codigo_usuario);
+    let geral = await tarefasService.get_tasks_overview();
+    let ultimos = await andamentosService.get_progress_last7(req.session.codigo_usuario);
 
     dados = JSON.parse(results);
     dados_geral = JSON.parse(geral);

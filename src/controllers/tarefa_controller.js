@@ -1,24 +1,21 @@
-const
-    clienteService = require('../services/cliente_service'),
-    projetosService = require('../services/projeto_service'),
-    tiposAtendimentoService = require('../services/tipoatendimento_service'),
-    tarefasService = require('../services/tarefa_service'),
-    andamentosService = require('../services/andamento_service'),
-    departamentosService = require('../services/departamento_service');
+const clienteService = require('../services/cliente_service');
+const projetosService = require('../services/projeto_service');
+const tiposAtendimentoService = require('../services/tipoatendimento_service');
+const tarefasService = require('../services/tarefa_service');
+const andamentosService = require('../services/andamento_service');
+const departamentosService = require('../services/departamento_service');
 
-let
-    dados_cliente,
-    dados_projeto,
-    dados_tipo;
+let dados_cliente;
+let dados_projeto;
+let dados_tipo;
 
-var
-    moment = require('moment');
-    moment.locale('pt-br');
+var moment = require('moment');
+moment.locale('pt-br');
 
-exports.acompanhamento_pendentes = async (req, res, next) => {
+exports.list_pending = async (req, res, next) => {
 
-    let results = await tarefasService.get_tarefas_acompanhamento(req.session.codigo_usuario, true);
-    let geral = await tarefasService.get_tarefas_visao_geral();
+    let results = await tarefasService.get_tasks(req.session.codigo_usuario, true);
+    let geral = await tarefasService.get_tasks_overview();
 
     dados = JSON.parse(results);
     dados_geral = JSON.parse(geral);
@@ -38,10 +35,10 @@ exports.acompanhamento_pendentes = async (req, res, next) => {
     info_adicional = [];
 };
 
-exports.acompanhamento_minhas = async (req, res, next) => {
+exports.list_my_list = async (req, res, next) => {
 
-    let results = await tarefasService.get_minhas_tarefas_acompanhamento(req.session.codigo_usuario);
-    let geral = await tarefasService.get_tarefas_visao_geral();
+    let results = await tarefasService.get_mytasks(req.session.codigo_usuario);
+    let geral = await tarefasService.get_tasks_overview();
 
     dados = JSON.parse(results);
     dados_geral = JSON.parse(geral);
@@ -59,10 +56,10 @@ exports.acompanhamento_minhas = async (req, res, next) => {
     });
 };
 
-exports.acompanhamento_todas = async (req, res, next) => {
+exports.list_all = async (req, res, next) => {
 
-    let results = await tarefasService.get_tarefas_acompanhamento(req.session.codigo_usuario, false);
-    let geral = await tarefasService.get_tarefas_visao_geral();
+    let results = await tarefasService.get_tasks(req.session.codigo_usuario, false);
+    let geral = await tarefasService.get_tasks_overview();
 
     let dados = JSON.parse(results);
     let dados_geral = JSON.parse(geral);
@@ -80,9 +77,9 @@ exports.acompanhamento_todas = async (req, res, next) => {
     });
 };
 
-exports.carregar = async (req, res, next) => {
+exports.load = async (req, res, next) => {
 
-    let clientes = await clienteService.get_clientes_responsaveis(req.session.codigo_usuario);
+    let clientes = await clienteService.get_clients_owners(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
 
     let projetos = await projetosService.get_all();
@@ -96,7 +93,7 @@ exports.carregar = async (req, res, next) => {
         let tarefa = await tarefasService.get_by_id(req.params.id);
         let dados_tarefa = JSON.parse(tarefa);
 
-        let historico = await tarefasService.get_historico_tarefa(req.params.id);
+        let historico = await tarefasService.get_task_history(req.params.id);
         let dados_historico = JSON.parse(historico);
 
         res.render('tarefas/editar', {
@@ -127,7 +124,7 @@ exports.carregar = async (req, res, next) => {
     }
 };
 
-exports.criar = async (req, res, next) => {
+exports.create = async (req, res, next) => {
 
     let inserted = await tarefasService.insert(req, res);
 
@@ -155,7 +152,7 @@ exports.criar = async (req, res, next) => {
     }
 };
 
-exports.editar = async (req, res, next) => {
+exports.edit = async (req, res, next) => {
 
     let tarefa_editada = await tarefasService.edit(req, res);
 
@@ -181,17 +178,17 @@ exports.editar = async (req, res, next) => {
     }
 };
 
-exports.get_historico = async (req, res, next) => {
-    let dados_historico = await tarefasService.get_historico_tarefa(req.params.id);
+exports.list_task_history = async (req, res, next) => {
+    let dados_historico = await tarefasService.get_task_history(req.params.id);
     res.json( JSON.parse(dados_historico) );
 };
 
-exports.get_quadro_tarefas = async (req, res, next) => {
+exports.list_task_board = async (req, res, next) => {
 
-    let atendimentos = await tarefasService.get_tarefas_atendendo(req.session.codigo_usuario);
+    let atendimentos = await tarefasService.get_tasks_in_progress(req.session.codigo_usuario);
     let dados_atendimento = JSON.parse(atendimentos);
 
-    let sem_atendimento = await tarefasService.get_tarefas_sem_atendimento(req.session.codigo_usuario);
+    let sem_atendimento = await tarefasService.get_tasks_no_progress(req.session.codigo_usuario);
     let dados_sem_atendimento = JSON.parse(sem_atendimento);
 
     let departamentos = await departamentosService.get_all();
@@ -208,13 +205,13 @@ exports.get_quadro_tarefas = async (req, res, next) => {
     });
 };
 
-exports.atender_tarefa = async (req, res, next) => {
+exports.take_task = async (req, res, next) => {
 
-    let retorno = await tarefasService.update_status_tarefa(req.body.id_atendimento, 'Em Andamento');
+    let retorno = await tarefasService.edit_task_status(req.body.id_atendimento, 'Em Andamento');
 
     if (retorno.status == 200) {
 
-        let retorno = await andamentosService.update_andamento_atendimento(req.session.codigo_usuario, req.body.id_andamento);
+        let retorno = await andamentosService.edit_progress_owner(req.session.codigo_usuario, req.body.id_andamento);
 
         if (retorno.status == 200) {
             return res.status(200).send({status: 200, mensagem: 'Tarefa em atendimento.'});
@@ -226,9 +223,9 @@ exports.atender_tarefa = async (req, res, next) => {
     }
 };
 
-exports.retornar_para_fila = async (req, res, next) => {
+exports.return_task = async (req, res, next) => {
 
-    let retorno = await andamentosService.update_andamento_retorno(
+    let retorno = await andamentosService.edit_progress_return(
         req.body.id_andamento,
         req.body.id_atendimento,
         req.body.id_departamento,
@@ -242,9 +239,9 @@ exports.retornar_para_fila = async (req, res, next) => {
     }
 };
 
-exports.enviar_tarefa = async (req, res, next) => {
+exports.send_task = async (req, res, next) => {
 
-    let retorno = await andamentosService.enviar_tarefa(
+    let retorno = await andamentosService.send_task(
         req.body.id_andamento,
         req.body.id_atendimento,
         req.body.id_departamento,
@@ -259,9 +256,9 @@ exports.enviar_tarefa = async (req, res, next) => {
     }
 };
 
-exports.concluir_tarefa = async (req, res, next) => {
+exports.finish_task = async (req, res, next) => {
 
-    let retorno = await andamentosService.concluir_tarefa(
+    let retorno = await andamentosService.finish_task(
         req.body.id_andamento,
         req.body.id_atendimento,
         req.body.id_departamento,

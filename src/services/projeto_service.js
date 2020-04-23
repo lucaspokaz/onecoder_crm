@@ -30,8 +30,8 @@ exports.get_by_id = async (IdProjeto) => {
 exports.insert = async (req, res) => {
 
     try {
-        let data_inicio_formatada = moment(req.body.data_inicio, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss');
-        let data_fim_formatada = moment(req.body.data_fim, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss');
+        let data_inicio_formatada = formatter.validarDataNull(req.body.data_inicio);
+        let data_fim_formatada = formatter.validarDataNull(req.body.data_fim);
 
         var user = {
             descricao: req.body.descricao,

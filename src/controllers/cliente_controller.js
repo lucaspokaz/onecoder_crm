@@ -3,9 +3,9 @@ const
     tarefasService = require('../services/tarefa_service'),
     contratosService = require('../services/contrato_service');
 
-exports.listar = async (req, res, next) => {
+exports.list = async (req, res, next) => {
 
-    let results = await clientesService.get_clientes_responsaveis(req.session.codigo_usuario);
+    let results = await clientesService.get_clients_owners(req.session.codigo_usuario);
     let dados = JSON.parse(results);
 
     res.render('clientes/index', {
@@ -17,17 +17,17 @@ exports.listar = async (req, res, next) => {
     });
 };
 
-exports.carregar = async (req, res, next) => {
+exports.load = async (req, res, next) => {
 
     if ((req.params.id) && (req.params.id > 0)) {
 
-        let cliente = await clientesService.get_cliente_by_id(req.params.id);
+        let cliente = await clientesService.get_client_by_id(req.params.id);
         let dados_cliente = JSON.parse(cliente);
 
-        let geral = await tarefasService.get_tarefas_visao_geral_por_cliente(req.params.id);
+        let geral = await tarefasService.get_tasks_overview_by_client(req.params.id);
         let dados_geral = JSON.parse(geral);
 
-        let contratos = await contratosService.get_contratos_visao_geral_por_cliente(req.params.id);
+        let contratos = await contratosService.get_contracts_overview(req.params.id);
         let dados_geral_contratos = JSON.parse(contratos);
 
         res.render('clientes/editar', {
@@ -53,7 +53,7 @@ exports.carregar = async (req, res, next) => {
     }
 };
 
-exports.criar = async (req, res, next) => {
+exports.create = async (req, res, next) => {
 
     let inserted = await clientesService.insert(req, res);
 
@@ -77,7 +77,7 @@ exports.criar = async (req, res, next) => {
     }
 };
 
-exports.editar = async (req, res, next) => {
+exports.edit = async (req, res, next) => {
 
     let edited = await clientesService.edit(req, res);
 

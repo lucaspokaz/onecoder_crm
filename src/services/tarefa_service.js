@@ -15,7 +15,7 @@ exports.get_by_id = async (IdAtendimento) => {
     return retorno;
 }
 
-exports.get_tarefas_acompanhamento = (idUsuario, SomentePendentes) => {
+exports.get_tasks = (idUsuario, SomentePendentes) => {
 
     let SQL =
         `SELECT
@@ -56,7 +56,7 @@ exports.get_tarefas_acompanhamento = (idUsuario, SomentePendentes) => {
     return retorno;
 }
 
-exports.get_minhas_tarefas_acompanhamento = (idUsuario) => {
+exports.get_mytasks = (idUsuario) => {
 
     let SQL =
         `SELECT
@@ -94,7 +94,7 @@ exports.get_minhas_tarefas_acompanhamento = (idUsuario) => {
     return retorno;
 }
 
-exports.get_tarefas_abertas_por_mim = (idUsuario) => {
+exports.get_mytasks_created = (idUsuario) => {
 
     let SQL =
         `SELECT
@@ -136,7 +136,7 @@ exports.get_tarefas_abertas_por_mim = (idUsuario) => {
     return retorno;
 }
 
-exports.get_tarefas_visao_geral = () => {
+exports.get_tasks_overview = () => {
 
     let SQL =
         `select (select count(*) from atendimento) as tarefas_total,
@@ -148,7 +148,7 @@ exports.get_tarefas_visao_geral = () => {
     return retorno;
 }
 
-exports.get_tarefas_visao_geral_por_cliente = (idCliente) => {
+exports.get_tasks_overview_by_client = (idCliente) => {
 
     let SQL =
         `select (select count(*) from atendimento where id_cliente = ${idCliente}) as tarefas_total,
@@ -159,7 +159,7 @@ exports.get_tarefas_visao_geral_por_cliente = (idCliente) => {
     return retorno;
 }
 
-exports.get_historico_tarefa = (IdAtendimento) => {
+exports.get_task_history = (IdAtendimento) => {
 
     let SQL = `select
                     andamento.*,
@@ -181,7 +181,7 @@ exports.get_historico_tarefa = (IdAtendimento) => {
     return retorno;
 }
 
-exports.get_tarefas_atendendo = (IdUsuario) => {
+exports.get_tasks_in_progress = (IdUsuario) => {
 
     let SQL =
         `SELECT
@@ -218,7 +218,7 @@ exports.get_tarefas_atendendo = (IdUsuario) => {
     return retorno;
 }
 
-exports.get_tarefas_sem_atendimento = (IdUsuario) => {
+exports.get_tasks_no_progress = (IdUsuario) => {
 
     let SQL =
         `SELECT
@@ -264,7 +264,7 @@ exports.get_tarefas_sem_atendimento = (IdUsuario) => {
     return retorno;
 }
 
-exports.get_tarefas_por_mes = (ano, mes) => {
+exports.get_tasks_by_month = (ano, mes) => {
 
     let SQL =
         `select
@@ -386,7 +386,7 @@ exports.edit = async (req, res) => {
 
 }
 
-exports.update_status_tarefa = (IdAtendimento, Status) => {
+exports.edit_task_status = (IdAtendimento, Status) => {
 
     let SQL = `update atendimento set status = '${Status}' where id_atendimento = ${IdAtendimento}`;
     db.exec_promise(SQL);
@@ -394,7 +394,7 @@ exports.update_status_tarefa = (IdAtendimento, Status) => {
 
 }
 
-exports.conclui_status_tarefa = (IdAtendimento, Status, Conclusao) => {
+exports.edit_task_status_with_comment = (IdAtendimento, Status, Conclusao) => {
 
     let SQL = `update atendimento set status = '${Status}', conclusao = '${Conclusao}' where id_atendimento = ${IdAtendimento}`;
     db.exec_promise(SQL);

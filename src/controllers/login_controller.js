@@ -3,7 +3,7 @@ const package_json = require('../../package.json');
 const formatter = require('../utils/formatter')
 const session = require('express-session');
 
-exports.get = async (req, res, next) => {
+exports.load = async (req, res, next) => {
     if (req.session.esta_logado == true) {
         res.redirect('/index');
     } else {
@@ -23,7 +23,7 @@ exports.logout = async (req, res, next) => {
     res.redirect('/login');
 };
 
-exports.post = async (req, res, next) => {
+exports.login = async (req, res, next) => {
 
     let results = await service.getUsuarioAutenticado(req.body.login, req.body.password);
     let dados_result = JSON.parse(results);

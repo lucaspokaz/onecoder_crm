@@ -3,7 +3,7 @@ const
     moment = require('moment');
 
 
-exports.get_contrato_by_id = (idContrato) => {
+exports.get_contract_by_id = (idContrato) => {
     let SQL = `select contrato.*, cliente.nome from contrato
                  left join cliente on cliente.id_cliente = contrato.id_cliente
                 where id_contrato = ${idContrato}`;
@@ -11,7 +11,7 @@ exports.get_contrato_by_id = (idContrato) => {
     return retorno;
 }
 
-exports.get_contratos_visao_geral_por_cliente = (idCliente) => {
+exports.get_contracts_overview = (idCliente) => {
 
     let SQL =
         `select ativo, data_fim from contrato where id_cliente = ${idCliente} order by id_contrato desc limit 1 `;
@@ -20,7 +20,7 @@ exports.get_contratos_visao_geral_por_cliente = (idCliente) => {
     return retorno;
 }
 
-exports.get_contratos = () => {
+exports.get_contracts_active = () => {
 
     let SQL = `select
                     contrato.*,

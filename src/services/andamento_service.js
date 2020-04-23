@@ -4,7 +4,7 @@ const moment = require('moment');
 const tarefasService = require('./tarefa_service');
 const loginService = require('./login_service');
 
-exports.get_andamento_by_id = async (IdAndamento) => {
+exports.get_progress_by_id = async (IdAndamento) => {
 
     let SQL = `select * from andamento
                 where id_andamento = ${IdAndamento} `;
@@ -12,7 +12,7 @@ exports.get_andamento_by_id = async (IdAndamento) => {
     return await db.exec_promise(SQL);
 }
 
-exports.get_ultimos_andamentos = async (IdUsuario) => {
+exports.get_progress_last7 = async (IdUsuario) => {
 
     let SQL = `select andamento.id_andamento,
                       andamento.id_atendimento,
@@ -41,7 +41,7 @@ exports.insert = (andamento, id_tarefa) => {
     db.exec_promise(SQL, andamento, 'Inserção de andamento');
 }
 
-exports.update_andamento_atendimento = async (IdUsuario, IdAndamento) => {
+exports.edit_progress_owner = async (IdUsuario, IdAndamento) => {
 
     let SQL = `update andamento set id_responsavel = ${IdUsuario} where id_andamento = ${IdAndamento}`;
 
@@ -53,7 +53,7 @@ exports.update_andamento_atendimento = async (IdUsuario, IdAndamento) => {
     }
 }
 
-exports.update_andamento_retorno = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario) => {
+exports.edit_progress_return = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario) => {
 
     try {
         let SQL = `update andamento set data_fim = now() where id_andamento = ${IdAndamento}`;
@@ -74,7 +74,7 @@ exports.update_andamento_retorno = async (IdAndamento, IdAtendimento, IdDepartam
     }
 }
 
-exports.enviar_tarefa = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario, Observacao) => {
+exports.send_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario, Observacao) => {
 
     try {
         let SQL = `update andamento set data_fim = now() where id_andamento = ${IdAndamento}`;
@@ -95,7 +95,7 @@ exports.enviar_tarefa = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsu
     }
 }
 
-exports.concluir_tarefa = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario) => {
+exports.finish_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario) => {
 
     try {
 
@@ -121,7 +121,7 @@ exports.concluir_tarefa = async (IdAndamento, IdAtendimento, IdDepartamento, IdU
         );
 
         // conclui tarefa
-        await tarefasService.conclui_status_tarefa(
+        await tarefasService.edit_task_status_with_comment(
             IdAtendimento,
             'Concluído',
             'Concluído pelo ' + usuario.nome

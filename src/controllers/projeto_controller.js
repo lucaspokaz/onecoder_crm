@@ -1,7 +1,7 @@
 const projetosService = require('../services/projeto_service');
 const clientesService = require('../services/cliente_service');
 
-exports.listar = async (req, res, next) => {
+exports.list = async (req, res, next) => {
 
     let results = await projetosService.get_all();
     let dados = JSON.parse(results);
@@ -15,12 +15,12 @@ exports.listar = async (req, res, next) => {
     });
 };
 
-exports.carregar = async (req, res, next) => {
+exports.load = async (req, res, next) => {
 
     let projeto = await projetosService.get_by_id(req.params.id);
     let dados_projeto = JSON.parse(projeto);
 
-    let clientes = await clientesService.get_clientes_responsaveis(req.session.codigo_usuario);
+    let clientes = await clientesService.get_clients_owners(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
 
     if ((req.params.id) && (req.params.id > 0)) {
@@ -47,7 +47,7 @@ exports.carregar = async (req, res, next) => {
     }
 };
 
-exports.criar = async (req, res, next) => {
+exports.create = async (req, res, next) => {
 
     let inserted = await projetosService.insert(req, res);
 
@@ -71,7 +71,7 @@ exports.criar = async (req, res, next) => {
     }
 };
 
-exports.editar = async (req, res, next) => {
+exports.edit = async (req, res, next) => {
 
     let edited = await projetosService.edit(req, res);
 
