@@ -85,19 +85,15 @@
                                                                         <%- user.nome_cliente %>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <% if (user.inicio != null) { %>
-                                                                        <%- moment(user.inicio).format('DD/MM/YYYY') %>
-                                                                        <% } %>
+                                                                        <%= formatter.exibirDataNull(user.inicio) %>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <% if (user.fim != null) { %>
-                                                                        <%- moment(user.fim).format('DD/MM/YYYY') %>
-                                                                        <% } %>
+                                                                        <%= formatter.exibirDataNull(user.fim) %>
                                                                     </td>
                                                                     <td>
                                                                         <% if (user.ativo == 0) { %> <span class="badge badge-danger">Inativo <% } %>
                                                                         <% if (user.ativo == 1) { %> <span class="badge badge-success">Ativo</span> <% } %>
-                                                                        <% if (user.ativo == 2) { %> <span class="badge badge-warning">Lead</span> <% } %>
+                                                                        <% if (user.ativo == 2) { %> <span class="badge badge-warning">Pendente</span> <% } %>
                                                                     </td>
                                                                 </tr>
                                                             <% }) %>
@@ -142,7 +138,7 @@
                 rowReorder: false,
                 dom: '<"html5buttons"B>lTgitp',
                 buttons: [],
-                order: [[ 1, "asc" ]],
+                order: [[ 0, "asc" ]],
                 language: {
                     search: "_INPUT_",
                     searchPlaceholder: "Pesquisar...",

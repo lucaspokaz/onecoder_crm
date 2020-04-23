@@ -1,4 +1,5 @@
-const leftPad = require('left-pad')
+const leftPad = require('left-pad');
+const moment = require('moment');
 
 /* Função que coloca zeros à esqueda */
 exports.zero_esquerda = (str, size) => {
@@ -82,4 +83,22 @@ exports.stringToHslColor = (str, s, l) => {
 
     var h = hash % 360;
     return 'hsl('+h+', '+s+'%, '+l+'%)';
-  }
+}
+
+exports.exibirDataNull = (data) => {
+    if (data != null && data != "") {
+        v = moment(data).format('DD/MM/YYYY')
+    } else {
+        v = ""
+    }
+    return v;
+}
+
+exports.validarDataNull = (data) => {
+    if (data != null && data != "") {
+        v = moment(data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss');
+    } else {
+        v = null
+    }
+    return v;
+}

@@ -49,8 +49,8 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                         <form class="form" method="post">
-                                            <div class="form-body">
 
+                                            <div class="form-body">
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
                                                         <label>Descrição</label>
@@ -89,7 +89,7 @@
                                                                 <i class="far fa-calendar"></i>
                                                             </span>
                                                             <input type="text" name="data_inicio" id="data_inicio" data-mask="99/99/9999"
-                                                                value="<%= moment(data.inicio).format('DD/MM/YYYY') %>" class="form-control">
+                                                                value="<%= formatter.exibirDataNull(data.inicio) %>" class="form-control">
                                                         </div>
                                                     </div>
 
@@ -100,11 +100,17 @@
                                                                 <i class="far fa-calendar"></i>
                                                             </span>
                                                             <input type="text" name="data_fim" id="data_fim" data-mask="99/99/9999"
-                                                                value="<%= moment(data.fim).format('DD/MM/YYYY') %>" class="form-control">
+                                                                value="<%= formatter.exibirDataNull(data.fim) %>" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
+                                            <div class="form-actions">
+                                                <a href="/projetos" class="btn btn-danger"><i class="ft-x"></i> Cancelar</a>
+                                                <button type="submit" class="btn btn-info">
+                                                    <i class="la la-check-square-o"></i> Salvar
+                                                </button>
                                             </div>
 
                                         </form>

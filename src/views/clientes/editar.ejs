@@ -130,7 +130,7 @@
                                     <div class="heading-elements">
                                         <% if (data.ativo == 0) { %> <span class="badge badge-danger">Inativo <% } %>
                                         <% if (data.ativo == 1) { %> <span class="badge badge-success">Ativo</span> <% } %>
-                                        <% if (data.ativo == 2) { %> <span class="badge badge-warning">Lead</span> <% } %>
+                                        <% if (data.ativo == 2) { %> <span class="badge badge-warning">Pendente</span> <% } %>
                                     </div>
                                 </div>
 
@@ -155,7 +155,7 @@
                                                             <option value=""></option>
                                                             <option value="0" <%= data.ativo == 0 ? 'selected' : '' %> > Inativo </option>
                                                             <option value="1" <%= data.ativo == 1 ? 'selected' : '' %> > Ativo </option>
-                                                            <option value="2" <%= data.ativo == 2 ? 'selected' : '' %> > Lead </option>
+                                                            <option value="2" <%= data.ativo == 2 ? 'selected' : '' %> > Pendente </option>
                                                         </select>
                                                     </div>
                                                 </div>

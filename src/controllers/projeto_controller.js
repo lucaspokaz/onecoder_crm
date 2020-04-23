@@ -73,7 +73,7 @@ exports.criar = async (req, res, next) => {
 
 exports.editar = async (req, res, next) => {
 
-    let edited = await clientesService.edit(req, res);
+    let edited = await projetosService.edit(req, res);
 
     if (edited.status == 200) {
 
