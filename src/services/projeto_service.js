@@ -11,6 +11,13 @@ exports.get_all = () => {
     return retorno;
 }
 
+exports.get_ativos = () => {
+
+    let SQL = `select * from projeto where ativo = 1 order by descricao asc`;
+    let retorno = db.exec_promise_json(SQL, [], 'Projetos');
+    return retorno;
+}
+
 exports.get_by_id = async (IdProjeto) => {
 
     let SQL = `select * from projeto
