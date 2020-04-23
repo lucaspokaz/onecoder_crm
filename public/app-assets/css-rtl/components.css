@@ -4658,7 +4658,7 @@ input[type='date'].form-control, input[type='time'].form-control, input[type='da
 }
 
 .floating-label-form-group-with-focus label, .floating-label-form-group-with-value label {
-  color : #666EE8 !important;
+  color : #2b89c5 !important;
   text-transform : uppercase;
   font-weight : 400;
 }
@@ -4700,7 +4700,7 @@ input[type='date'].form-control, input[type='time'].form-control, input[type='da
 .select2-container--classic .select2-selection--multiple .select2-selection__choice, .select2-container--default .select2-selection--multiple .select2-selection__choice {
   padding : 2px 6px !important;
   margin-top : 0 !important;
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
   border-color : #3A44E1 !important;
   color : #FFFFFF;
   margin-left : 8px !important;
@@ -4729,7 +4729,7 @@ input[type='date'].form-control, input[type='time'].form-control, input[type='da
   margin-left : 0.5rem;
 }
 .select2-container--classic .select2-results__options .select2-results__option[aria-selected=true], .select2-container--default .select2-results__options .select2-results__option[aria-selected=true] {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
   color : #FFFFFF !important;
 }
 .select2-container--classic .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected] {

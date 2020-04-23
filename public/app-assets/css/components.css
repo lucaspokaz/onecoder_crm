@@ -3570,7 +3570,7 @@ input[type="month"].form-control {
 
 .floating-label-form-group-with-focus label,
 .floating-label-form-group-with-value label {
-  color: #666ee8 !important;
+  color: #2b89c5 !important;
   text-transform: uppercase;
   font-weight: 400; }
 
@@ -3614,7 +3614,7 @@ input[type="month"].form-control {
   .select2-container--default .select2-selection--multiple .select2-selection__choice {
     padding: 1px 11px  !important;
     margin-top: 0px !important;
-    background-color: #666ee8 !important;
+    background-color: #2b89c5 !important;
     border-color: transparent !important;
     color: #fff;
     margin-right: 8px !important; }
@@ -3644,7 +3644,7 @@ input[type="month"].form-control {
 
 .select2-container--classic .select2-results__options .select2-results__option[aria-selected=true],
 .select2-container--default .select2-results__options .select2-results__option[aria-selected=true] {
-  background-color: #666ee8 !important;
+  background-color: #2b89c5 !important;
   color: #fff !important; }
 
 .select2-container--classic .select2-results__option--highlighted[aria-selected],

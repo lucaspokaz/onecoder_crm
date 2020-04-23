@@ -141,17 +141,17 @@
 }
 
 .loader-primary div {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 
 .loader-primary.ball-clip-rotate div {
-  border-color : #666EE8 !important;
+  border-color : #2b89c5 !important;
   border-bottom-color : transparent !important;
   background-color : transparent !important;
 }
 
 .loader-primary.ball-clip-rotate-pulse div:first-child {
-  background : #666EE8 !important;
+  background : #2b89c5 !important;
 }
 
 .loader-primary.ball-clip-rotate-pulse div:last-child {
@@ -161,31 +161,31 @@
 
 .loader-primary.ball-clip-rotate-multiple div {
   background-color : transparent !important;
-  border-color : transparent #666EE8 transparent #666EE8 !important;
+  border-color : transparent #666EE8 transparent #2b89c5 !important;
 }
 
 .loader-primary.ball-rotate div:before, .loader-primary.ball-rotate div:after {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 
 .loader-primary.ball-triangle-path div {
   background-color : transparent !important;
-  border-color : #666EE8 !important;
+  border-color : #2b89c5 !important;
 }
 
 .loader-primary.ball-scale-ripple div {
   background-color : transparent !important;
-  border-color : #666EE8 !important;
+  border-color : #2b89c5 !important;
 }
 
 .loader-primary.ball-scale-ripple-multiple div {
   background-color : transparent !important;
-  border-color : #666EE8 !important;
+  border-color : #2b89c5 !important;
 }
 
 .loader-primary.triangle-skew-spin div {
   background-color : transparent !important;
-  border-bottom-color : #666EE8 !important;
+  border-bottom-color : #2b89c5 !important;
 }
 
 .loader-primary.semi-circle-spin div {
@@ -201,14 +201,14 @@
   background-color : transparent !important;
 }
 .loader-primary.fading-circle div:before {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 
 .loader-primary.folding-cube div {
   background-color : transparent !important;
 }
 .loader-primary.folding-cube div:before {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 
 .loader-secondary div {

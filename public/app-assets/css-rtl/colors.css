@@ -539,11 +539,11 @@ input:focus ~ .bg-primary {
 }
 
 .primary {
-  color : #666EE8 !important;
+  color : #2b89c5 !important;
 }
 
 .bg-primary {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 .bg-primary .card-header, .bg-primary .card-footer {
   background-color : transparent;
@@ -554,11 +554,11 @@ input:focus ~ .bg-primary {
 }
 
 .selectboxit.selectboxit-btn.bg-primary {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 
 .alert-primary {
-  border-color : #666EE8 !important;
+  border-color : #2b89c5 !important;
   background-color : #A4A9F1 !important;
   color : #141B87 !important;
 }
@@ -577,12 +577,12 @@ input:focus ~ .bg-primary {
 }
 
 .color-info.primary {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 
 .btn-primary {
   border-color : #3A44E1 !important;
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
   color : #FFFFFF;
 }
 .btn-primary:hover {
@@ -615,7 +615,7 @@ input:focus ~ .bg-primary {
 }
 
 input[type='checkbox'].bg-primary + .custom-control-label:before, input[type='radio'].bg-primary + .custom-control-label:before {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 
 /* .custom-control-label{
@@ -624,12 +624,12 @@ input[type='checkbox'].bg-primary + .custom-control-label:before, input[type='ra
         }
       } */
 input:focus ~ .bg-primary {
-  -webkit-box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #666EE8 !important;
-          box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #666EE8 !important;
+  -webkit-box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #2b89c5 !important;
+          box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #2b89c5 !important;
 }
 
 .border-primary {
-  border : 1px solid #666EE8 !important;
+  border : 1px solid #2b89c5 !important;
 }
 
 .border-top-primary {

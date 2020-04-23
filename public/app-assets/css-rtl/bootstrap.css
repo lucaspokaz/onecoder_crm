@@ -7104,7 +7104,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color : #666EE8 !important;
+  background-color : #2b89c5 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-primary:focus {
@@ -7216,7 +7216,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .border-primary {
-  border-color : #666EE8 !important;
+  border-color : #2b89c5 !important;
 }
 
 .border-secondary {
@@ -10489,7 +10489,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .text-primary {
-  color : #666EE8 !important;
+  color : #2b89c5 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
