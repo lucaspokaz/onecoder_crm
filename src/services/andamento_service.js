@@ -12,7 +12,7 @@ exports.get_progress_by_id = async (IdAndamento) => {
     return await db.exec_promise(SQL);
 }
 
-exports.get_progress_last7 = async (IdUsuario) => {
+exports.get_progress_last15 = async (IdUsuario) => {
 
     let SQL = `select andamento.id_andamento,
                       andamento.id_atendimento,
@@ -26,8 +26,9 @@ exports.get_progress_last7 = async (IdUsuario) => {
                       on usuario.id_usuario = andamento.id_usuario_andamento
                  left join atendimento
                       on atendimento.id_atendimento = andamento.id_atendimento
-                where andamento.data_inicio  > (NOW() - INTERVAL 7 DAY)
+                where andamento.data_inicio  > (NOW() - INTERVAL 15 DAY)
                   and andamento.id_usuario_andamento <> ${IdUsuario}
+                  and atendimento.id_cliente in (select id_cliente from cliente_responsavel where id_usuario = ${IdUsuario})
                 order by data_inicio desc`;
 
     let retorno = db.exec_promise_json(SQL, [], 'Tarefa');
