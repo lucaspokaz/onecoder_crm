@@ -28,7 +28,7 @@ exports.get_progress_last15 = async (IdUsuario) => {
                       on atendimento.id_atendimento = andamento.id_atendimento
                 where andamento.data_inicio  > (NOW() - INTERVAL 15 DAY)
                   and andamento.id_usuario_andamento <> ${IdUsuario}
-                  and atendimento.id_cliente in (select id_cliente from cliente_responsavel where id_usuario = ${idUsuario})
+                  and atendimento.id_cliente in (select id_cliente from cliente_responsavel where id_usuario = ${IdUsuario})
                 order by data_inicio desc`;
 
     let retorno = db.exec_promise_json(SQL, [], 'Tarefa');
