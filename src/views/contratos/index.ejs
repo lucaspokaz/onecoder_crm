@@ -83,9 +83,7 @@
                                                                         <%- user.desc_projeto %>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="<%- '/clientes/editar/' + user.id_cliente %>" class="text-bold-600">
-                                                                            <i class="fas fa-link"></i> <%- user.nome %>
-                                                                        </a>
+                                                                        <%- user.nome %>
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <%= moment(user.data_inicio).format('DD/MM/YYYY')  %>
