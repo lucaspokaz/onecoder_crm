@@ -20,7 +20,7 @@ exports.load = async (req, res, next) => {
     let projeto = await projetosService.get_by_id(req.params.id);
     let dados_projeto = JSON.parse(projeto);
 
-    let clientes = await clientesService.get_clients_owners(req.session.codigo_usuario);
+    let clientes = await clientesService.get_clients_responsibles(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
 
     if ((req.params.id) && (req.params.id > 0)) {

@@ -7,7 +7,7 @@ exports.get_client_by_id = (idCliente) => {
     return retorno;
 }
 
-exports.get_clients_owners = (idUsuario) => {
+exports.get_clients_responsibles = (idUsuario) => {
 
     let SQL = '';
 
@@ -21,6 +21,21 @@ exports.get_clients_owners = (idUsuario) => {
     }
 
     let retorno = db.exec_promise_json(SQL, [], 'Clientes responsaveis');
+    return retorno;
+}
+
+exports.get_client_owners = (idCliente) => {
+
+    let SQL = `select
+                    d.*,
+                    u.nome as usuario from cliente_responsavel d
+                 left join usuario u
+                    on d.id_usuario = u.id_usuario
+                where
+                    d.id_cliente = ${idCliente}
+                order by u.nome asc`;
+
+    let retorno = db.exec_promise_json(SQL, [], 'Responsaveis');
     return retorno;
 }
 

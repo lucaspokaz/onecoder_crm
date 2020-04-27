@@ -24,7 +24,7 @@ exports.load = async (req, res, next) => {
     let projetos = await projetosService.get_all();
     dados_projeto = JSON.parse(projetos);
 
-    let clientes = await clienteService.get_clients_owners(req.session.codigo_usuario);
+    let clientes = await clienteService.get_clients_responsibles(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
 
     if ((req.params.id) && (req.params.id > 0)) {
@@ -71,7 +71,7 @@ exports.create = async (req, res, next) => {
         let projetos = await projetosService.get_all();
         dados_projeto = JSON.parse(projetos);
 
-        let clientes = await clienteService.get_clients_owners(req.session.codigo_usuario);
+        let clientes = await clienteService.get_clients_responsibles(req.session.codigo_usuario);
         dados_cliente = JSON.parse(clientes);
 
         req.flash('error', inserted.statusMessage);
@@ -103,7 +103,7 @@ exports.edit = async (req, res, next) => {
         let projetos = await projetosService.get_all();
         dados_projeto = JSON.parse(projetos);
 
-        let clientes = await clienteService.get_clients_owners(req.session.codigo_usuario);
+        let clientes = await clienteService.get_clients_responsibles(req.session.codigo_usuario);
         dados_cliente = JSON.parse(clientes);
 
         req.flash('success', `Erro ao salvar.`);

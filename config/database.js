@@ -53,7 +53,7 @@ const exec_promise_json = (sql, options, observacao) => {
                 console.log(err)
                 return reject(err);
             } else {
-                console_results(observacao, JSON.stringify(rows[0]));
+                console_results(observacao, JSON.stringify(rows));
                 return resolve(JSON.stringify(rows));
             }
         })

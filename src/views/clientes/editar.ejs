@@ -309,6 +309,30 @@
                                                         <div class="card-content collapse show">
                                                             <div class="card-body">
 
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Usuário</th>
+                                                                                <th class="text-right" >Ações</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <% data_responsaveis.forEach(function(user){ %>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <%- user.usuario %>
+                                                                                    </td>
+                                                                                    <td class="text-right">
+                                                                                        <button type="button" class="btn btn-danger btn-sm">
+                                                                                            <i class="far fa-trash-alt"></i> Remover
+                                                                                        </button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            <% }) %>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

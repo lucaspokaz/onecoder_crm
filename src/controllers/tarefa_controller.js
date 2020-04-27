@@ -79,7 +79,7 @@ exports.list_all = async (req, res, next) => {
 
 exports.load = async (req, res, next) => {
 
-    let clientes = await clienteService.get_clients_owners(req.session.codigo_usuario);
+    let clientes = await clienteService.get_clients_responsibles(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
 
     let projetos = await projetosService.get_all();

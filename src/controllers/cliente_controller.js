@@ -5,7 +5,7 @@ const
 
 exports.list = async (req, res, next) => {
 
-    let results = await clientesService.get_clients_owners(req.session.codigo_usuario);
+    let results = await clientesService.get_clients_responsibles(req.session.codigo_usuario);
     let dados = JSON.parse(results);
 
     res.render('clientes/index', {
@@ -30,12 +30,16 @@ exports.load = async (req, res, next) => {
         let contratos = await contratosService.get_contracts_overview(req.params.id);
         let dados_geral_contratos = JSON.parse(contratos);
 
+        let responsaveis = await clientesService.get_client_owners(req.params.id);
+        let dados_responsaveis = JSON.parse(responsaveis);
+
         res.render('clientes/editar', {
             session: req.session,
             menu: 'lista_cliente',
             data: dados_cliente[0],
             data_geral: dados_geral[0],
             data_contratos: dados_geral_contratos[0],
+            data_responsaveis: dados_responsaveis,
             moment: require('moment'),
             formatter: require('../utils/formatter')
         })
