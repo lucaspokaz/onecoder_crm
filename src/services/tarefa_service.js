@@ -314,9 +314,8 @@ exports.insert = async (req, res) => {
         let id_inserido = result_insert.insertId;
         let andamento_inserido = await andamentosService.insert(andamento, id_inserido);
 
-
-        let usuarios = await loginService.get_emails_notificao(andamento.id_usuario_andamento, andamento.id_departamento);
-        dados_usuario = JSON.parse(usuarios);
+        let emails = await loginService.get_emails_notificacao(req.session.codigo_usuario, 2);
+        dados_email = JSON.parse(emails);
 
         let texto_email =
         ` Olá, a tarefa ${id_inserido} foi criada.
@@ -332,9 +331,10 @@ exports.insert = async (req, res) => {
         Esse é um e-mail automático. Por favor, não responda.
         `;
 
-        for (var u in dados_usuario) {
+        for( let item in dados_email ) {
+            console.log( 'Enviando email para: ' + dados_email[item].email );
             mail.send(
-                u.email,
+                dados_email[item].email,
                 '[CRM] Nova tarefa criada: ' + id_inserido,
                 texto_email
             );

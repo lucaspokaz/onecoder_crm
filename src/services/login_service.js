@@ -17,7 +17,7 @@ exports.get_usuario = async (IdUsuario) => {
 
 }
 
-exports.get_emails_notificao = async (IdUsuario, IdDepto) => {
+exports.get_emails_notificacao = async (IdUsuario, IdDepto) => {
 
     let SQL = ` select
                     distinct email, usuario.nome, notificar_andamento

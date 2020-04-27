@@ -1,14 +1,5 @@
 var nodemailer = require('nodemailer');
-
-var remetente = nodemailer.createTransport({
-    host: 'mail.onecoderti.com.br',
-    port: 465,
-    secure: true,
-    auth:{
-        user: 'crm@onecoderti.com.br',
-        pass: 'AK,O3Y%Z4*Tg'
-    }
-});
+var remetente = require('../../config/configuration').remetente;
 
 exports.send = (para, assunto, texto) => {
 
@@ -21,6 +12,7 @@ exports.send = (para, assunto, texto) => {
 
     remetente.sendMail(conteudo, function(error){
         if (error) {
+            console.log('Conteudo: ' + conteudo);
             console.log(error);
         } else {
             console.log('Email enviado com sucesso.');

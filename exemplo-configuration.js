@@ -47,8 +47,19 @@ var my_session = {
     nome_usuario: ''
 }
 
+var remetente = nodemailer.createTransport({
+    host: 'xxxx',
+    port: 465,
+    secure: true,
+    auth:{
+        user: 'xxxxx',
+        pass: 'xxxxx'
+    }
+});
+
 module.exports = {
     conexao,
     store_sessions,
-    my_session
+    my_session,
+    remetente
 }
