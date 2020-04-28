@@ -87,19 +87,19 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
                                                         <label>CNPJ</label>
-                                                        <input type="text" data-mask="99.999.999/9999-99" class="form-control" value="<%- formatter.format_cnpj(data.cnpj) %>"  id="cnpj" name="cnpj" required />
+                                                        <input type="text" data-mask="99.999.999/9999-99" class="form-control" value="<%- formatter.format_cnpj(data.cnpj) %>"  id="cnpj" name="cnpj" />
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label>E-mail</label>
-                                                        <input type="text" class="form-control" value="<%- data.email %>" id="email" name="email" required />
+                                                        <input type="text" class="form-control" value="<%- data.email %>" id="email" name="email" />
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
                                                         <label>Contato</label>
-                                                        <input type="text" class="form-control" value="<%- data.contato %>" id="contato" name="contato" required />
+                                                        <input type="text" class="form-control" value="<%- data.contato %>" id="contato" name="contato" />
                                                     </div>
 
                                                     <div class="form-group col-md-3">
@@ -215,6 +215,8 @@
     <!-- END: Content-->
 
     <% include ../default/footer.ejs %>
+
+    <% include ../default/pesquisa_cep.ejs %>
 
 </body>
 
