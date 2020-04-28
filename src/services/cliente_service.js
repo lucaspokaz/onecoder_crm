@@ -7,6 +7,15 @@ exports.get_client_by_id = (idCliente) => {
     return retorno;
 }
 
+exports.get_clients = () => {
+
+    let SQL = `select id_cliente, nome, cnpj from cliente
+                order by nome asc`;
+
+    let retorno = db.exec_promise_json(SQL, [], 'Clientes');
+    return retorno;
+}
+
 exports.get_clients_responsibles = (idUsuario) => {
 
     let SQL = '';

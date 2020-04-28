@@ -5,7 +5,7 @@ const
 
 exports.list = async (req, res, next) => {
 
-    let results = await clientesService.get_clients_responsibles(req.session.codigo_usuario);
+    let results = await clientesService.get_clients();
     let dados = JSON.parse(results);
 
     res.render('clientes/index', {
