@@ -1,4 +1,3 @@
-var nodemailer = require('nodemailer');
 var remetente = require('../../config/configuration').remetente;
 
 exports.send = (para, assunto, texto) => {

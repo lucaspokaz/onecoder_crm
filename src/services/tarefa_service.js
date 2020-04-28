@@ -314,7 +314,7 @@ exports.insert = async (req, res) => {
         let id_inserido = result_insert.insertId;
         let andamento_inserido = await andamentosService.insert(andamento, id_inserido);
 
-        let emails = await loginService.get_emails_notificacao(req.session.codigo_usuario, 2);
+        let emails = await loginService.get_emails_notificacao(andamento.id_usuario_andamento, andamento.id_departamento);
         dados_email = JSON.parse(emails);
 
         let texto_email =

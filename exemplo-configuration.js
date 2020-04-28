@@ -1,3 +1,5 @@
+var nodemailer = require('nodemailer');
+
 var conexao = {
     server: 'localhost',
     porta: 3306,
