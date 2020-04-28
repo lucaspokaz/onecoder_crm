@@ -9,7 +9,7 @@ exports.get_client_by_id = (idCliente) => {
 
 exports.get_clients = () => {
 
-    let SQL = `select id_cliente, nome, cnpj from cliente
+    let SQL = `select * from cliente
                 order by nome asc`;
 
     let retorno = db.exec_promise_json(SQL, [], 'Clientes');
