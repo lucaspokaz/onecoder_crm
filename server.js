@@ -19,8 +19,9 @@ var app = express();
 global.console_warning = '\x1b[33m%s\x1b[0m';
 
 // pasta public com cache
-let seteDias = 60 * 1000 * 60 * 24 * 7;
-app.use(express.static('public', { maxAge: seteDias }));
+// let seteDias = 60 * 1000 * 60 * 24 * 7;
+//app.use(express.static('public', { maxAge: seteDias }));
+app.use(express.static('public'));
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/src/views');
