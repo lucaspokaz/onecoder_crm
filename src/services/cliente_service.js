@@ -21,10 +21,10 @@ exports.get_clients_responsibles = (idUsuario) => {
     let SQL = '';
 
     if (idUsuario in [1, 3]) {
-        SQL = `select id_cliente, nome, cnpj from cliente
+        SQL = `select * from cliente
                 order by nome asc`;
     } else {
-        SQL = `select id_cliente, nome, cnpj from cliente
+        SQL = `select * from cliente
                 where id_cliente in (select id_cliente from cliente_responsavel where id_usuario = ${idUsuario})
                 order by nome asc`;
     }
