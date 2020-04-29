@@ -1,10 +1,8 @@
-var
-    express = require('express'),
-    app = express(),
-    session = require('express-session'),
-    mysqlStore = require('express-mysql-session')(session),
-    cookieParser = require('cookie-parser'),
-    flash = require('connect-flash');
+const express = require('express');
+const session = require('express-session');
+const mysqlStore = require('express-mysql-session')(session);
+const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
 
 const
     bodyParser = require('body-parser'),
@@ -15,10 +13,8 @@ const
     morgan = require('morgan'),
     package_json = require('./package.json');
 
-var
-    mysqlSessionStore = new mysqlStore(configs.store_sessions);
-
-
+var mysqlSessionStore = new mysqlStore(configs.store_sessions);
+var app = express();
 
 global.console_warning = '\x1b[33m%s\x1b[0m';
 
@@ -84,6 +80,7 @@ app.use('/projetos', projetosRoute);
 try {
     conn = db.connect();
     db.disconnect(conn);
+    app.timeout = 120000 * 5;
     app.listen(port, function() {
         console.log(`Aplicação disponível em http://localhost:${port}`)
     })
@@ -97,6 +94,5 @@ app.use((req, res, next) => {
     erro.status = 404;
     res.status(erro.status).render(__dirname + '/public/404');
 });
-
 
 module.exports = app;
