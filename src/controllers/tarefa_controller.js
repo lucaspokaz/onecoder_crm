@@ -15,10 +15,10 @@ moment.locale('pt-br');
 exports.list_pending = async (req, res, next) => {
 
     let results = await tarefasService.get_tasks(req.session.codigo_usuario, true);
-    let geral = await tarefasService.get_tasks_overview();
+    dados = await JSON.parse(results);
 
-    dados = JSON.parse(results);
-    dados_geral = JSON.parse(geral);
+    let geral = await tarefasService.get_tasks_overview();
+    dados_geral = await JSON.parse(geral);
 
     res.render('tarefas/acompanhamento', {
         session: req.session,

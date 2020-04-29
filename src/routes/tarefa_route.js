@@ -3,6 +3,8 @@ const router = express.Router();
 const controller = require('../controllers/tarefa_controller')
 const auth = require('../../config/auth');
 
+var wordsFileContentLength = 938848;
+
 router.get('/', auth.loggedIn, controller.list_my_list);
 
 router.get('/criar', auth.loggedIn, controller.load);
@@ -12,7 +14,10 @@ router.post('/editar/(:id)', auth.loggedIn, controller.edit);
 
 router.get('/historico/(:id)', auth.loggedIn, controller.list_task_history);
 router.get('/acompanhamento', auth.loggedIn, controller.list_all);
+
 router.get('/acompanhamento/todas', auth.loggedIn, controller.list_all);
+
+
 router.get('/acompanhamento/pendentes', auth.loggedIn, controller.list_pending);
 router.get('/acompanhamento/minhas', auth.loggedIn, controller.list_my_list);
 router.get('/quadro', auth.loggedIn, controller.list_task_board);
