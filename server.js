@@ -80,6 +80,8 @@ app.use('/projetos', projetosRoute);
 try {
     conn = db.connect();
     db.disconnect(conn);
+
+    // tempo para carregamento de uma tela (antes estava dando ERR_CONTENT_LENGTH_MISMATCH)
     app.timeout = 120000 * 5;
     app.listen(port, function() {
         console.log(`Aplicação disponível em http://localhost:${port}`)
