@@ -17,6 +17,14 @@ exports.get_usuario = async (IdUsuario) => {
 
 }
 
+exports.get_users = async (IdUsuario) => {
+
+  let SQL = ` select id_usuario, nome, email from usuario `;
+  let results = await db.exec_promise(SQL, [], 'Usuarios');
+  return JSON.stringify(results);
+
+}
+
 exports.get_emails_notificacao = async (IdUsuario, IdDepto) => {
 
     let SQL = ` select

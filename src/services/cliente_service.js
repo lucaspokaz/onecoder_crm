@@ -37,7 +37,8 @@ exports.get_client_owners = (idCliente) => {
 
     let SQL = `select
                     d.*,
-                    u.nome as usuario from cliente_responsavel d
+                    u.nome as usuario
+                from cliente_responsavel d
                  left join usuario u
                     on d.id_usuario = u.id_usuario
                 where

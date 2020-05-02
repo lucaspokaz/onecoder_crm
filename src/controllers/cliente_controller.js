@@ -1,7 +1,8 @@
-const
-    clientesService = require('../services/cliente_service'),
-    tarefasService = require('../services/tarefa_service'),
-    contratosService = require('../services/contrato_service');
+const clientesService = require('../services/cliente_service');
+const clientesReponsaveisService = require('../services/cliente_responsavel_service');
+const tarefasService = require('../services/tarefa_service');
+const contratosService = require('../services/contrato_service');
+const loginService = require('../services/login_service');
 
 exports.list = async (req, res, next) => {
 
@@ -30,6 +31,9 @@ exports.load = async (req, res, next) => {
         let contratos = await contratosService.get_contracts_overview(req.params.id);
         let dados_geral_contratos = JSON.parse(contratos);
 
+        let usuarios = await loginService.get_users();
+        let dados_usuario = JSON.parse(usuarios);
+
         let responsaveis = await clientesService.get_client_owners(req.params.id);
         let dados_responsaveis = JSON.parse(responsaveis);
 
@@ -40,6 +44,7 @@ exports.load = async (req, res, next) => {
             data_geral: dados_geral[0],
             data_contratos: dados_geral_contratos[0],
             data_responsaveis: dados_responsaveis,
+            data_usuarios: dados_usuario,
             moment: require('moment'),
             formatter: require('../utils/formatter')
         })
@@ -101,5 +106,27 @@ exports.edit = async (req, res, next) => {
             moment: require('moment'),
             formatter: require('../utils/formatter')
         })
+    }
+};
+
+exports.insert_responsavel = async (req, res, next) => {
+
+    let retorno = await clientesReponsaveisService.insert(req, res);
+
+    if (retorno.status == 200) {
+        return res.status(200).send(retorno);
+    } else {
+        return res.status(400).send(retorno);
+    }
+};
+
+exports.delete_responsavel = async (req, res, next) => {
+
+    let retorno = await clientesReponsaveisService.delete(req.body.id_cliente_responsavel);
+
+    if (retorno.status == 200) {
+        return res.status(200).send(retorno);
+    } else {
+        return res.status(400).send(retorno);
     }
 };

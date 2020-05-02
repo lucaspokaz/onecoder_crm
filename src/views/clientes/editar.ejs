@@ -309,6 +309,32 @@
                                                         <div class="card-content collapse show">
                                                             <div class="card-body">
 
+                                                                <form class="form" method="post" id="form_usuarios" name="form_usuarios">
+                                                                    <div class="row">
+                                                                        <div class="form-group col-md-12">
+                                                                            <label>Usuários</label>
+                                                                            <fieldset>
+                                                                                <div class="input-group" style="flex-wrap: inherit !important">
+                                                                                    <input type="hidden" required />
+                                                                                    <select class="select2 form-control" id="id_usuario_responsavel" name="id_usuario_responsavel" required>
+                                                                                        <% if (data_usuarios) { %>
+                                                                                            <% data_usuarios.forEach(function(c){ %>
+                                                                                                <option value="<%= c.id_usuario %>"> <%= c.nome %> </option>
+                                                                                            <% }) %>
+                                                                                        <% }; %>
+                                                                                    </select>
+                                                                                    <div class="input-group-append">
+                                                                                        <button type="submit" class="btn btn-primary bg-info border-info" style="width: 140px;"
+                                                                                            id="btn_insere_responsavel" data-id="<%- data.id_cliente %>"
+                                                                                            <i class="la la-plus"></i> Adicionar
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+
                                                                 <div class="table-responsive">
                                                                     <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
                                                                         <thead>
@@ -317,14 +343,14 @@
                                                                                 <th class="text-right" >Ações</th>
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody>
+                                                                        <tbody id="table_responsaveis">
                                                                             <% data_responsaveis.forEach(function(user){ %>
-                                                                                <tr>
+                                                                                <tr data-row-id="<%- user.id_cliente_reponsavel %>">
                                                                                     <td>
                                                                                         <%- user.usuario %>
                                                                                     </td>
                                                                                     <td class="text-right">
-                                                                                        <button type="button" class="btn btn-danger btn-sm">
+                                                                                        <button type="button" class="btn btn-danger btn-sm" onclick="remove_responsavel(<%- user.id_cliente_reponsavel %>)">
                                                                                             <i class="far fa-trash-alt"></i> Remover
                                                                                         </button>
                                                                                     </td>
@@ -362,6 +388,8 @@
     <% include ../default/footer.ejs %>
 
     <% include ../default/pesquisa_cep.ejs %>
+
+    <% include acoes_cliente.ejs %>
 
 </body>
 

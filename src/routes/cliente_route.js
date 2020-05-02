@@ -10,4 +10,7 @@ router.get('/editar/(:id)', auth.loggedIn, controller.load);
 router.post('/criar', auth.loggedIn, controller.create);
 router.post('/editar/(:id)', auth.loggedIn, controller.edit);
 
+router.post('/adicionar-responsavel', auth.loggedIn, controller.insert_responsavel);
+router.post('/remover-responsavel', auth.loggedIn, controller.delete_responsavel);
+
 module.exports = router;

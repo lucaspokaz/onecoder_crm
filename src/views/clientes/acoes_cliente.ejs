@@ -1,0 +1,96 @@
+<script type="text/javascript" >
+
+    // inserir responsavel
+
+    $(document).on('click', "#btn_insere_responsavel", function () {
+
+        event.preventDefault();
+
+        var vIdCliente =  $(this).attr('data-id');
+        var vIdUsuarioResponsavel = document.querySelector("#id_usuario_responsavel").value;
+        var vNomeUsuario = $("#id_usuario_responsavel").select2('data')[0].text;
+
+        var vData = {
+            id_cliente: vIdCliente,
+            id_usuario: vIdUsuarioResponsavel
+        };
+
+        swal.fire({
+            title: 'Adicionar ' + vNomeUsuario + ' como responsável?',
+            type: "question",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            cancelButtonText: "Não",
+            showLoaderOnConfirm: true,
+            preConfirm: function(text_conclusao) {
+                return new Promise(function(resolve) {
+                    setTimeout(function() {
+                        resolve()
+                    }, 500)
+                })
+            }
+        }).then(result => {
+            if (result.value) {
+                $.ajax({
+                    type: 'POST', url: "/clientes/adicionar-responsavel", data: vData
+                })
+                .done(function(response) {
+                    swal.fire({
+                        title: response.mensagem, type: "success", timer: 1000
+                    })
+                    .then(function() {
+                        // executar após inserção
+                        let html = '';
+                        html = html + document.getElementById("table_responsaveis").innerHTML;
+                        html = html + ` <tr>
+                                            <td>
+                                                ${vNomeUsuario}
+                                            </td>
+                                            <td class="text-right">
+                                                <button type="button" class="btn btn-danger btn-sm" id="btn_remove_responsavel"
+                                                    data-id="${response.insertedId}">
+                                                    <i class="far fa-trash-alt"></i> Remover
+                                                </button>
+                                            </td>
+                                        </tr>`;
+                        document.getElementById("table_responsaveis").innerHTML = html;
+                    });
+                })
+                .fail(function(response) {
+                    console.log(response);
+                    swal.fire({
+                        title: 'Erro adicionar responsável.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+                    });
+                });
+            }
+        })
+    });
+</script>
+
+
+<script type="text/javascript" >
+
+    // remover responsavel
+
+    function remove_responsavel (vIdClienteResponsavel) {
+
+        event.preventDefault();
+
+        var vData = {
+            id_cliente_responsavel: vIdClienteResponsavel
+        };
+
+        $.ajax({
+            type: 'POST', url: "/clientes/remover-responsavel", data: vData
+        })
+        .done(function() {
+            // executar após inserção
+            $("tr[data-row-id='" + vIdClienteResponsavel + "']").remove();
+        })
+        .fail(function(response) {
+            swal.fire({
+                title: 'Erro remover responsável.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+            });
+        });
+    }
+</script>
