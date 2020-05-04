@@ -138,234 +138,201 @@
                                     <div class="card-body">
                                         <form class="form" method="post">
                                             <div class="form-body">
-                                                <ul class="product-tabs nav nav-tabs nav-underline no-hover-bg">
-                                                    <li class="nav-item">
-                                                        <a aria-controls="basico" aria-expanded="true" class="nav-link active" data-toggle="tab" href="#basico" id="basicos">
-                                                            <i class="fas fa-store-alt"></i> Informações Básicas
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a aria-controls="endereco" aria-expanded="false" class="nav-link" data-toggle="tab" href="#endereco" id="comments">
-                                                            <i class="fas fa-map-marker-alt"></i> Endereço
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a aria-controls="responsavel" aria-expanded="false" class="nav-link" data-toggle="tab" href="#responsavel" id="responsaveis">
-                                                            <i class="fas fa-user-cog"></i> Responsáveis
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                                <div class="card-body">
 
-                                                <div class="product-content tab-content">
+                                                    <h4 class="form-section"> <i class="far fa-file-alt"></i> Informações Cadastrais </h4>
 
-                                                    <div aria-expanded="true" aria-labelledby="description" class="tab-pane active" id="basico" role="tabpanel">
-                                                        <div class="card-content collapse show">
-                                                            <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-9">
+                                                            <label>Nome</label>
+                                                            <input type="text" class="form-control" value="<%- data.nome %>" id="nome" name="nome" required />
+                                                        </div>
 
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-9">
-                                                                        <label>Nome</label>
-                                                                        <input type="text" class="form-control" value="<%- data.nome %>" id="nome" name="nome" required />
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-3">
-                                                                        <label>Situação</label>
-                                                                        <select class="select2 form-control" id="select1-icons" name="ativo" id="ativo" required>
-                                                                            <option value=""></option>
-                                                                            <option value="0" <%= data.ativo == 0 ? 'selected' : '' %> > Inativo </option>
-                                                                            <option value="1" <%= data.ativo == 1 ? 'selected' : '' %> > Ativo </option>
-                                                                            <option value="2" <%= data.ativo == 2 ? 'selected' : '' %> > Pendente </option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-6">
-                                                                        <label>Nome Fantasia</label>
-                                                                        <input type="text" class="form-control" value="<%- data.fantasia %>" id="fantasia" name="fantasia" required />
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-6">
-                                                                        <label>Razão Social</label>
-                                                                        <input type="text" class="form-control" value="<%- data.razao %>" id="razao" name="razao" />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-6">
-                                                                        <label>CNPJ</label>
-                                                                        <input type="text" data-mask="99.999.999/9999-99" class="form-control" value="<%- formatter.format_cnpj(data.cnpj) %>"  id="cnpj" name="cnpj" />
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-6">
-                                                                        <label>E-mail</label>
-                                                                        <input type="text" class="form-control" value="<%- data.email %>" id="email" name="email" required />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-6">
-                                                                        <label>Contato</label>
-                                                                        <input type="text" class="form-control" value="<%- data.contato %>" id="contato" name="contato" required />
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-3">
-                                                                        <label>Fone 1</label>
-                                                                        <input type="text" class="form-control" value="<%- data.fone1 %>" id="fone1" name="fone1" />
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-3">
-                                                                        <label>Fone 2</label>
-                                                                        <input type="text" class="form-control" value="<%- data.fone2 %>" id="fone2" name="fone2" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label>Situação</label>
+                                                            <select class="select2 form-control" id="select1-icons" name="ativo" id="ativo" required>
+                                                                <option value=""></option>
+                                                                <option value="0" <%= data.ativo == 0 ? 'selected' : '' %> > Inativo </option>
+                                                                <option value="1" <%= data.ativo == 1 ? 'selected' : '' %> > Ativo </option>
+                                                                <option value="2" <%= data.ativo == 2 ? 'selected' : '' %> > Pendente </option>
+                                                            </select>
                                                         </div>
                                                     </div>
 
-                                                    <div aria-expanded="false" aria-labelledby="endereco" class="tab-pane" id="endereco">
-                                                        <div class="card-content collapse show">
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-3">
-                                                                        <label>CEP</label>
-                                                                        <input type="text" data-mask="99999-999" class="form-control" value="<%-  formatter.format_cep(data.cep) %>" id="cep" name="cep" required
-                                                                            onblur="pesquisacep(this.value);" />
-                                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Nome Fantasia</label>
+                                                            <input type="text" class="form-control" value="<%- data.fantasia %>" id="fantasia" name="fantasia" required />
+                                                        </div>
 
-                                                                    <div class="form-group col-md-3">
-                                                                        <label>UF</label>
-                                                                        <select class="select2 form-control" id="uf" name="uf" required>
-                                                                            <option value=""></option>
-                                                                            <option value="AC" <%= data.uf == 'AC' ? 'selected' : '' %>>AC</option>
-                                                                            <option value="AL" <%= data.uf == 'AL' ? 'selected' : '' %>>AL</option>
-                                                                            <option value="AP" <%= data.uf == 'AP' ? 'selected' : '' %>>AP</option>
-                                                                            <option value="AM" <%= data.uf == 'AM' ? 'selected' : '' %>>AM</option>
-                                                                            <option value="BA" <%= data.uf == 'BA' ? 'selected' : '' %>>BA</option>
-                                                                            <option value="CE" <%= data.uf == 'CE' ? 'selected' : '' %>>CE</option>
-                                                                            <option value="DF" <%= data.uf == 'DF' ? 'selected' : '' %>>DF</option>
-                                                                            <option value="ES" <%= data.uf == 'ES' ? 'selected' : '' %>>ES</option>
-                                                                            <option value="GO" <%= data.uf == 'GO' ? 'selected' : '' %>>GO</option>
-                                                                            <option value="MA" <%= data.uf == 'MA' ? 'selected' : '' %>>MA</option>
-                                                                            <option value="MT" <%= data.uf == 'MT' ? 'selected' : '' %>>MT</option>
-                                                                            <option value="MS" <%= data.uf == 'MS' ? 'selected' : '' %>>MS</option>
-                                                                            <option value="MG" <%= data.uf == 'MG' ? 'selected' : '' %>>MG</option>
-                                                                            <option value="PA" <%= data.uf == 'PA' ? 'selected' : '' %>>PA</option>
-                                                                            <option value="PB" <%= data.uf == 'PB' ? 'selected' : '' %>>PB</option>
-                                                                            <option value="PR" <%= data.uf == 'PR' ? 'selected' : '' %>>PR</option>
-                                                                            <option value="PE" <%= data.uf == 'PE' ? 'selected' : '' %>>PE</option>
-                                                                            <option value="PI" <%= data.uf == 'PI' ? 'selected' : '' %>>PI</option>
-                                                                            <option value="RJ" <%= data.uf == 'RJ' ? 'selected' : '' %>>RJ</option>
-                                                                            <option value="RN" <%= data.uf == 'RN' ? 'selected' : '' %>>RN</option>
-                                                                            <option value="RS" <%= data.uf == 'RS' ? 'selected' : '' %>>RS</option>
-                                                                            <option value="RO" <%= data.uf == 'RO' ? 'selected' : '' %>>RO</option>
-                                                                            <option value="RR" <%= data.uf == 'RR' ? 'selected' : '' %>>RR</option>
-                                                                            <option value="SC" <%= data.uf == 'SC' ? 'selected' : '' %>>SC</option>
-                                                                            <option value="SP" <%= data.uf == 'SP' ? 'selected' : '' %>>SP</option>
-                                                                            <option value="SE" <%= data.uf == 'SE' ? 'selected' : '' %>>SE</option>
-                                                                            <option value="TO" <%= data.uf == 'TO' ? 'selected' : '' %>>TO</option>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-6">
-                                                                        <label>Cidade</label>
-                                                                        <input type="text" class="form-control" value="<%- data.cidade %>" id="cidade" name="cidade" required />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-3">
-                                                                        <label>Cód. IBGE</label>
-                                                                        <input type="text" class="form-control" value="<%- data.ibge %>" id="ibge" name="ibge" />
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-3">
-                                                                        <label>Bairro</label>
-                                                                        <input type="text" class="form-control" value="<%- data.bairro %>" id="bairro" name="bairro" />
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-6">
-                                                                        <label>Logradouro</label>
-                                                                        <input type="text" class="form-control" value="<%- data.logradouro %>" id="logradouro" name="logradouro" />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-3">
-                                                                        <label>Numero</label>
-                                                                        <input type="text" class="form-control" value="<%- data.numero %>" id="numero" name="numero" />
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-9">
-                                                                        <label>Complemento</label>
-                                                                        <input type="text" class="form-control" value="<%- data.complemento %>" id="complemento" name="complemento" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Razão Social</label>
+                                                            <input type="text" class="form-control" value="<%- data.razao %>" id="razao" name="razao" />
                                                         </div>
                                                     </div>
 
-                                                    <div aria-expanded="false" aria-labelledby="responsavel" class="tab-pane" id="responsavel" role="tabpanel">
-                                                        <div class="card-content collapse show">
-                                                            <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>CNPJ</label>
+                                                            <input type="text" data-mask="99.999.999/9999-99" class="form-control" value="<%- formatter.format_cnpj(data.cnpj) %>"  id="cnpj" name="cnpj" />
+                                                        </div>
 
-                                                                <form class="form" method="post" id="form_usuarios" name="form_usuarios">
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-12">
-                                                                            <label>Usuários</label>
-                                                                            <fieldset>
-                                                                                <div class="input-group" style="flex-wrap: inherit !important">
-                                                                                    <input type="hidden" required />
-                                                                                    <select class="select2 form-control" id="id_usuario_responsavel" name="id_usuario_responsavel" required>
-                                                                                        <% if (data_usuarios) { %>
-                                                                                            <% data_usuarios.forEach(function(c){ %>
-                                                                                                <option value="<%= c.id_usuario %>"> <%= c.nome %> </option>
-                                                                                            <% }) %>
-                                                                                        <% }; %>
-                                                                                    </select>
-                                                                                    <div class="input-group-append">
-                                                                                        <button type="submit" class="btn btn-primary bg-info border-info" style="width: 140px;"
-                                                                                            id="btn_insere_responsavel" data-id="<%- data.id_cliente %>"
-                                                                                            <i class="la la-plus"></i> Adicionar
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </fieldset>
+                                                        <div class="form-group col-md-6">
+                                                            <label>E-mail</label>
+                                                            <input type="text" class="form-control" value="<%- data.email %>" id="email" name="email" required />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Contato</label>
+                                                            <input type="text" class="form-control" value="<%- data.contato %>" id="contato" name="contato" required />
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label>Fone 1</label>
+                                                            <input type="text" class="form-control" value="<%- data.fone1 %>" id="fone1" name="fone1" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label>Fone 2</label>
+                                                            <input type="text" class="form-control" value="<%- data.fone2 %>" id="fone2" name="fone2" />
+                                                        </div>
+                                                    </div>
+
+                                                    <h4 class="form-section"> <i class="fas fa-map-marked"></i> Endereço</h4>
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            <label>CEP</label>
+                                                            <input type="text" data-mask="99999-999" class="form-control" value="<%-  formatter.format_cep(data.cep) %>" id="cep" name="cep" required
+                                                                onblur="pesquisacep(this.value);" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label>UF</label>
+                                                            <select class="select2 form-control" id="uf" name="uf" required>
+                                                                <option value=""></option>
+                                                                <option value="AC" <%= data.uf == 'AC' ? 'selected' : '' %>>AC</option>
+                                                                <option value="AL" <%= data.uf == 'AL' ? 'selected' : '' %>>AL</option>
+                                                                <option value="AP" <%= data.uf == 'AP' ? 'selected' : '' %>>AP</option>
+                                                                <option value="AM" <%= data.uf == 'AM' ? 'selected' : '' %>>AM</option>
+                                                                <option value="BA" <%= data.uf == 'BA' ? 'selected' : '' %>>BA</option>
+                                                                <option value="CE" <%= data.uf == 'CE' ? 'selected' : '' %>>CE</option>
+                                                                <option value="DF" <%= data.uf == 'DF' ? 'selected' : '' %>>DF</option>
+                                                                <option value="ES" <%= data.uf == 'ES' ? 'selected' : '' %>>ES</option>
+                                                                <option value="GO" <%= data.uf == 'GO' ? 'selected' : '' %>>GO</option>
+                                                                <option value="MA" <%= data.uf == 'MA' ? 'selected' : '' %>>MA</option>
+                                                                <option value="MT" <%= data.uf == 'MT' ? 'selected' : '' %>>MT</option>
+                                                                <option value="MS" <%= data.uf == 'MS' ? 'selected' : '' %>>MS</option>
+                                                                <option value="MG" <%= data.uf == 'MG' ? 'selected' : '' %>>MG</option>
+                                                                <option value="PA" <%= data.uf == 'PA' ? 'selected' : '' %>>PA</option>
+                                                                <option value="PB" <%= data.uf == 'PB' ? 'selected' : '' %>>PB</option>
+                                                                <option value="PR" <%= data.uf == 'PR' ? 'selected' : '' %>>PR</option>
+                                                                <option value="PE" <%= data.uf == 'PE' ? 'selected' : '' %>>PE</option>
+                                                                <option value="PI" <%= data.uf == 'PI' ? 'selected' : '' %>>PI</option>
+                                                                <option value="RJ" <%= data.uf == 'RJ' ? 'selected' : '' %>>RJ</option>
+                                                                <option value="RN" <%= data.uf == 'RN' ? 'selected' : '' %>>RN</option>
+                                                                <option value="RS" <%= data.uf == 'RS' ? 'selected' : '' %>>RS</option>
+                                                                <option value="RO" <%= data.uf == 'RO' ? 'selected' : '' %>>RO</option>
+                                                                <option value="RR" <%= data.uf == 'RR' ? 'selected' : '' %>>RR</option>
+                                                                <option value="SC" <%= data.uf == 'SC' ? 'selected' : '' %>>SC</option>
+                                                                <option value="SP" <%= data.uf == 'SP' ? 'selected' : '' %>>SP</option>
+                                                                <option value="SE" <%= data.uf == 'SE' ? 'selected' : '' %>>SE</option>
+                                                                <option value="TO" <%= data.uf == 'TO' ? 'selected' : '' %>>TO</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label>Cidade</label>
+                                                            <input type="text" class="form-control" value="<%- data.cidade %>" id="cidade" name="cidade" required />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            <label>Cód. IBGE</label>
+                                                            <input type="text" class="form-control" value="<%- data.ibge %>" id="ibge" name="ibge" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label>Bairro</label>
+                                                            <input type="text" class="form-control" value="<%- data.bairro %>" id="bairro" name="bairro" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label>Logradouro</label>
+                                                            <input type="text" class="form-control" value="<%- data.logradouro %>" id="logradouro" name="logradouro" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            <label>Numero</label>
+                                                            <input type="text" class="form-control" value="<%- data.numero %>" id="numero" name="numero" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-9">
+                                                            <label>Complemento</label>
+                                                            <input type="text" class="form-control" value="<%- data.complemento %>" id="complemento" name="complemento" />
+                                                        </div>
+                                                    </div>
+
+                                                    <h4 class="form-section"> <i class="fas fa-users-cog"></i> Usuários Reponsáveis </h4>
+
+                                                    <form class="form" method="post" id="form_usuarios" name="form_usuarios">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label>Usuários</label>
+                                                                <fieldset>
+                                                                    <div class="input-group" style="flex-wrap: inherit !important">
+                                                                        <input type="hidden" required />
+                                                                        <select class="select2 form-control" id="id_usuario_responsavel" name="id_usuario_responsavel" required>
+                                                                            <% if (data_usuarios) { %>
+                                                                                <% data_usuarios.forEach(function(c){ %>
+                                                                                    <option value="<%= c.id_usuario %>"> <%= c.nome %> </option>
+                                                                                <% }) %>
+                                                                            <% }; %>
+                                                                        </select>
+                                                                        <div class="input-group-append">
+                                                                            <button type="submit" class="btn btn-primary bg-info border-info" style="width: 140px;"
+                                                                                id="btn_insere_responsavel" data-id="<%- data.id_cliente %>"
+                                                                                <i class="la la-plus"></i> Adicionar
+                                                                            </button>
                                                                         </div>
                                                                     </div>
-                                                                </form>
-
-                                                                <div class="table-responsive">
-                                                                    <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Usuário</th>
-                                                                                <th class="text-right" >Ações</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="table_responsaveis">
-                                                                            <% data_responsaveis.forEach(function(user){ %>
-                                                                                <tr data-row-id="<%- user.id_cliente_reponsavel %>">
-                                                                                    <td>
-                                                                                        <%- user.usuario %>
-                                                                                    </td>
-                                                                                    <td class="text-right">
-                                                                                        <button type="button" class="btn btn-danger btn-sm" onclick="remove_responsavel(<%- user.id_cliente_reponsavel %>)">
-                                                                                            <i class="far fa-trash-alt"></i> Remover
-                                                                                        </button>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            <% }) %>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
+                                                                </fieldset>
                                                             </div>
                                                         </div>
+                                                    </form>
+
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Usuário</th>
+                                                                    <th class="text-right" >Ações</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="table_responsaveis">
+                                                                <% data_responsaveis.forEach(function(user){ %>
+                                                                    <tr data-row-id="<%- user.id_cliente_reponsavel %>">
+                                                                        <td>
+                                                                            <%- user.usuario %>
+                                                                        </td>
+                                                                        <td class="text-right">
+                                                                            <button type="button" class="btn btn-danger btn-sm" onclick="remove_responsavel(<%- user.id_cliente_reponsavel %>)">
+                                                                                <i class="far fa-trash-alt"></i> Remover
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                <% }) %>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
 
                                                 </div>
                                             </div>
-
                                             <div class="form-actions">
                                                 <a href="/clientes" class="btn btn-danger"><i class="ft-x"></i> Cancelar</a>
                                                 <button type="submit" class="btn btn-info">
