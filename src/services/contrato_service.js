@@ -95,7 +95,7 @@ exports.edit = async (req, res) => {
             ativo: req.body.ativo
         }
 
-        db.console_results(user)
+        database.console_results(user)
 
         let SQL_UPDATE = `update contrato set ? where id_contrato = ${user.id_contrato}`;
         let result_update = await database.exec_promise(SQL_UPDATE, user, 'Update contrato');
