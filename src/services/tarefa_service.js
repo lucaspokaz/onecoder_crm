@@ -1,4 +1,4 @@
-const db = require('../../config/database');
+const database = require('../../config/database');
 const andamentosService = require('./andamento_service');
 const loginService = require('./login_service');
 const tiposAtendimentoService = require('./tipoatendimento_service');
@@ -11,7 +11,7 @@ exports.get_by_id = async (IdAtendimento) => {
                  left join usuario on usuario.id_usuario = atendimento.id_usuario
                 where id_atendimento = ${IdAtendimento} `;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Tarefa');
+    let retorno = database.exec_promise_json(SQL, [], 'Tarefa');
     return retorno;
 }
 
@@ -52,7 +52,7 @@ exports.get_tasks = (idUsuario, SomentePendentes) => {
             SQL = SQL + `AND at.status <> 'Concluído'`;
         }
 
-    let retorno = db.exec_promise_json(SQL, [], 'Acompanhamento de tarefas');
+    let retorno = database.exec_promise_json(SQL, [], 'Acompanhamento de tarefas');
     return retorno;
 }
 
@@ -90,7 +90,7 @@ exports.get_mytasks = (idUsuario) => {
             status <> 'Concluído'
             AND at.id_usuario = ${idUsuario} `;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Minhas Tarefas');
+    let retorno = database.exec_promise_json(SQL, [], 'Minhas Tarefas');
     return retorno;
 }
 
@@ -132,7 +132,7 @@ exports.get_mytasks_created = (idUsuario) => {
             p.descricao, at.inicio, assunto
           `;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Minhas Tarefas');
+    let retorno = database.exec_promise_json(SQL, [], 'Minhas Tarefas');
     return retorno;
 }
 
@@ -144,7 +144,7 @@ exports.get_tasks_overview = () => {
                 (select count(*) from atendimento where atendimento.status <> 'Concluído') as tarefas_em_aberto,
                 (select count(*) from projeto where id_projeto in (select id_projeto from atendimento)) as sistemas_em_atendimento `;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Visao Geral');
+    let retorno = database.exec_promise_json(SQL, [], 'Visao Geral');
     return retorno;
 }
 
@@ -155,7 +155,7 @@ exports.get_tasks_overview_by_client = (idCliente) => {
                 (select count(*) from atendimento where id_cliente = ${idCliente} and atendimento.status = 'Concluído') as tarefas_concluidas,
                 (select count(*) from atendimento where id_cliente = ${idCliente} and atendimento.status <> 'Concluído') as tarefas_em_aberto `;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Visao Geral de cliente');
+    let retorno = database.exec_promise_json(SQL, [], 'Visao Geral de cliente');
     return retorno;
 }
 
@@ -177,7 +177,7 @@ exports.get_task_history = (IdAtendimento) => {
                 order by
                     andamento.id_andamento desc`;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Historico de tarefa');
+    let retorno = database.exec_promise_json(SQL, [], 'Historico de tarefa');
     return retorno;
 }
 
@@ -214,7 +214,7 @@ exports.get_tasks_in_progress = (IdUsuario) => {
            and an.data_fim is null
            and at.final is null`;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Tarefas atendendo');
+    let retorno = database.exec_promise_json(SQL, [], 'Tarefas atendendo');
     return retorno;
 }
 
@@ -260,7 +260,7 @@ exports.get_tasks_no_progress = (IdUsuario) => {
         		an.id_usuario_destino = ${IdUsuario}
         	)`;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Tarefas sem atendimento');
+    let retorno = database.exec_promise_json(SQL, [], 'Tarefas sem atendimento');
     return retorno;
 }
 
@@ -276,7 +276,7 @@ exports.get_tasks_by_month = (ano, mes) => {
                   where extract(year from final) = ${ano}
                     and extract(month from final) = ${mes}) as tarefas_fechadas `;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Tarefas por mes');
+    let retorno = database.exec_promise_json(SQL, [], 'Tarefas por mes');
     return retorno;
 }
 
@@ -310,7 +310,7 @@ exports.insert = async (req, res) => {
         }
 
         let SQL_INSERT = 'insert into atendimento set ?';
-        let result_insert = await db.exec_promise(SQL_INSERT, user);
+        let result_insert = await database.exec_promise(SQL_INSERT, user);
         let id_inserido = result_insert.insertId;
         let andamento_inserido = await andamentosService.insert(andamento, id_inserido);
 
@@ -369,7 +369,7 @@ exports.edit = async (req, res) => {
         }
 
         let SQL_UPDATE = `update atendimento set ? where id_atendimento = ${user.id_atendimento}`;
-        let result_update = await db.exec_promise(SQL_UPDATE, user);
+        let result_update = await database.exec_promise(SQL_UPDATE, user);
 
         return {
             status: 200,
@@ -389,7 +389,7 @@ exports.edit = async (req, res) => {
 exports.edit_task_status = (IdAtendimento, Status) => {
 
     let SQL = `update atendimento set status = '${Status}' where id_atendimento = ${IdAtendimento}`;
-    db.exec_promise(SQL);
+    database.exec_promise(SQL);
     return {status: 200, mensagem: 'Atualizado com sucesso.'}
 
 }
@@ -397,7 +397,7 @@ exports.edit_task_status = (IdAtendimento, Status) => {
 exports.edit_task_status_with_comment = (IdAtendimento, Status, Conclusao) => {
 
     let SQL = `update atendimento set status = '${Status}', conclusao = '${Conclusao}' where id_atendimento = ${IdAtendimento}`;
-    db.exec_promise(SQL);
+    database.exec_promise(SQL);
     return {status: 200, mensagem: 'Atualizado com sucesso.'}
 
 }

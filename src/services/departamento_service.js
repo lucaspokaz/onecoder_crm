@@ -1,8 +1,8 @@
-const db = require('../../config/database');
+const database = require('../../config/database');
 
 exports.get_all = () => {
 
     let SQL = `select * from departamento order by descricao asc`;
-    let retorno = db.exec_promise_json(SQL, [], 'Departamentos');
+    let retorno = database.exec_promise_json(SQL, [], 'Departamentos');
     return retorno;
 }

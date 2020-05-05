@@ -3,15 +3,11 @@ const session = require('express-session');
 const mysqlStore = require('express-mysql-session')(session);
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
-
-const
-    bodyParser = require('body-parser'),
-    port = 30000,
-    db = require('./config/database'),
-    mysql_store = require('express-mysql-session')(session),
-    configs = require('./config/configuration'),
-    morgan = require('morgan'),
-    package_json = require('./package.json');
+const bodyParser = require('body-parser');
+const port = 30000;
+const database = require('./config/database');
+const configs = require('./config/configuration');
+const morgan = require('morgan');
 
 var mysqlSessionStore = new mysqlStore(configs.store_sessions);
 var app = express();
@@ -78,8 +74,8 @@ app.use('/updates', updatesRoute);
 app.use('/projetos', projetosRoute);
 
 try {
-    conn = db.connect();
-    db.disconnect(conn);
+    conn = database.connect();
+    database.disconnect(conn);
 
     // tempo para carregamento de uma tela (antes estava dando ERR_CONTENT_LENGTH_MISMATCH)
     app.timeout = 120000 * 5;

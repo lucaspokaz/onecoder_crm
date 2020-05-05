@@ -1,4 +1,4 @@
-const db = require('../../config/database');
+const database = require('../../config/database');
 
 exports.get_clients_responsibles = (idUsuario) => {
 
@@ -13,7 +13,7 @@ exports.get_clients_responsibles = (idUsuario) => {
                 order by nome asc`;
     }
 
-    let retorno = db.exec_promise_json(SQL, [], 'Clientes responsaveis');
+    let retorno = database.exec_promise_json(SQL, [], 'Clientes responsaveis');
     return retorno;
 }
 
@@ -26,7 +26,7 @@ exports.insert = async (req, res) => {
         }
 
         let SQL_INSERT = 'insert into cliente_responsavel set ?';
-        let result_insert = await db.exec_promise(SQL_INSERT, user, 'Insert responsavel');
+        let result_insert = await database.exec_promise(SQL_INSERT, user, 'Insert responsavel');
         let id_inserido = result_insert.insertId;
 
         return {
@@ -49,7 +49,7 @@ exports.delete = async (idClienteResponsavel) => {
     try {
         console.log(idClienteResponsavel);
         let SQL_DELETE = `delete from cliente_responsavel where id_cliente_reponsavel = ${idClienteResponsavel}`;
-        await db.exec_promise(SQL_DELETE, [], 'Delete responsavel');
+        await database.exec_promise(SQL_DELETE, [], 'Delete responsavel');
         // let id_removido = result_insert.insertId;
 
         return {

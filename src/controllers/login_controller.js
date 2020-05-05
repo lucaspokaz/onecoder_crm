@@ -1,7 +1,6 @@
 const service = require('../services/login_service');
 const package_json = require('../../package.json');
 const formatter = require('../utils/formatter')
-const session = require('express-session');
 
 exports.load = async (req, res, next) => {
     if (req.session.esta_logado == true) {

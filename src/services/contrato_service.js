@@ -1,13 +1,12 @@
-const
-    db = require('../../config/database'),
-    moment = require('moment');
+const database = require('../../config/database');
+const moment = require('moment');
 
 
 exports.get_contract_by_id = (idContrato) => {
     let SQL = `select contrato.*, cliente.nome from contrato
                  left join cliente on cliente.id_cliente = contrato.id_cliente
                 where id_contrato = ${idContrato}`;
-    let retorno = db.exec_promise_json(SQL, [], 'Contrato');
+    let retorno = database.exec_promise_json(SQL, [], 'Contrato');
     return retorno;
 }
 
@@ -16,7 +15,7 @@ exports.get_contracts_overview = (idCliente) => {
     let SQL =
         `select ativo, data_fim from contrato where id_cliente = ${idCliente} order by id_contrato desc limit 1 `;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Visao Geral de contrato');
+    let retorno = database.exec_promise_json(SQL, [], 'Visao Geral de contrato');
     return retorno;
 }
 
@@ -36,7 +35,7 @@ exports.get_contracts_active = () => {
                 order by
                     dias_restantes`;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Contratos');
+    let retorno = database.exec_promise_json(SQL, [], 'Contratos');
     return retorno;
 }
 
@@ -59,7 +58,7 @@ exports.insert = async (req, res) => {
         }
 
         let SQL_INSERT = 'insert into contrato set ?';
-        let result_insert = await db.exec_promise(SQL_INSERT, user, 'Insert contrato');
+        let result_insert = await database.exec_promise(SQL_INSERT, user, 'Insert contrato');
         let id_inserido = result_insert.insertId;
 
         return {
@@ -99,7 +98,7 @@ exports.edit = async (req, res) => {
         db.console_results(user)
 
         let SQL_UPDATE = `update contrato set ? where id_contrato = ${user.id_contrato}`;
-        let result_update = await db.exec_promise(SQL_UPDATE, user, 'Update contrato');
+        let result_update = await database.exec_promise(SQL_UPDATE, user, 'Update contrato');
 
         return {
             status: 200,
@@ -121,7 +120,7 @@ exports.delete = async (idContrato) => {
     try {
 
         let SQL_DELETE = `delete from contrato where id_contrato = ${idContrato}`;
-        let result_delete = await db.exec_promise(SQL_DELETE, [], 'Delete contrato');
+        let result_delete = await database.exec_promise(SQL_DELETE, [], 'Delete contrato');
 
         return {
             status: 200,

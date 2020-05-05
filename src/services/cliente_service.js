@@ -1,9 +1,9 @@
-const db = require('../../config/database');
+const database = require('../../config/database');
 
 exports.get_client_by_id = (idCliente) => {
 
     let SQL = `select * from cliente where id_cliente = ${idCliente}`;
-    let retorno = db.exec_promise_json(SQL, [], 'Cliente');
+    let retorno = database.exec_promise_json(SQL, [], 'Cliente');
     return retorno;
 }
 
@@ -12,7 +12,7 @@ exports.get_clients = () => {
     let SQL = `select * from cliente
                 order by nome asc`;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Clientes');
+    let retorno = database.exec_promise_json(SQL, [], 'Clientes');
     return retorno;
 }
 
@@ -29,7 +29,7 @@ exports.get_clients_responsibles = (idUsuario) => {
                 order by nome asc`;
     }
 
-    let retorno = db.exec_promise_json(SQL, [], 'Clientes responsaveis');
+    let retorno = database.exec_promise_json(SQL, [], 'Clientes responsaveis');
     return retorno;
 }
 
@@ -45,7 +45,7 @@ exports.get_client_owners = (idCliente) => {
                     d.id_cliente = ${idCliente}
                 order by u.nome asc`;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Responsaveis');
+    let retorno = database.exec_promise_json(SQL, [], 'Responsaveis');
     return retorno;
 }
 
@@ -90,7 +90,7 @@ exports.insert = async (req, res) => {
         }
 
         let SQL_INSERT = 'insert into cliente set ?';
-        let result_insert = await db.exec_promise(SQL_INSERT, user, 'Insert cliente');
+        let result_insert = await database.exec_promise(SQL_INSERT, user, 'Insert cliente');
         let id_inserido = result_insert.insertId;
 
         return {
@@ -150,7 +150,7 @@ exports.edit = async (req, res) => {
         }
 
         let SQL_UPDATE = `update cliente set ? where id_cliente = ${user.id_cliente}`;
-        let result_update = await db.exec_promise(SQL_UPDATE, user, 'Update cliente');
+        let result_update = await database.exec_promise(SQL_UPDATE, user, 'Update cliente');
 
         return {
             status: 200,

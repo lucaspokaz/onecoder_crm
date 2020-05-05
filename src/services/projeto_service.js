@@ -1,4 +1,4 @@
-const db = require('../../config/database');
+const database = require('../../config/database');
 const moment = require('moment');
 const formatter = require('../utils/formatter');
 
@@ -7,14 +7,14 @@ exports.get_all = () => {
     let SQL = `select projeto.*, cliente.nome as nome_cliente from projeto
                  left join cliente on cliente.id_cliente = projeto.id_cliente
                 order by id_projeto asc`;
-    let retorno = db.exec_promise_json(SQL, [], 'Projetos');
+    let retorno = database.exec_promise_json(SQL, [], 'Projetos');
     return retorno;
 }
 
 exports.get_ativos = () => {
 
     let SQL = `select * from projeto where ativo = 1 order by descricao asc`;
-    let retorno = db.exec_promise_json(SQL, [], 'Projetos');
+    let retorno = database.exec_promise_json(SQL, [], 'Projetos');
     return retorno;
 }
 
@@ -23,7 +23,7 @@ exports.get_by_id = async (IdProjeto) => {
     let SQL = `select * from projeto
                 where id_projeto = ${IdProjeto} `;
 
-    let retorno = db.exec_promise_json(SQL, [], 'Projeto');
+    let retorno = database.exec_promise_json(SQL, [], 'Projeto');
     return retorno;
 }
 
@@ -42,7 +42,7 @@ exports.insert = async (req, res) => {
         }
 
         let SQL_INSERT = 'insert into projeto set ?';
-        let result_insert = await db.exec_promise(SQL_INSERT, user);
+        let result_insert = await database.exec_promise(SQL_INSERT, user);
         let id_inserido = result_insert.insertId;
 
         return {
@@ -75,7 +75,7 @@ exports.edit = async (req, res) => {
         }
 
         let SQL_UPDATE = `update projeto set ? where id_projeto = ${user.id_projeto}`;
-        let result_update = await db.exec_promise(SQL_UPDATE, user);
+        let result_update = await database.exec_promise(SQL_UPDATE, user);
 
         return {
             status: 200,
