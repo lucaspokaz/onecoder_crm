@@ -5,6 +5,8 @@ const tarefasService = require('../services/tarefa_service');
 const andamentosService = require('../services/andamento_service')
 const moment = require('moment');
 
+const package_json = require('../../package.json');
+
 moment.locale('pt-br');
 
 router.get('/', auth.loggedIn, async function (req, res, next) {
@@ -16,6 +18,8 @@ router.get('/', auth.loggedIn, async function (req, res, next) {
     dados = JSON.parse(results);
     dados_geral = JSON.parse(geral);
     dados_ultimos_andamentos = JSON.parse(ultimos);
+
+    req.session.versao_sistema = package_json.version;
 
     res.render('index', {
         menu: '',
