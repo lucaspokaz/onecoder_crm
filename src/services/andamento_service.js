@@ -95,7 +95,7 @@ exports.send_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario
         dados_email = JSON.parse(emails);
 
         let texto_email =
-        ` Olá, a tarefa ${id_inserido} recebeu um novo andamento.
+        ` Olá, a tarefa ${IdAtendimento} recebeu um novo andamento.
 
         Observação: ${Observacao}
 
@@ -110,7 +110,7 @@ exports.send_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario
             console.log( 'Enviando email para: ' + dados_email[item].email );
             mail.send(
                 dados_email[item].email,
-                `[CRM] Novo andamento para tarefa ${id_inserido}`,
+                `[CRM] Novo andamento para tarefa ${IdAtendimento}`,
                 texto_email
             );
         }
@@ -157,7 +157,7 @@ exports.finish_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuar
         dados_email = JSON.parse(emails);
 
         let texto_email =
-        ` Olá, a tarefa ${id_inserido} foi concluída.
+        ` Olá, a tarefa ${IdAtendimento} foi concluída.
 
         Atenciosamente,
 
@@ -170,7 +170,7 @@ exports.finish_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuar
             console.log( 'Enviando email para: ' + dados_email[item].email );
             mail.send(
                 dados_email[item].email,
-                `[CRM] Tarefa ${id_inserido} concluída`,
+                `[CRM] Tarefa ${IdAtendimento} concluída`,
                 texto_email
             );
         }
