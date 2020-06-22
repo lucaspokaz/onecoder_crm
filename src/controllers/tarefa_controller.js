@@ -97,6 +97,9 @@ exports.load = async (req, res, next) => {
         let historico = await tarefasService.get_task_history(req.params.id);
         let dados_historico = JSON.parse(historico);
 
+        let anexos = await tarefasService.get_anexos(req.params.id);
+        let dados_anexo = JSON.parse(anexos);
+
         res.render('tarefas/editar', {
             session: req.session,
             menu: 'tarefas_editar',
@@ -105,6 +108,7 @@ exports.load = async (req, res, next) => {
             data_projetos: dados_projeto,
             data_tipos: dados_tipo,
             data_historico: dados_historico,
+            data_anexos: dados_anexo,
             moment: moment,
             path: path,
             formatter: require('../utils/formatter')
