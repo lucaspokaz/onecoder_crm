@@ -48,9 +48,9 @@ exports.get_tasks = (idUsuario, SomentePendentes) => {
         WHERE at.id_cliente in (select id_cliente from cliente_responsavel
                                  where id_usuario = ${idUsuario}) `;
 
-        if (SomentePendentes) {
-            SQL = SQL + `AND at.status <> 'Concluído'`;
-        }
+    if (SomentePendentes) {
+        SQL = SQL + `AND at.status <> 'Concluído'`;
+    }
 
     let retorno = database.exec_promise_json(SQL, [], 'Acompanhamento de tarefas');
     return retorno;
@@ -318,24 +318,20 @@ exports.insert = async (req, res) => {
         dados_email = JSON.parse(emails);
 
         let texto_email =
-        ` Olá, a tarefa ${id_inserido} foi criada.
+            '<p>Olá, a tarefa ' + id_inserido + ' foi criada.</p>' +
+            '<p>Assunto: <strong>' + user.assunto + '</strong> </p>' +
+            '<p>Observação: ' + user.observacao + ' </p>' +
+            '</br></br>' +
+            '<p>Atenciosamente,</p>' +
+            '<p>Equipe Onecoder</p>' +
+            '</br>' +
+            '-' +
+            '<p>Esse é um e-mail automático. Por favor, não responda.</p>';
 
-        Assunto: ${user.assunto}
-
-        Observação: ${user.observacao}
-
-        Atenciosamente,
-
-        Equipe Onecoder.
-
-        Esse é um e-mail automático. Por favor, não responda.
-        `;
-
-        for( let item in dados_email ) {
-            console.log( 'Enviando email para: ' + dados_email[item].email );
+        for (let item in dados_email) {
             mail.send(
                 dados_email[item].email,
-                '[CRM] Nova tarefa criada: ' + id_inserido,
+                '[CRM] Nova tarefa: ' + id_inserido + ' - ' + user.assunto,
                 texto_email
             );
         }
@@ -390,7 +386,7 @@ exports.edit_task_status = (IdAtendimento, Status) => {
 
     let SQL = `update atendimento set status = '${Status}' where id_atendimento = ${IdAtendimento}`;
     database.exec_promise(SQL);
-    return {status: 200, mensagem: 'Atualizado com sucesso.'}
+    return { status: 200, mensagem: 'Atualizado com sucesso.' }
 
 }
 
@@ -398,6 +394,70 @@ exports.edit_task_status_with_comment = (IdAtendimento, Status, Conclusao) => {
 
     let SQL = `update atendimento set status = '${Status}', conclusao = '${Conclusao}' where id_atendimento = ${IdAtendimento}`;
     database.exec_promise(SQL);
-    return {status: 200, mensagem: 'Atualizado com sucesso.'}
+    return { status: 200, mensagem: 'Atualizado com sucesso.' }
+
+}
+
+exports.anexar_arquivo = async (IdAtendimento, Descricao, Caminho, Tamanho) => {
+
+    let l_data_inicio = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+
+    var user = {
+        id_atendimento: IdAtendimento,
+        descricao: Descricao,
+        caminho_anexo: Caminho,
+        tamanho: Tamanho,
+        data: l_data_inicio
+    }
+
+    let SQL_INSERT = 'insert into atendimento_anexo set ?';
+    let result_insert = await database.exec_promise(SQL_INSERT, user);
+    let id_inserido = result_insert.insertId;
+
+    return { status: 200, mensagem: 'Anexado com sucesso.' }
+
+}
+
+exports.get_anexos = (idAtendimento) => {
+
+    let SQL =
+        `SELECT
+            *
+        FROM
+            atendimento_anexo
+        WHERE
+            id_atendimento = ${idAtendimento} `;
+
+    let retorno = database.exec_promise_json(SQL, [], 'Anexos');
+    return retorno;
+}
+
+exports.get_by_key = (key) => {
+
+    let SQL = `SELECT * FROM atendimento_anexo WHERE caminho_anexo = '${key}' `;
+    let retorno = database.exec_promise_json(SQL, [], 'Anexos');
+    return retorno;
+}
+
+exports.delete_anexo = async (key) => {
+
+    try {
+
+        let SQL_DELETE = `delete from atendimento_anexo where caminho_anexo = '${key}' `;
+        console.log(SQL_DELETE);
+        let result_delete = await database.exec_promise(SQL_DELETE, [], 'Delete anexo');
+
+        return {
+            status: 200,
+            mensagem: 'Removido com sucesso.'
+        }
+
+    } catch (error) {
+        console.log(error);
+        return {
+            status: 400,
+            mensagem: error
+        }
+    }
 
 }

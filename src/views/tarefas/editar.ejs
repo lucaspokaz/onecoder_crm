@@ -1,6 +1,7 @@
 <% include ../default/header.ejs %>
 
-<body class="vertical-layout vertical-menu content-detached-left-sidebar fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="content-detached-left-sidebar">
+<body class="vertical-layout vertical-menu content-detached-left-sidebar fixed-navbar" data-open="click"
+    data-menu="vertical-menu" data-col="content-detached-left-sidebar">
 
     <% include ../default/navbar.ejs %>
 
@@ -38,11 +39,13 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-secondary">
-                                    <h4 class="card-title text-white">Tarefa <%- data.id_atendimento + ' - ' + data.assunto %> </h4>
-                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+                                    <h4 class="card-title text-white">Tarefa
+                                        <%- data.id_atendimento + ' - ' + data.assunto %> </h4>
+                                    <a class="heading-elements-toggle"><i
+                                            class="la la-ellipsis-h font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <% if (data.status == 'Concluído') { %>
-                                            <span class="badge badge-success">Tarefa Concluída</span>
+                                        <span class="badge badge-success">Tarefa Concluída</span>
                                         <% } %>
                                     </div>
                                 </div>
@@ -52,18 +55,27 @@
                                     <div class="card-body">
                                         <ul class="product-tabs nav nav-tabs nav-underline no-hover-bg">
                                             <li class="nav-item">
-                                                <a aria-controls="desc" aria-expanded="true" class="nav-link active" data-toggle="tab" href="#desc" id="description">
+                                                <a aria-controls="desc" aria-expanded="true" class="nav-link active"
+                                                    data-toggle="tab" href="#desc" id="description">
                                                     <i class="fas fa-tag"></i> Conteúdo
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a aria-controls="comment" aria-expanded="false" class="nav-link" data-toggle="tab" href="#comment" id="comments">
+                                                <a aria-controls="comment" aria-expanded="false" class="nav-link"
+                                                    data-toggle="tab" href="#comment" id="comments">
                                                     <i class="fas fa-history"></i> Histórico
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a aria-controls="comment" aria-expanded="false" class="nav-link"
+                                                    data-toggle="tab" href="#anexo" id="anexos">
+                                                    <i class="fas fa-clip"></i> Anexos
                                                 </a>
                                             </li>
                                         </ul>
                                         <div class="product-content tab-content">
-                                            <div aria-expanded="true" aria-labelledby="description" class="tab-pane active" id="desc" role="tabpanel">
+                                            <div aria-expanded="true" aria-labelledby="description"
+                                                class="tab-pane active" id="desc" role="tabpanel">
                                                 <div class="card-content collapse show">
                                                     <div class="card-body">
                                                         <form class="form" method="post">
@@ -72,19 +84,26 @@
                                                                 <div class="row">
                                                                     <div class="form-group col-md-6">
                                                                         <label>Data de Criação</label>
-                                                                        <input type="text" class="form-control" value="<%- moment(data.inicio).format('DD/MM/YYYY HH:mm'); %>" disabled />
+                                                                        <input type="text" class="form-control"
+                                                                            value="<%- moment(data.inicio).format('DD/MM/YYYY HH:mm'); %>"
+                                                                            disabled />
                                                                     </div>
 
                                                                     <div class="form-group col-md-6">
                                                                         <label>Usuário Criador</label>
-                                                                        <input type="text" class="form-control" value="<%- data.nome_usuario %>" disabled />
+                                                                        <input type="text" class="form-control"
+                                                                            value="<%- data.nome_usuario %>" disabled />
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="form-group col-md-12">
                                                                         <label>Assunto</label>
-                                                                        <input type="text" class="form-control" name="assunto" id="assunto" value="<%- data.assunto %>" onkeyup="this.value = this.value.toUpperCase();" required />
+                                                                        <input type="text" class="form-control"
+                                                                            name="assunto" id="assunto"
+                                                                            value="<%- data.assunto %>"
+                                                                            onkeyup="this.value = this.value.toUpperCase();"
+                                                                            required />
                                                                     </div>
                                                                 </div>
 
@@ -93,12 +112,16 @@
                                                                         <label>Cliente</label>
                                                                         <div>
                                                                             <input type="hidden" required />
-                                                                            <select class="select2 form-control" id="select2-icons" name="cliente" id="cliente" required>
+                                                                            <select class="select2 form-control"
+                                                                                id="select2-icons" name="cliente"
+                                                                                id="cliente" required>
                                                                                 <option value=""></option>
                                                                                 <% if (data_clientes) { %>
-                                                                                    <% data_clientes.forEach(function(c){ %>
-                                                                                        <option value="<%= c.id_cliente %>" <%= data.id_cliente == c.id_cliente ? 'selected' : '' %> ><%= c.nome %></option>
-                                                                                    <% }) %>
+                                                                                <% data_clientes.forEach(function(c){ %>
+                                                                                <option value="<%= c.id_cliente %>"
+                                                                                    <%= data.id_cliente == c.id_cliente ? 'selected' : '' %>>
+                                                                                    <%= c.nome %></option>
+                                                                                <% }) %>
                                                                                 <% }; %>
                                                                             </select>
                                                                         </div>
@@ -108,12 +131,16 @@
                                                                         <label>Projeto</label>
                                                                         <div>
                                                                             <input type="hidden" required />
-                                                                            <select class="select2 form-control" id="select3-icons" name="projeto" id="projeto" required>
+                                                                            <select class="select2 form-control"
+                                                                                id="select3-icons" name="projeto"
+                                                                                id="projeto" required>
                                                                                 <option value=""></option>
                                                                                 <% if (data_projetos) { %>
-                                                                                    <% data_projetos.forEach(function(c){ %>
-                                                                                        <option value="<%= c.id_projeto %>" <%= data.id_projeto == c.id_projeto ? 'selected' : '' %> ><%= c.descricao %></option>
-                                                                                    <% }) %>
+                                                                                <% data_projetos.forEach(function(c){ %>
+                                                                                <option value="<%= c.id_projeto %>"
+                                                                                    <%= data.id_projeto == c.id_projeto ? 'selected' : '' %>>
+                                                                                    <%= c.descricao %></option>
+                                                                                <% }) %>
                                                                                 <% }; %>
                                                                             </select>
                                                                         </div>
@@ -125,12 +152,17 @@
                                                                         <label>Tipo de Atendimento</label>
                                                                         <div>
                                                                             <input type="hidden" required />
-                                                                            <select class="select2 form-control" id="select4-icons" name="tipo" id="tipo" required>
+                                                                            <select class="select2 form-control"
+                                                                                id="select4-icons" name="tipo" id="tipo"
+                                                                                required>
                                                                                 <option value=""></option>
                                                                                 <% if (data_tipos) { %>
-                                                                                    <% data_tipos.forEach(function(c){ %>
-                                                                                        <option value="<%= c.id_tipo_atendimento %>" <%= data.id_tipo_atendimento == c.id_tipo_atendimento ? 'selected' : '' %> ><%= c.descricao %></option>
-                                                                                    <% }) %>
+                                                                                <% data_tipos.forEach(function(c){ %>
+                                                                                <option
+                                                                                    value="<%= c.id_tipo_atendimento %>"
+                                                                                    <%= data.id_tipo_atendimento == c.id_tipo_atendimento ? 'selected' : '' %>>
+                                                                                    <%= c.descricao %></option>
+                                                                                <% }) %>
                                                                                 <% }; %>
                                                                             </select>
                                                                         </div>
@@ -140,11 +172,19 @@
                                                                         <label>Prioridade</label>
                                                                         <div>
                                                                             <input type="hidden" required />
-                                                                            <select class="select2 form-control" id="select5-icons" name="prioridade" id="prioridade" required>
+                                                                            <select class="select2 form-control"
+                                                                                id="select5-icons" name="prioridade"
+                                                                                id="prioridade" required>
                                                                                 <option value=""></option>
-                                                                                <option value="Baixa" <%= data.prioridade == 'Baixa' ? 'selected' : '' %> > Baixa </option>
-                                                                                <option value="Média" <%= data.prioridade == 'Média' ? 'selected' : '' %> > Média </option>
-                                                                                <option value="Alta"  <%= data.prioridade == 'Alta' ? 'selected' : '' %> > Alta </option>
+                                                                                <option value="Baixa"
+                                                                                    <%= data.prioridade == 'Baixa' ? 'selected' : '' %>>
+                                                                                    Baixa </option>
+                                                                                <option value="Média"
+                                                                                    <%= data.prioridade == 'Média' ? 'selected' : '' %>>
+                                                                                    Média </option>
+                                                                                <option value="Alta"
+                                                                                    <%= data.prioridade == 'Alta' ? 'selected' : '' %>>
+                                                                                    Alta </option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -154,7 +194,9 @@
                                                                 <div class="row">
                                                                     <div class="form-group col-md-12">
                                                                         <label>Observação</label>
-                                                                        <textarea type="text" class="form-control" name="observacao" id="observacao" rows="15" required><%- data.observacao %></textarea>
+                                                                        <textarea type="text" class="form-control"
+                                                                            name="observacao" id="observacao" rows="15"
+                                                                            required><%- data.observacao %></textarea>
                                                                     </div>
                                                                 </div>
 
@@ -162,10 +204,11 @@
 
                                                             <div class="form-actions">
                                                                 <% if (data.status != 'Concluído') { %>
-                                                                    <a href="/tarefas" class="btn btn-danger"><i class="ft-x"></i> Cancelar</a>
-                                                                    <button type="submit" class="btn btn-info">
-                                                                        <i class="la la-check-square-o"></i> Salvar
-                                                                    </button>
+                                                                <a href="/tarefas" class="btn btn-danger"><i
+                                                                        class="ft-x"></i> Cancelar</a>
+                                                                <button type="submit" class="btn btn-info">
+                                                                    <i class="la la-check-square-o"></i> Salvar
+                                                                </button>
                                                                 <% } %>
                                                             </div>
                                                         </form>
@@ -176,38 +219,49 @@
                                                 <div class="media-list media-bordered">
 
                                                     <% if (data_historico.length > 0) { %>
-                                                       <% data_historico.forEach(function(user){ %>
-                                                            <div class="media">
-                                                                <div class="avatar avatar-sm mr-1"
-                                                                    style="background-color: <%= formatter.stringToHslColor(user.nome_curto, 170, 70) %> ;">
-                                                                    <span class="avatar-content"> <%= user.nome_curto %> </span>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <h5 class="media-heading mb-0 text-bold-600">
-                                                                        <%= user.nome_usuario %>
-                                                                    </h5>
-                                                                    <div class="media-notation mb-1">
-                                                                        <%= moment(user.data_inicio).format('LLLL') %>
-                                                                    </div>
-                                                                    <%= user.observacao %>
-                                                                </div>
+                                                    <% data_historico.forEach(function(user){ %>
+                                                    <div class="media">
+                                                        <div class="avatar avatar-sm mr-1"
+                                                            style="background-color: <%= formatter.stringToHslColor(user.nome_curto, 170, 70) %> ;">
+                                                            <span class="avatar-content"> <%= user.nome_curto %> </span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h5 class="media-heading mb-0 text-bold-600">
+                                                                <%= user.nome_usuario %>
+                                                            </h5>
+                                                            <div class="media-notation mb-1">
+                                                                <%= moment(user.data_inicio).format('LLLL') %>
                                                             </div>
-                                                       <% }) %>
+                                                            <%= user.observacao %>
+                                                        </div>
+                                                    </div>
+                                                    <% }) %>
                                                     <% } %>
 
                                                 </div>
                                             </div>
+                                            <div aria-labelledby="anexos" class="tab-pane" id="anexo">
+
+                                                <section id="image-gallery" class="card">
+                                                    <div class="card-header">
+                                                        <form id="upload-widget" method="post"
+                                                            action="/anexos/tarefa/<%- data.id_atendimento %>"
+                                                            class="dropzone"></form>
+                                                        <a class="heading-elements-toggle">
+                                                            <i class="la la-ellipsis-v font-medium-3"></i>
+                                                        </a>
+                                                    </div>
+
+
+                                                    <!--/ PhotoSwipe -->
+                                                </section>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
-
-
                     </div>
-
                 </section>
             </div>
         </div>

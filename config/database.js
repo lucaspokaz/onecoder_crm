@@ -33,10 +33,10 @@ const exec_promise = (sql, options, observacao) => {
                 return reject(err);
             } else {
                 if (sql.indexOf('update') == -1 && sql.indexOf('insert') == -1 && sql.indexOf('delete') == -1) {
-                    console_results(observacao, JSON.stringify(rows[0]));
+                    // console_results(observacao, JSON.stringify(rows[0]));
                     return resolve(rows);
                 } else {
-                    console_results(observacao, JSON.stringify(rows));
+                    // console_results(observacao, JSON.stringify(rows));
                     return resolve(rows);
                 }
             }
@@ -53,7 +53,7 @@ const exec_promise_json = (sql, options, observacao) => {
                 console.log(err)
                 return reject(err);
             } else {
-                console_results(observacao, JSON.stringify(rows));
+                // console_results(observacao, JSON.stringify(rows));
                 return resolve(JSON.stringify(rows));
             }
         })

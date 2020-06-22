@@ -4,6 +4,7 @@ const tiposAtendimentoService = require('../services/tipoatendimento_service');
 const tarefasService = require('../services/tarefa_service');
 const andamentosService = require('../services/andamento_service');
 const departamentosService = require('../services/departamento_service');
+const path = require('path');
 
 let dados_cliente;
 let dados_projeto;
@@ -105,6 +106,7 @@ exports.load = async (req, res, next) => {
             data_tipos: dados_tipo,
             data_historico: dados_historico,
             moment: moment,
+            path: path,
             formatter: require('../utils/formatter')
         })
 
@@ -118,6 +120,7 @@ exports.load = async (req, res, next) => {
             data_projetos: dados_projeto,
             data_tipos: dados_tipo,
             moment: moment,
+            path: path,
             formatter: require('../utils/formatter')
         })
 
@@ -180,7 +183,7 @@ exports.edit = async (req, res, next) => {
 
 exports.list_task_history = async (req, res, next) => {
     let dados_historico = await tarefasService.get_task_history(req.params.id);
-    res.json( JSON.parse(dados_historico) );
+    res.json(JSON.parse(dados_historico));
 };
 
 exports.list_task_board = async (req, res, next) => {
@@ -214,7 +217,7 @@ exports.take_task = async (req, res, next) => {
         let retorno = await andamentosService.edit_progress_owner(req.session.codigo_usuario, req.body.id_andamento);
 
         if (retorno.status == 200) {
-            return res.status(200).send({status: 200, mensagem: 'Tarefa em atendimento.'});
+            return res.status(200).send({ status: 200, mensagem: 'Tarefa em atendimento.' });
         } else {
             return res.status(400).send(retorno);
         }
@@ -269,5 +272,48 @@ exports.finish_task = async (req, res, next) => {
         return res.status(200).send(retorno);
     } else {
         return res.status(400).send(retorno);
+    }
+};
+
+exports.anexar = async (req, res, next) => {
+
+    if ((req.params.id) && (req.params.id > 0)) {
+        let retorno = await tarefasService.anexar_arquivo(req.params.id, req.file.originalname, req.file.filename, req.file.size);
+        if (retorno.status == 200) {
+            return res.status(200).send(retorno);
+        } else {
+            return res.status(400).send(retorno);
+        }
+    }
+};
+
+exports.list_anexos = async (req, res, next) => {
+    let dados_anexo = await tarefasService.get_anexos(req.params.id);
+    res.json(JSON.parse(dados_anexo));
+};
+
+exports.get_by_key = async (req, res, next) => {
+    let dados_anexo = await tarefasService.get_by_key(req.params.key);
+    let retorno = JSON.parse(dados_anexo);
+    retorno[0].url = path.resolve(__dirname, '..', '..', 'public', 'uploads');
+    res.json(retorno[0]);
+};
+
+exports.remover_anexo = async (req, res, next) => {
+
+    if (req.params.key) {
+
+        let retorno = await tarefasService.delete_anexo(req.params.key);
+
+        let fs = require('fs');
+        var filePath = path.join('uploads/', req.params.key);
+        console.log(filePath);
+        fs.unlinkSync(filePath);
+
+        if (retorno.status == 200) {
+            return res.status(200).send(retorno);
+        } else {
+            return res.status(400).send(retorno);
+        }
     }
 };

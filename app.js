@@ -8,8 +8,10 @@ const port = 3000;
 const database = require('./config/database');
 const configs = require('./config/configuration');
 const morgan = require('morgan');
+const path = require('path');
 
 var mysqlSessionStore = new mysqlStore(configs.store_sessions);
+
 var app = express();
 
 global.console_warning = '\x1b[33m%s\x1b[0m';
@@ -34,12 +36,12 @@ app.use(session({
     saveUninitialized: true,  // dont save unmodified
 }));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(flash());
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+app.use('/uploads',express.static(__dirname + '/uploads'));
 
 //Global variables
 app.use(function(req, res, next){
@@ -62,6 +64,7 @@ const clientesRoute = require('./src/routes/cliente_route');
 const contratosRoute = require('./src/routes/contrato_route');
 const updatesRoute = require('./src/routes/update_route');
 const projetosRoute = require('./src/routes/projeto_route');
+const anexosRoute = require('./src/routes/anexo_route');
 
 // Uso das Rotas
 app.use('/', loginRoute);
@@ -72,6 +75,7 @@ app.use('/clientes', clientesRoute);
 app.use('/contratos', contratosRoute);
 app.use('/updates', updatesRoute);
 app.use('/projetos', projetosRoute);
+app.use('/anexos', anexosRoute);
 
 try {
     conn = database.connect();
