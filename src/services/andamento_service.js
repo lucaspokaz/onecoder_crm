@@ -153,28 +153,6 @@ exports.finish_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuar
             'Concluído pelo ' + usuario.nome
         );
 
-        let emails = await loginService.get_emails_notificacao(IdUsuario, IdDepartamento);
-        dados_email = JSON.parse(emails);
-
-        let texto_email =
-        ` Olá, a tarefa ${IdAtendimento} foi concluída.
-
-        Atenciosamente,
-
-        Equipe Onecoder.
-
-        Esse é um e-mail automático. Por favor, não responda.
-        `;
-
-        for( let item in dados_email ) {
-            console.log( 'Enviando email para: ' + dados_email[item].email );
-            mail.send(
-                dados_email[item].email,
-                `[CRM] Tarefa ${IdAtendimento} concluída`,
-                texto_email
-            );
-        }
-
         return {status: 200, mensagem: 'Tarefa concluída com sucesso.'}
     } catch (error) {
         return {status: 400, mensagem: error}
