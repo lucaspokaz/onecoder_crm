@@ -91,30 +91,6 @@ exports.send_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario
 
         await this.insert(andamento, IdAtendimento);
 
-        let emails = await loginService.get_emails_notificacao(IdUsuario, IdDepartamento);
-        dados_email = JSON.parse(emails);
-
-        let texto_email =
-        ` Olá, a tarefa ${IdAtendimento} recebeu um novo andamento.
-
-        Observação: ${Observacao}
-
-        Atenciosamente,
-
-        Equipe Onecoder.
-
-        Esse é um e-mail automático. Por favor, não responda.
-        `;
-
-        for( let item in dados_email ) {
-            console.log( 'Enviando email para: ' + dados_email[item].email );
-            mail.send(
-                dados_email[item].email,
-                `[CRM] Novo andamento para tarefa ${IdAtendimento}`,
-                texto_email
-            );
-        }
-
         return {status: 200, mensagem: 'Tarefa enviada com sucesso.'}
     } catch (error) {
         return {status: 400, mensagem: error}
