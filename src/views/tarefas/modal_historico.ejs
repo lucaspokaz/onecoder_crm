@@ -1,5 +1,6 @@
 <!-- Modal -->
-<div class="modal fade text-left" id="myModalHistorico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<div class="modal fade text-left" id="myModalHistorico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,24 +27,26 @@
         let url = "/tarefas/historico/" + id_atendimento;
 
         fetch(url)
-        .then(res => res.json())
-        .then((out) => {
+            .then(res => res.json())
+            .then((out) => {
 
-            let html = '';
-            let seq = 0;
-            let turnCollapse = 'collapse show';
-            out.forEach(function(row) {
+                console.log(out);
 
-                let dt_inicio = new Date(row.data_inicio);
-                dt_inicio = dt_inicio.toLocaleString();
+                let html = '';
+                let seq = 0;
+                let turnCollapse = 'collapse show';
+                out.forEach(function (row) {
 
-                seq = seq + 1;
+                    let dt_inicio = new Date(row.data_inicio);
+                    dt_inicio = dt_inicio.toLocaleString();
 
-                if (seq > 1) {
-                    turnCollapse = 'collapse'
-                }
+                    seq = seq + 1;
 
-                html = html +  `
+                    if (seq > 1) {
+                        turnCollapse = 'collapse'
+                    }
+
+                    html = html + `
                     <div id="heading${seq}" class="card-header" role="tab">
                         <a data-toggle="collapse" href="#accordion${seq}" aria-expanded="false" aria-controls="accordion${seq}" class="card-title">
                             <div class="pull-left"> <i class="far fa-user"></i> ${row.nome_usuario} </div>
@@ -59,13 +62,15 @@
                         </div>
                     </div>
                 `;
-            });
+                });
 
-            document.getElementById("modal_historico").innerHTML = html;
-        })
-        .catch(err => {
-            throw err
-        });
+                console.log(html);
+
+                document.getElementById("modal_historico").innerHTML = html;
+            })
+            .catch(err => {
+                throw err
+            });
 
         event.preventDefault();
     }
