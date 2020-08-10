@@ -65,6 +65,7 @@ const contratosRoute = require('./src/routes/contrato_route');
 const updatesRoute = require('./src/routes/update_route');
 const projetosRoute = require('./src/routes/projeto_route');
 const anexosRoute = require('./src/routes/anexo_route');
+const seriaisRoute = require('./src/routes/serial_route');
 
 // Uso das Rotas
 app.use('/', loginRoute);
@@ -76,6 +77,7 @@ app.use('/contratos', contratosRoute);
 app.use('/updates', updatesRoute);
 app.use('/projetos', projetosRoute);
 app.use('/anexos', anexosRoute);
+app.use('/seriais', seriaisRoute);
 
 try {
     conn = database.connect();

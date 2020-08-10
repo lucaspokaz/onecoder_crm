@@ -3,6 +3,7 @@ const clientesReponsaveisService = require('../services/cliente_responsavel_serv
 const tarefasService = require('../services/tarefa_service');
 const contratosService = require('../services/contrato_service');
 const loginService = require('../services/login_service');
+const config = require('../../config/configuration');
 
 exports.list = async (req, res, next) => {
 
@@ -130,3 +131,23 @@ exports.delete_responsavel = async (req, res, next) => {
         return res.status(400).send(retorno);
     }
 };
+
+exports.get_by_cnpj = async (req, res, next) => {
+
+    console.log(req.body)
+    const { cnpj, chave } = req.body;
+
+
+    if (chave == config.conexao.password) {
+      if (cnpj) {
+
+        let retorno = await clientesService.get_client_by_cnpj(cnpj);
+        return res.status(200).send(retorno);
+      } else {
+        return res.status(400).send('Erro na consulta');
+      }
+    } else {
+      return res.status(401).send('Erro na consulta');
+    }
+
+  };
