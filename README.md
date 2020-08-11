@@ -33,16 +33,16 @@ A intenção deste sistema é controlar as informações básicas de clientes, c
 ## Imagens do Sistema
 
 > Web
-
-![dashboard_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/dashboard_web.png)
-![clientes_web](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/clientes_web.png)
-![quadro_tarefas_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/quadro_tarefas_web.png)
+> 
+> ![dashboard_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/dashboard_web.png)
+> ![clientes_web](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/clientes_web.png)
+> ![quadro_tarefas_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/quadro_tarefas_web.png)
 
 > Mobile
-![dashboard_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/dashboard_mobile.png)
-![dashboard_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/dashboard_mobile2.png)
-![clientes_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/clientes_mobile.png)
-![quadro_tarefas_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/quadro_tarefas_mobile.gif)
+> ![dashboard_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/dashboard_mobile.png)
+> ![dashboard_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/dashboard_mobile2.png)
+> ![clientes_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/clientes_mobile.png)
+> ![quadro_tarefas_mobile](https://github.com/lucaspokaz/onecoder_crm/blob/master/images/quadro_tarefas_mobile.gif)
 
 ## Instruções
 
