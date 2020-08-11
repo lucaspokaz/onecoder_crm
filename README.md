@@ -23,7 +23,7 @@ A intenção deste sistema é controlar as informações básicas de clientes, c
 ## Recursos utilizados no desenvolvimento:
 
 - NodeJs;
-- Express ~ v.4.17.1;
+- Express;
 - EJS;
 - Mysql;
 - JSON;
