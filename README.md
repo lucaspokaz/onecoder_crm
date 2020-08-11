@@ -1,5 +1,28 @@
 # Onecoder CRM
 
+[![licence mit](https://img.shields.io/badge/license-MIT-yellow)]
+
+> :rocket: Sistema para controle de informações de clientes, contratos, projetos, fluxo de demandas e tarefas, etc.
+
+## Recursos utilizados no desenvolvimento:
+- NodeJs;
+- Express;
+- EJS;
+- Mysql;
+- JSON;
+- PostMan;
+- Nodemon;
+
+## History
+See [Releases](https://github.com/lucaspokaz/onecoder_crm) for detailed changelog.
+
+## License
+© [Onecoder](https://onecoder.com.br/) - [Lucas Magalhães](https://github.com/lucaspokaz/)
+
+
+
+# Onecoder CRM
+
 A intenção deste sistema é controlar as informações básicas de clientes, contratos, report de bugs, melhorias de sistemas, etc.
 
 ## Recursos utilizados no desenvolvimento:
@@ -12,22 +35,18 @@ A intenção deste sistema é controlar as informações básicas de clientes, c
 - PostMan;
 - Nodemon;
 
-## Executar Localmente
+## Imagens do Sistema
 
-Caso você deseja executar o projeto na sua máquina local, basta seguir os passos abaixo:
 
-## Começando...
 
-Para começar, você deve simplesmente clonar o repositório do projeto na sua máquina e instalar as dependências.
-
-### Pre-Requisitos
+## Instruções
 
 Antes de instalar as dependências no projeto, você precisa já ter instalado na sua máquina:
 
 * **NodeJs**: Caso não tenha, basta realizar o download [Aqui](https://nodejs.org/en/)
 * **Mysql**: Caso também não tenha, basta realizar o download [Aqui](https://www.mysql.com/downloads/)
 
-### Instalando as Dependências
+Para começar, você deve simplesmente clonar o repositório do projeto na sua máquina e instalar as dependências.
 
 Abra o PowerShell (utilizando o Windows), ou o Terminal (utilizando MacOS ou Linux) e digite a path do seu projeto
 
@@ -51,14 +70,12 @@ Instale, de maneira global o Nodemon:
 npm install nodemon -g
 ```
 
-### Executando a Aplicação
-
 Bom, agora na mesma tela do Terminal, basta iniciar o server para o projeto ser executado localmente.
 
 ```
 nodemon start
 ```
 
-Agora, abre a página da aplicação em `http://localhost:{porta_server}`. E pronto a aplicação será executada de maneira local na sua máquina.        
+Agora, abre a página da aplicação em `http://localhost:{porta_server}`. E pronto a aplicação será executada de maneira local na sua máquina.
 
-Fiquem à vontade em usar ou ajudar no desenvolvimento!! :)  
+Fiquem à vontade em usar ou ajudar no desenvolvimento!! :)
