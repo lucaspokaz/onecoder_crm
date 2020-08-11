@@ -1,6 +1,6 @@
 # Onecoder CRM
 
-[![licence mit](https://img.shields.io/badge/license-MIT-yellow)]
+![licence mit](https://img.shields.io/badge/license-MIT-yellow)
 
 > :rocket: Sistema para controle de informações de clientes, contratos, projetos, fluxo de demandas e tarefas, etc.
 
@@ -13,13 +13,8 @@
 - PostMan;
 - Nodemon;
 
-## History
-See [Releases](https://github.com/lucaspokaz/onecoder_crm) for detailed changelog.
-
 ## License
 © [Onecoder](https://onecoder.com.br/) - [Lucas Magalhães](https://github.com/lucaspokaz/)
-
-
 
 # Onecoder CRM
 
@@ -37,7 +32,7 @@ A intenção deste sistema é controlar as informações básicas de clientes, c
 
 ## Imagens do Sistema
 
-
+!https://github.com/lucaspokaz/onecoder_crm/blob/master/images/clientes_mobile.png!
 
 ## Instruções
 
