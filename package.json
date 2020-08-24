@@ -11,6 +11,7 @@
     "dropzone": "^5.7.1",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
     "express-mysql-session": "^2.1.4",
     "express-session": "^1.17.0",
     "express-validator": "^6.4.0",
@@ -20,7 +21,8 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
-    "nodemailer": "^6.4.6"
+    "nodemailer": "^6.4.6",
+    "win-version-info": "^3.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"

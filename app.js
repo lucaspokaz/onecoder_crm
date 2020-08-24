@@ -8,6 +8,7 @@ const port = 3000;
 const database = require('./config/database');
 const configs = require('./config/configuration');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
 const path = require('path');
 
 var mysqlSessionStore = new mysqlStore(configs.store_sessions);
@@ -40,18 +41,25 @@ app.use(flash());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+    debug: true,
+    createParentPath: true,
+}));
 app.use(morgan('dev'));
-app.use('/uploads',express.static(__dirname + '/uploads'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
+
 
 //Global variables
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success');
     res.locals.error_msg = req.flash('error');
     res.locals.alert_msg = req.flash('alert');
     next();
 })
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     req.session.menu_ativo = '';
     next();
 })
@@ -85,7 +93,7 @@ try {
 
     // tempo para carregamento de uma tela (antes estava dando ERR_CONTENT_LENGTH_MISMATCH)
     app.timeout = 120000 * 5;
-    app.listen(port, function() {
+    app.listen(port, function () {
         console.log(`Aplicação disponível em http://localhost:${port}`)
     })
 } catch (error) {
