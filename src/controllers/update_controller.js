@@ -1,7 +1,4 @@
 const updatesService = require('../services/update_service');
-const fs = require('fs');
-const versionInfo = require('win-version-info');
-const { info } = require('console');
 
 exports.get_versions_elysius = async (req, res, next) => {
 
@@ -17,8 +14,7 @@ exports.get_versions_elysius = async (req, res, next) => {
 
 exports.load = async (req, res, next) => {
 
-	await new Promise(r => setTimeout(r, 2000));
-
+	// await new Promise(r => setTimeout(r, 2000));
 	let retorno = await updatesService.get_update_files('elysius');
 	dados = await JSON.parse(retorno);
 
@@ -61,8 +57,13 @@ exports.get_files_especials_elysius = async (req, res, next) => {
 exports.create_replace = async (req, res, next) => {
 
 	try {
-		let registro = req.body;
-		let inserted = await updatesService.insert_update_file(registro);
+		let retorno = await updatesService.insert_update_file(
+			req.body.sistema,
+			req.body.nome,
+			req.body.versao,
+			req.body.isEspecial
+		);
+
 		res.status(200).send(retorno);
 	} catch (error) {
 		res.status(500).send('Erro ao consultar os dados.')
@@ -84,23 +85,6 @@ exports.upload = async (req, res) => {
 
 			//Use the mv() method to place the file in upload directory (i.e. "uploads")
 			await file.mv(dest_file);
-
-			console.log(await versionInfo(dest_file))
-
-			await fs.stat(dest_file, async (err, stats) => {
-				if (stats.isFile()) {
-					let productVersion = 'Sem Versão';
-					try {
-						console.log(await versionInfo(dest_file));
-						const info = await versionInfo(dest_file);
-						productVersion = info.ProductVersion.replace('.0.0.', '.0.');
-
-					} catch (error) {
-						productVersion = 'Sem Versão';
-					}
-					await updatesService.insert_update_file('elysius', file.name, productVersion, false);
-				}
-			});
 
 			//send response
 			res.send({

@@ -12,7 +12,7 @@ router.get('/elysius/arquivos/json', controller.get_files_versions_elysius);
 router.get('/elysius/especiais/json', controller.get_files_especials_elysius);
 
 // post
-router.post('/', controller.create_replace);
+router.post('/elysius', controller.create_replace);
 router.post('/elysius/arquivos', controller.upload);
 
 module.exports = router;

@@ -146,13 +146,54 @@
                 this.removeAllFiles();
                 this.addFile(file);
             },
-            init: function async () {
+            init: function async() {
                 this.hiddenFileInput.removeAttribute('multiple');
-                this.on("queuecomplete", function async (file, res) {
+                this.on("queuecomplete", function async(file, res) {
                     if (myDropzone.files[0].status != Dropzone.SUCCESS) {
                         alert('Erro ao fazer o upload!');
                     } else {
-                        window.location = '/updates/elysius/deploy';
+
+                        Swal.fire({
+                            title: 'Informe a versão do arquivo',
+                            input: 'text',
+                            inputAttributes: {
+                                autocapitalize: 'off'
+                            },
+                            showCancelButton: false,
+                            confirmButtonText: 'OK',
+                            showLoaderOnConfirm: true,
+                            preConfirm: (versao) => {
+                                var vData = {
+                                    sistema: 'elysius',
+                                    nome: myDropzone.files[0].name,
+                                    versao: versao,
+                                    isEspecial: false
+                                };
+                                console.log(vData)
+                                $.ajax({
+                                    type: 'POST', url: "/updates/elysius", data: vData
+                                })
+                                    .done(function (response) {
+                                        swal.fire({
+                                            title: response.mensagem, type: "success", timer: 1000
+                                        })
+                                            .then(function () {
+                                                location.reload();
+                                            });
+                                    })
+                                    .fail(function (response) {
+                                        swal.fire({
+                                            title: 'Erro ao inserir versão.', text: response.responseJSON, type: "error"
+                                        });
+                                    });
+                            },
+                            allowOutsideClick: () => !Swal.isLoading()
+                        }).then((result) => {
+                            if (result.value) {
+                                // window.location = '/updates/elysius/deploy';
+                            }
+                        })
+
                     }
                 });
             },
