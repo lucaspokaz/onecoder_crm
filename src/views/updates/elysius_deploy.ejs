@@ -77,11 +77,7 @@
                                                                     <%= moment(user.data_atualizacao).format('DD/MM/YYYY HH:mm')  %>
                                                                 </td>
                                                                 <td>
-                                                                    <% if (user.especial == 1) { %>
-                                                                        Sim
-                                                                    <% } else { %>
-                                                                        Não
-                                                                    <% } %>
+                                                                    <%- user.especial %>
                                                                 </td>
                                                             </tr>
                                                             <% }) %>
