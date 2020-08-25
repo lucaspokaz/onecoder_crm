@@ -31,16 +31,18 @@ exports.get_update_files_especials = async (sistema) => {
 	return retorno;
 }
 
-exports.insert_update_file = async (sistema, nome, versao, isEspecial) => {
+exports.insert_update_file = async (sistema, nome, versao) => {
 	try {
 		await this.delete_by_name(sistema, nome);
+
+		let especial = nome === 'update.exe' ? 1 : 0;
 
 		let user = {
 			sistema: sistema,
 			arquivo: nome,
 			versao: versao,
 			data_atualizacao: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
-			especial: isEspecial ? 1 : 0,
+			especial: especial,
 		}
 
 		let SQL_INSERT = 'insert into update_files set ?';

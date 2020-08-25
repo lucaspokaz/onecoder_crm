@@ -60,8 +60,7 @@ exports.create_replace = async (req, res, next) => {
 		let retorno = await updatesService.insert_update_file(
 			req.body.sistema,
 			req.body.nome,
-			req.body.versao,
-			req.body.isEspecial
+			req.body.versao
 		);
 
 		res.status(200).send(retorno);
