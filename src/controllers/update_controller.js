@@ -91,12 +91,13 @@ exports.upload = async (req, res) => {
 				if (stats.isFile()) {
 					let productVersion = 'Sem Versão';
 					try {
+						console.log(await versionInfo(dest_file));
 						const info = await versionInfo(dest_file);
 						productVersion = info.ProductVersion.replace('.0.0.', '.0.');
+
 					} catch (error) {
 						productVersion = 'Sem Versão';
 					}
-
 					await updatesService.insert_update_file('elysius', file.name, productVersion, false);
 				}
 			});
