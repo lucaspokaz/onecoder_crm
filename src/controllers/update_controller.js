@@ -65,7 +65,24 @@ exports.create_replace = async (req, res, next) => {
 
 		res.status(200).send(retorno);
 	} catch (error) {
-		res.status(500).send('Erro ao consultar os dados.')
+		res.status(500).send('Erro ao inserir os dados.')
+	}
+
+};
+
+exports.create_history = async (req, res, next) => {
+
+	try {
+		let retorno = await updatesService.insert_history(
+			req.body.ip,
+			req.body.computador,
+			req.body.arquivo,
+			req.body.sistema,
+		);
+
+		res.status(200).send(retorno);
+	} catch (error) {
+		res.status(500).send('Erro ao inserir os dados.')
 	}
 
 };

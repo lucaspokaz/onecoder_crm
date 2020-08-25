@@ -58,6 +58,7 @@
                                                                 <th>Arquivo</th>
                                                                 <th>Versão</th>
                                                                 <th>Data de Atualização</th>
+                                                                <th>Especial</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -74,6 +75,13 @@
                                                                 </td>
                                                                 <td>
                                                                     <%= moment(user.data_atualizacao).format('DD/MM/YYYY HH:mm')  %>
+                                                                </td>
+                                                                <td>
+                                                                    <% if (user.especial == 1) { %>
+                                                                        Sim
+                                                                    <% } else { %>
+                                                                        Não
+                                                                    <% } %>
                                                                 </td>
                                                             </tr>
                                                             <% }) %>

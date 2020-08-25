@@ -61,3 +61,30 @@ exports.insert_update_file = async (sistema, nome, versao) => {
 		}
 	}
 }
+
+exports.insert_history = async (ip, computador, arquivo, sistema) => {
+	try {
+		let user = {
+			ip,
+			computador,
+			arquivo,
+			sistema,
+			data_atualizacao: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+		}
+
+		let SQL_INSERT = 'insert into update_hist set ?';
+		let result_insert = await database.exec_promise(SQL_INSERT, user);
+
+		return {
+			status: 200,
+			mensagem: 'Salvo com sucesso.'
+		}
+
+	} catch (error) {
+		console.log(error);
+		return {
+			status: 400,
+			mensagem: error
+		}
+	}
+}
