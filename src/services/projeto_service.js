@@ -1,5 +1,4 @@
 const database = require('../../config/database');
-const moment = require('moment');
 const formatter = require('../utils/formatter');
 
 exports.get_all = () => {

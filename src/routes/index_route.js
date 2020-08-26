@@ -4,10 +4,9 @@ const auth = require('../../config/auth');
 const tarefasService = require('../services/tarefa_service');
 const andamentosService = require('../services/andamento_service')
 const moment = require('moment');
+moment.locale('pt-br');
 
 const package_json = require('../../package.json');
-
-moment.locale('pt-br');
 
 router.get('/', auth.loggedIn, async function (req, res, next) {
 

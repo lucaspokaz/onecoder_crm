@@ -1,5 +1,6 @@
 const leftPad = require('left-pad');
 const moment = require('moment');
+moment.locale('pt-br');
 
 /* Função que coloca zeros à esqueda */
 exports.zero_esquerda = (str, size) => {

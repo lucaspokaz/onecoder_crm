@@ -3,6 +3,8 @@ const andamentosService = require('./andamento_service');
 const loginService = require('./login_service');
 const tiposAtendimentoService = require('./tipoatendimento_service');
 const moment = require('moment');
+moment.locale('pt-br');
+
 const mail = require('../utils/mail');
 
 exports.get_by_id = async (IdAtendimento) => {

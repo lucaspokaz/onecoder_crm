@@ -1,5 +1,6 @@
 const database = require('../../config/database');
 const moment = require('moment');
+moment.locale('pt-br');
 
 exports.get_versions = async (sistema) => {
 	let SQL = `SELECT * FROM mensagem where tipo= lower('${sistema}') order by data desc, id_mensagem desc`;

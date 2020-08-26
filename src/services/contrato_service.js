@@ -1,6 +1,6 @@
 const database = require('../../config/database');
 const moment = require('moment');
-
+moment.locale('pt-br');
 
 exports.get_contract_by_id = (idContrato) => {
     let SQL = `select contrato.*, cliente.nome from contrato

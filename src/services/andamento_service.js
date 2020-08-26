@@ -1,5 +1,6 @@
 const database = require('../../config/database');
 const moment = require('moment');
+moment.locale('pt-br');
 
 const tarefasService = require('./tarefa_service');
 const loginService = require('./login_service');
