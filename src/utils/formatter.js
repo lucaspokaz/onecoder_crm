@@ -1,6 +1,5 @@
 const leftPad = require('left-pad');
-const moment = require('moment');
-moment.locale('pt-br');
+const moment = require('moment-timezone');
 
 /* Função que coloca zeros à esqueda */
 exports.zero_esquerda = (str, size) => {
@@ -102,4 +101,8 @@ exports.validarDataNull = (data) => {
         v = null
     }
     return v;
+}
+
+exports.data_atual = () => {
+    return moment(new Date()).tz('America/Sao_Paulo').format('YYYY-MM-DD HH:mm:ss')
 }

@@ -1,7 +1,5 @@
 const database = require('../../config/database');
-const moment = require('moment');
-moment.locale('pt-br');
-
+const utils = require('../utils/formatter');
 const tarefasService = require('./tarefa_service');
 const loginService = require('./login_service');
 
@@ -63,7 +61,7 @@ exports.edit_progress_return = async (IdAndamento, IdAtendimento, IdDepartamento
 
         let andamento = {
             id_atendimento: IdAtendimento,
-            data_inicio: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+            data_inicio: utils.data_atual(),
             observacao: 'Retornado para fila de atendimento.',
             id_departamento: IdDepartamento,
             id_usuario_andamento: IdUsuario
@@ -84,7 +82,7 @@ exports.send_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuario
 
         let andamento = {
             id_atendimento: IdAtendimento,
-            data_inicio: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+            data_inicio: utils.data_atual(),
             observacao: Observacao,
             id_departamento: IdDepartamento,
             id_usuario_andamento: IdUsuario
@@ -113,7 +111,7 @@ exports.finish_task = async (IdAndamento, IdAtendimento, IdDepartamento, IdUsuar
         // novo andamento
         let andamento = {
             id_atendimento: IdAtendimento,
-            data_inicio: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+            data_inicio: utils.data_atual(),
             observacao: 'Concluído pelo ' + usuario.nome,
             id_departamento: IdDepartamento,
             id_usuario_andamento: IdUsuario

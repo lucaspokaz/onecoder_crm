@@ -10,8 +10,7 @@ let dados_cliente;
 let dados_projeto;
 let dados_tipo;
 
-var moment = require('moment');
-moment.locale('pt-br');
+const moment = require('moment-timezone');
 
 exports.list_pending = async (req, res, next) => {
 

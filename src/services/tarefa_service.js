@@ -2,8 +2,7 @@ const database = require('../../config/database');
 const andamentosService = require('./andamento_service');
 const loginService = require('./login_service');
 const tiposAtendimentoService = require('./tipoatendimento_service');
-const moment = require('moment');
-moment.locale('pt-br');
+const utils = require('../utils/formatter');
 
 const mail = require('../utils/mail');
 
@@ -285,7 +284,7 @@ exports.get_tasks_by_month = (ano, mes) => {
 exports.insert = async (req, res) => {
 
     try {
-        let l_data_inicio = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+        let l_data_inicio = utils.data_atual();
 
         let tipos = await tiposAtendimentoService.get_by_id(req.body.tipo);
         dados_tipo = JSON.parse(tipos);
@@ -402,7 +401,7 @@ exports.edit_task_status_with_comment = (IdAtendimento, Status, Conclusao) => {
 
 exports.anexar_arquivo = async (IdAtendimento, Descricao, Caminho, Tamanho) => {
 
-    let l_data_inicio = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+    let l_data_inicio = utils.data_atual();
 
     var user = {
         id_atendimento: IdAtendimento,

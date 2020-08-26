@@ -1,7 +1,6 @@
 const service = require('../services/vendasService');
 const formatter = require('../utils/formatter');
-const moment = require('moment');
-moment.locale('pt-br');
+const moment = require('moment-timezone');
 
 exports.listAll = async (req, res, next) => {
     let results = await service.getVendas();

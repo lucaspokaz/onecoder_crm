@@ -1,6 +1,6 @@
 const updatesService = require('../services/update_service');
 const moment = require('moment-timezone');
-moment.locale('pt-br');
+const utils = require('../utils/formatter');
 
 exports.get_versions_elysius = async (req, res, next) => {
 
@@ -36,7 +36,7 @@ exports.get_files_versions_elysius = async (req, res, next) => {
 	let dados = await JSON.parse(retorno);
 
 
-	console.log( moment( new Date() ).tz('America/Sao_Paulo').format('YYYY-MM-DD HH:mm:ss') );
+	console.log(utils.data_atual());
 
 	try {
 		res.status(200).send(dados)

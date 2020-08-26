@@ -1,6 +1,5 @@
 const database = require('../../config/database');
-const moment = require('moment');
-moment.locale('pt-br');
+const utils = require('../utils/formatter');
 
 exports.get_versions = async (sistema) => {
 	let SQL = `SELECT * FROM mensagem where tipo= lower('${sistema}') order by data desc, id_mensagem desc`;
@@ -42,7 +41,7 @@ exports.insert_update_file = async (sistema, nome, versao) => {
 			sistema: sistema,
 			arquivo: nome,
 			versao: versao,
-			data_atualizacao: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+			data_atualizacao: utils.data_atual(),
 			especial: especial,
 		}
 
@@ -70,7 +69,7 @@ exports.insert_history = async (ip, computador, arquivo, sistema, cnpj) => {
 			computador,
 			arquivo,
 			sistema,
-			data_atualizacao: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+			data_atualizacao: utils.data_atual(),
 			cnpj,
 		}
 

@@ -3,9 +3,7 @@ const router = express.Router();
 const auth = require('../../config/auth');
 const tarefasService = require('../services/tarefa_service');
 const andamentosService = require('../services/andamento_service')
-const moment = require('moment');
-moment.locale('pt-br');
-
+const moment = require('moment-timezone');
 const package_json = require('../../package.json');
 
 router.get('/', auth.loggedIn, async function (req, res, next) {
