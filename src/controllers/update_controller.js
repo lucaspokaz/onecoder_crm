@@ -78,6 +78,7 @@ exports.create_history = async (req, res, next) => {
 			req.body.computador,
 			req.body.arquivo,
 			req.body.sistema,
+			req.body.nome,
 		);
 
 		res.status(200).send(retorno);
