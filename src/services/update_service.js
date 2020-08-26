@@ -62,7 +62,7 @@ exports.insert_update_file = async (sistema, nome, versao) => {
 	}
 }
 
-exports.insert_history = async (ip, computador, arquivo, sistema, nome) => {
+exports.insert_history = async (ip, computador, arquivo, sistema, cnpj) => {
 	try {
 		let user = {
 			ip,
@@ -70,7 +70,7 @@ exports.insert_history = async (ip, computador, arquivo, sistema, nome) => {
 			arquivo,
 			sistema,
 			data_atualizacao: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
-			nome,
+			cnpj,
 		}
 
 		let SQL_INSERT = 'insert into update_hist set ?';
