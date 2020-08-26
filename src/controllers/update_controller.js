@@ -35,7 +35,8 @@ exports.get_files_versions_elysius = async (req, res, next) => {
 	let retorno = await updatesService.get_update_files('elysius');
 	let dados = await JSON.parse(retorno);
 
-	console.log( Date.now() );
+
+	console.log( moment( new Date() ).format('YYYY-MM-DD HH:mm:ss') );
 
 	try {
 		res.status(200).send(dados)
