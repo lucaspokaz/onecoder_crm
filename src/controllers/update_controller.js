@@ -1,4 +1,6 @@
 const updatesService = require('../services/update_service');
+const moment = require('moment');
+moment.locale('pt-br');
 
 exports.get_versions_elysius = async (req, res, next) => {
 
@@ -32,6 +34,8 @@ exports.get_files_versions_elysius = async (req, res, next) => {
 
 	let retorno = await updatesService.get_update_files('elysius');
 	let dados = await JSON.parse(retorno);
+
+	console.log( moment(Date.now()).format('YYYY-MM-DD HH:mm:ss') );
 
 	try {
 		res.status(200).send(dados)
