@@ -45,3 +45,34 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	overflow: hidden;
 	outline: 0;
 }
+
+.header-navbar .navbar-header .navbar-brand .brand-logo {
+	width: 100%;
+	padding-top: 6px;
+}
+
+body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-header {
+	white-space: nowrap;
+	background: url('/app-assets/images/logo/logo-crm-onecoder.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	background-color: white;
+}
+
+body.vertical-layout.vertical-menu.menu-collapsed .navbar .navbar-header {
+	white-space: nowrap;
+	background: url('/app-assets/images/logo/logo-crm-onecoder-small.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: inherit;
+	background-color: white;
+}
+
+img {
+	vertical-align: middle;
+	border-style: none;
+	width: 100%;
+	height: auto;
+	max-width: 260px;
+}
