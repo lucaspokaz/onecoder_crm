@@ -1,6 +1,6 @@
 {
   "name": "onecoder-crm",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Onecoder CRM",
   "main": "app.js",
   "dependencies": {
