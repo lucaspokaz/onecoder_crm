@@ -62,9 +62,9 @@
                                                                 <th>Código</th>
                                                                 <th>Nome</th>
                                                                 <th>CNPJ</th>
-                                                                <th>Fone</th>
                                                                 <th>UF</th>
                                                                 <th>Cidade</th>
+                                                                <th>Data de Registro</th>
                                                                 <th>Situação</th>
                                                             </tr>
                                                         </thead>
@@ -83,13 +83,13 @@
                                                                         <%= formatter.format_cnpj(user.cnpj) %>
                                                                     </td>
                                                                     <td>
-                                                                        <%= formatter.format_fone(user.fone1) %>
-                                                                    </td>
-                                                                    <td>
                                                                         <%= user.uf %>
                                                                     </td>
                                                                     <td>
                                                                         <%= user.cidade %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= formatter.exibirDataNull(user.dt_registro) %>
                                                                     </td>
                                                                     <td>
                                                                         <% if (user.ativo == 0) { %> <span class="badge badge-danger">Inativo <% } %>
