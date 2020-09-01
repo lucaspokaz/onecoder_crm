@@ -58,7 +58,7 @@ exports.insert = async (cliente) => {
 
 	try {
 		let SQL_INSERT = 'insert into cliente set ?';
-		let result_insert = await database.exec_promise(SQL_INSERT, user, 'Insert cliente');
+		let result_insert = await database.exec_promise(SQL_INSERT, cliente, 'Insert cliente');
 		let id_inserido = result_insert.insertId;
 
 		return {
