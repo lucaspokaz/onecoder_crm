@@ -20,6 +20,20 @@ exports.list = async (req, res, next) => {
 	});
 };
 
+exports.list_registrados = async (req, res, next) => {
+
+	let results = await clientesService.get_clients_registereds();
+	let dados = JSON.parse(results);
+
+	res.render('clientes/registrados', {
+		session: req.session,
+		menu: 'lista_cliente_registrados',
+		data: dados,
+		moment: require('moment'),
+		formatter: require('../utils/formatter')
+	});
+};
+
 exports.load = async (req, res, next) => {
 
 	if ((req.params.id) && (req.params.id > 0)) {

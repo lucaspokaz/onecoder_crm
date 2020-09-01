@@ -14,7 +14,18 @@ exports.get_client_by_cnpj = (cnpj) => {
 
 exports.get_clients = () => {
 
-	let SQL = `select * from cliente
+	let SQL = ` select * from cliente
+	              where ativo <> 3
+                order by nome asc`;
+
+	let retorno = database.exec_promise_json(SQL, [], 'Clientes');
+	return retorno;
+}
+
+exports.get_clients_registereds = () => {
+
+	let SQL = ` select * from cliente
+	             where ativo = 3
                 order by nome asc`;
 
 	let retorno = database.exec_promise_json(SQL, [], 'Clientes');
