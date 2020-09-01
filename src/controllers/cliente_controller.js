@@ -5,6 +5,7 @@ const contratosService = require('../services/contrato_service');
 const loginService = require('../services/login_service');
 const config = require('../../config/configuration');
 const mail = require('../utils/mail');
+const { data_atual } = require('../utils/formatter');
 
 exports.list = async (req, res, next) => {
 
@@ -240,6 +241,7 @@ exports.register = async (req, res, next) => {
 			fone2: fone2_formatado,
 			ibge: req.body.ibge,
 			observacoes: 'Criado pela aplicação de registro.',
+			dt_registro: await data_atual()
 		}
 
 		let retorno = await clientesService.insert(cliente);
