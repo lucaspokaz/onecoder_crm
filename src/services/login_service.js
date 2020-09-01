@@ -2,18 +2,18 @@ const database = require('../../config/database');
 
 exports.getUsuarioAutenticado = async (login, senha) => {
 
-    let SQL = ` select id_usuario, nome, email from usuario where email = '${login}' and senha = '${senha}' `;
+  let SQL = ` select id_usuario, nome, email from usuario where email = '${login}' and senha = '${senha}' `;
 
-    let results = await database.exec_promise(SQL, [], 'Autenticação');
+  let results = await database.exec_promise(SQL, [], 'Autenticação');
 
-    return JSON.stringify(results);
+  return JSON.stringify(results);
 }
 
 exports.get_usuario = async (IdUsuario) => {
 
-    let SQL = ` select id_usuario, nome, email from usuario where id_usuario = ${IdUsuario} `;
-    let results = await database.exec_promise(SQL, [], 'Usuario');
-    return JSON.stringify(results[0]);
+  let SQL = ` select id_usuario, nome, email from usuario where id_usuario = ${IdUsuario} `;
+  let results = await database.exec_promise(SQL, [], 'Usuario');
+  return JSON.stringify(results[0]);
 
 }
 
@@ -27,7 +27,7 @@ exports.get_users = async (IdUsuario) => {
 
 exports.get_emails_notificacao = async (IdUsuario, IdDepto) => {
 
-    let SQL = ` select
+  let SQL = ` select
                     distinct email, usuario.nome, notificar_andamento
                   from
                     departamento_usuario
@@ -37,7 +37,7 @@ exports.get_emails_notificacao = async (IdUsuario, IdDepto) => {
                  where
                     departamento_usuario.id_departamento = ${IdDepto} `;
 
-    let results = await database.exec_promise(SQL, [], 'Emails Notificação');
-    return JSON.stringify(results);
+  let results = await database.exec_promise(SQL, [], 'Emails Notificação');
+  return JSON.stringify(results);
 
 }

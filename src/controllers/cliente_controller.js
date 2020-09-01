@@ -4,6 +4,7 @@ const tarefasService = require('../services/tarefa_service');
 const contratosService = require('../services/contrato_service');
 const loginService = require('../services/login_service');
 const config = require('../../config/configuration');
+const mail = require('../utils/mail');
 
 exports.list = async (req, res, next) => {
 
@@ -228,9 +229,34 @@ exports.register = async (req, res, next) => {
 		}
 
 		let retorno = await clientesService.insert(cliente);
+
+		let emails = await loginService.get_emails_notificacao(3, 2); // Lucas / Desenvolvimento
+		dados_email = JSON.parse(emails);
+
+		let texto_email =
+				'<p>Olá, temos um novo cliente registrado.</p>' +
+				'<p>Cliente: <strong>' + cliente.nome + '</strong> </p>' +
+				'</br></br>' +
+				'<p>Cliente registrado pela plataforma de registro.' + ' </p>' +
+				'</br></br>' +
+				'<p>Atenciosamente,</p>' +
+				'<p>Equipe Onecoder</p>' +
+				'</br>' +
+				'-' +
+				'<p>Esse é um e-mail automático. Por favor, não responda.</p>';
+
+		for (let item in dados_email) {
+				mail.send(
+						dados_email[item].email,
+						'[CRM] Novo cliente: ' + cliente.nome,
+						texto_email
+				);
+		}
+
 		res.status(200).send(retorno);
 
 	} catch (error) {
+		console.log(error)
 		res.status(500).send('Erro ao inserir os dados.');
 	}
 };
