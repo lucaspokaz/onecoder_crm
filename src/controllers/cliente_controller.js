@@ -191,6 +191,8 @@ exports.get_by_cnpj = async (req, res, next) => {
 exports.register = async (req, res, next) => {
 
 	try {
+		console.log(req.body)
+
 		let cnpj_formatado = req.body.cnpj;
 		cnpj_formatado = cnpj_formatado.split('.').join('');
 		cnpj_formatado = cnpj_formatado.split('/').join('');
