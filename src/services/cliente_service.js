@@ -54,46 +54,9 @@ exports.get_client_owners = (idCliente) => {
 	return retorno;
 }
 
-exports.insert = async (req, res) => {
+exports.insert = async (cliente) => {
 
 	try {
-		let cnpj_formatado = req.body.cnpj;
-		cnpj_formatado = cnpj_formatado.split('.').join('');
-		cnpj_formatado = cnpj_formatado.split('/').join('');
-		cnpj_formatado = cnpj_formatado.split('-').join('');
-
-		let fone1_formatado = req.body.fone1;
-		fone1_formatado = fone1_formatado.split('.').join('');
-		fone1_formatado = fone1_formatado.split('/').join('');
-		fone1_formatado = fone1_formatado.split('-').join('');
-
-		let fone2_formatado = req.body.fone2;
-		fone2_formatado = fone2_formatado.split('.').join('');
-		fone2_formatado = fone2_formatado.split('/').join('');
-		fone2_formatado = fone2_formatado.split('-').join('');
-
-		var user = {
-			id_cliente: req.params.id,
-			nome: req.body.nome,
-			cnpj: cnpj_formatado,
-			ativo: req.body.ativo,
-			email: req.body.email,
-			contato: req.body.contato,
-			fantasia: req.body.fantasia,
-			razao: req.body.razao,
-			cep: req.body.cep,
-			uf: req.body.uf,
-			cidade: req.body.cidade,
-			bairro: req.body.bairro,
-			logradouro: req.body.logradouro,
-			numero: req.body.numero,
-			fone1: fone1_formatado,
-			fone2: fone2_formatado,
-			ibge: req.body.ibge,
-			observacoes: '',
-			complemento: req.body.complemento
-		}
-
 		let SQL_INSERT = 'insert into cliente set ?';
 		let result_insert = await database.exec_promise(SQL_INSERT, user, 'Insert cliente');
 		let id_inserido = result_insert.insertId;
