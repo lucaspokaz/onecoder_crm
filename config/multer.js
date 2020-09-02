@@ -9,14 +9,12 @@ module.exports = {
       callback(null, path.resolve(__dirname, '..', 'uploads'));
     },
     filename: (req, file, callback) => {
-
       crypto.randomBytes(16, (err, hash) => {
         if (err) callback(err);
-
-        const fileName = `${hash.toString('hex')}-${file.originalname}`;
+        console.log(file)
+        const fileName = `${hash.toString('hex')}-${file.filename}`;
         callback(null, fileName);
       })
-
     },
   }),
   limits: {
