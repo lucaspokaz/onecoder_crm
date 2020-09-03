@@ -1,82 +1,87 @@
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
+<% const v = locals.version_app; %>
 
-    <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light navbar-border navbar-shadow">
-        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
-            <span class="float-md-left d-block d-md-inline-block">
-                Onecoder Tecnologia
-            </span>
-            <span class="float-md-right d-none d-lg-block">
-                Versão:
-                <% if (locals.session) { %>
-                    <a class="text-bold-800 grey darken-2" href="/" target="_blank"><%- locals.session.versao_sistema; %></a>
-                <% } %>
-            </span>
-        </p>
-    </footer>
-    <!-- END: Footer-->
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
 
-    <!-- BEGIN: Vendor JS-->
-    <script src="/app-assets/vendors/js/vendors.min.js"></script>
-    <script src="/app-assets/vendors/js/pagination/jquery.bootpag.min.js"></script>
-    <script src="/app-assets/vendors/js/pagination/jquery.twbsPagination.min.js"></script>
-    <script src="/app-assets/vendors/js/pagination/moment.min.js"></script>
-    <script src="/app-assets/vendors/js/pagination/datepicker.js"></script>
-    <!-- BEGIN Vendor JS-->
+<!-- BEGIN: Footer-->
+<footer class="footer footer-static footer-light navbar-border navbar-shadow">
+    <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+        <span class="float-md-left d-block d-md-inline-block">
+            Onecoder Tecnologia
+        </span>
+        <span class="float-md-right d-none d-lg-block">
+            Versão:
+            <% if (locals.session) { %>
+            <a class="text-bold-800 grey darken-2" href="/" target="_blank"><%- locals.version_app; %></a>
+            <% } %>
+        </span>
+    </p>
+</footer>
+<!-- END: Footer-->
 
-    <script src="/app-assets/vendors/js/pickers/pickadate/picker.js"></script>
-    <script src="/app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>
-    <script src="/app-assets/vendors/js/pickers/pickadate/picker.time.js"></script>
-    <script src="/app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
-    <script src="/app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js"></script>
-    <script src="/app-assets/vendors/js/pickers/daterange/daterangepicker.js"></script>
+<!-- BEGIN: Vendor JS-->
+<script src="/app-assets/vendors/js/vendors.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pagination/jquery.bootpag.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pagination/jquery.twbsPagination.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pagination/moment.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pagination/datepicker.js?v=<%- v %>"></script>
+<!-- BEGIN Vendor JS-->
 
-
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="/app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js"></script>
-    <script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js"></script>
-    <script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
-    <script src="/app-assets/js/core/app-menu.js"></script>
-    <script src="/app-assets/js/core/app.js"></script>
-    <!-- END: Theme JS-->
-
-    <script src="/app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>
-
-    <script src="/app-assets/vendors/js/forms/select/select2.min.js"></script>
-    <script src="/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
-    <script src="/app-assets/js/scripts/forms/select/form-select2.js"></script>
+<script src="/app-assets/vendors/js/pickers/pickadate/picker.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pickers/pickadate/picker.date.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pickers/pickadate/picker.time.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pickers/pickadate/legacy.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/pickers/daterange/daterangepicker.js?v=<%- v %>"></script>
 
 
+<!-- BEGIN: Page Vendor JS-->
+<script src="/app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js?v=<%- v %>"></script>
+<!-- END: Page Vendor JS-->
 
-    <script src="/app-assets/vendors/js/tables/jquery.dataTables.min.js"></script>
-    <script src="/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
-    <script src="/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
+<!-- BEGIN: Theme JS-->
+<script src="/app-assets/js/core/app-menu.js?v=<%- v %>"></script>
+<script src="/app-assets/js/core/app.js?v=<%- v %>"></script>
+<!-- END: Theme JS-->
 
-    <script src="/app-assets/js/scripts/modal/components-modal.js"></script>
+<script src="/app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js?v=<%- v %>"></script>
 
-     <!--Sweet Alert 2 -->
-    <script src="/app-assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="/app-assets/vendors/js/forms/select/select2.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/forms/select/select2.full.min.js?v=<%- v %>"></script>
+<script src="/app-assets/js/scripts/forms/select/form-select2.js?v=<%- v %>"></script>
 
-    <script src="/assets/js/jasny/jasny-bootstrap.min.js"></script>
 
-    <script src="/app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
-    <script src="/app-assets/js/scripts/forms/checkbox-radio.js"></script>
 
-    <script type="text/javascript" src="/app-assets/plugins/datapicker/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="/app-assets/plugins/datapicker/locales/bootstrap-datepicker.pt-BR.js"></script>
+<script src="/app-assets/vendors/js/tables/jquery.dataTables.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js?v=<%- v %>"></script>
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="/app-assets/vendors/js/extensions/toastr.min.js"></script>
-    <script src="/app-assets/js/scripts/extensions/toastr.js"></script>
-    <!-- END: Page JS-->
+<script src="/app-assets/js/scripts/modal/components-modal.js?v=<%- v %>"></script>
 
-    <script src="/app-assets/js/scripts/popover/popover.js"></script>
+<!--Sweet Alert 2 -->
+<script src="/app-assets/plugins/sweetalert2/sweetalert2.all.min.js?v=<%- v %>"></script>
 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+<script src="/assets/js/jasny/jasny-bootstrap.min.js?v=<%- v %>"></script>
 
-     <script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe.js"></script>
-     <script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js"></script>
+<script src="/app-assets/vendors/js/forms/icheck/icheck.min.js?v=<%- v %>"></script>
+<script src="/app-assets/js/scripts/forms/checkbox-radio.js?v=<%- v %>"></script>
+
+<script type="text/javascript" src="/app-assets/plugins/datapicker/js/bootstrap-datepicker.js?v=<%- v %>"></script>
+<script type="text/javascript" src="/app-assets/plugins/datapicker/locales/bootstrap-datepicker.pt-BR.js?v=<%- v %>"></script>
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="/app-assets/vendors/js/extensions/toastr.min.js?v=<%- v %>"></script>
+<script src="/app-assets/js/scripts/extensions/toastr.js?v=<%- v %>"></script>
+<!-- END: Page JS-->
+
+<script src="/app-assets/js/scripts/popover/popover.js?v=<%- v %>"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js?v=<%- v %>"></script>
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="/app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe.js?v=<%- v %>"></script>
+<script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.js?v=<%- v %>"></script>
+<!-- END: Page Vendor JS-->

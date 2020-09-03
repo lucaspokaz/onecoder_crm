@@ -281,7 +281,13 @@ exports.finish_task = async (req, res, next) => {
 exports.anexar = async (req, res, next) => {
 
     if ((req.params.id) && (req.params.id > 0)) {
-        let retorno = await tarefasService.anexar_arquivo(req.params.id, req.file.originalname, req.file.filename, req.file.size);
+
+        let file = req.files.file;
+        let dest_file = 'uploads/' + req.params.id + '/' + file.name;
+        let caminho = '/uploads/' + req.params.id + '/' + file.name;
+        await file.mv(dest_file);
+
+        let retorno = await tarefasService.anexar_arquivo(req.params.id, file.name, caminho, file.size);
         if (retorno.status == 200) {
             return res.status(200).send(retorno);
         } else {

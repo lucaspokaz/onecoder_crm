@@ -53,6 +53,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 //Global variables
 app.use(function (req, res, next) {
+    res.locals.version_app = require('./package.json').version;
     res.locals.success_msg = req.flash('success');
     res.locals.error_msg = req.flash('error');
     res.locals.alert_msg = req.flash('alert');
