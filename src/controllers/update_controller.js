@@ -14,6 +14,18 @@ exports.get_versions_elysius = async (req, res, next) => {
 
 };
 
+exports.get_versions_siembra = async (req, res, next) => {
+
+	let retorno = await updatesService.get_versions('siembra');
+	let dados = await JSON.parse(retorno);
+
+	res.render('updates/siembra', {
+		data: dados,
+		moment: require('moment')
+	});
+
+};
+
 exports.load = async (req, res, next) => {
 
 	// await new Promise(r => setTimeout(r, 2000));
@@ -30,33 +42,62 @@ exports.load = async (req, res, next) => {
 
 };
 
-exports.get_files_versions_elysius = async (req, res, next) => {
+exports.load_siembra = async (req, res, next) => {
 
-	let retorno = await updatesService.get_update_files('elysius');
-	let dados = await JSON.parse(retorno);
+	// await new Promise(r => setTimeout(r, 2000));
+	let retorno = await updatesService.get_update_files('siembra');
+	dados = await JSON.parse(retorno);
 
-
-	console.log(utils.data_atual());
-
-	try {
-		res.status(200).send(dados)
-	} catch (error) {
-		res.status(500).send('Erro ao consultar os dados.')
-	}
+	res.render('updates/siembra_deploy', {
+		session: req.session,
+		menu: 'lista_updates',
+		formatter: require('../utils/formatter'),
+		data: dados,
+		moment: require('moment')
+	});
 
 };
 
-exports.get_files_especials_elysius = async (req, res, next) => {
-
-	let retorno = await updatesService.get_update_files_especials('elysius');
+exports.get_files_versions_elysius = async (req, res, next) => {
+	let retorno = await updatesService.get_update_files('elysius');
 	let dados = await JSON.parse(retorno);
-
+	console.log(utils.data_atual());
 	try {
 		res.status(200).send(dados)
 	} catch (error) {
 		res.status(500).send('Erro ao consultar os dados.')
 	}
+};
 
+exports.get_files_versions_siembra = async (req, res, next) => {
+	let retorno = await updatesService.get_update_files('siembra');
+	let dados = await JSON.parse(retorno);
+	console.log(utils.data_atual());
+	try {
+		res.status(200).send(dados)
+	} catch (error) {
+		res.status(500).send('Erro ao consultar os dados.')
+	}
+};
+
+exports.get_files_especials_elysius = async (req, res, next) => {
+	let retorno = await updatesService.get_update_files_especials('elysius');
+	let dados = await JSON.parse(retorno);
+	try {
+		res.status(200).send(dados)
+	} catch (error) {
+		res.status(500).send('Erro ao consultar os dados.')
+	}
+};
+
+exports.get_files_especials_siembra = async (req, res, next) => {
+	let retorno = await updatesService.get_update_files_especials('siembra');
+	let dados = await JSON.parse(retorno);
+	try {
+		res.status(200).send(dados)
+	} catch (error) {
+		res.status(500).send('Erro ao consultar os dados.')
+	}
 };
 
 exports.create_replace = async (req, res, next) => {
