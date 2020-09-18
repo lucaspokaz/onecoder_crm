@@ -20,10 +20,10 @@ router.get('/siembra/especiais/json', controller.get_files_especials_siembra);
 // post
 router.post('/elysius', controller.create_replace);
 router.post('/elysius/historico', auth.isValid, controller.create_history);
-router.post('/elysius/arquivos', controller.upload);
+router.post('/elysius/arquivos', controller.upload_elysius);
 
 router.post('/siembra', controller.create_replace);
 router.post('/siembra/historico', auth.isValid, controller.create_history);
-router.post('/siembra/arquivos', controller.upload);
+router.post('/siembra/arquivos', controller.upload_siembra);
 
 module.exports = router;

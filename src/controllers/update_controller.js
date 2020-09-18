@@ -134,7 +134,7 @@ exports.create_history = async (req, res, next) => {
 
 };
 
-exports.upload = async (req, res) => {
+exports.upload_elysius = async (req, res) => {
 
 	try {
 
@@ -145,6 +145,33 @@ exports.upload = async (req, res) => {
 			//Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
 			let file = req.files.file;
 			let dest_file = '../../public_html/downloads/elysius/' + file.name;
+
+			//Use the mv() method to place the file in upload directory (i.e. "uploads")
+			await file.mv(dest_file);
+
+			//send response
+			res.send({
+				status: true, message: 'Atualizado com sucesso',
+				data: { name: file.name, mimetype: file.mimetype, size: file.size }
+			});
+		}
+	} catch (err) {
+		res.status(500).send(err);
+	}
+
+};
+
+exports.upload_siembra = async (req, res) => {
+
+	try {
+
+		if (!req.files) {
+			res.send({ status: false, message: 'Erro ao atualizar' });
+		} else {
+
+			//Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
+			let file = req.files.file;
+			let dest_file = '../../public_html/downloads/siembra/' + file.name;
 
 			//Use the mv() method to place the file in upload directory (i.e. "uploads")
 			await file.mv(dest_file);
