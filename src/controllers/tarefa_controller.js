@@ -138,7 +138,7 @@ exports.create = async (req, res, next) => {
 
         req.flash('success', inserted.statusMessage);
         res.locals.message = req.flash();
-        res.redirect('/tarefas/acompanhamento/minhas');
+        res.redirect('/tarefas/editar/' + inserted.id_inserido);
 
     } else {
 

@@ -339,6 +339,7 @@ exports.insert = async (req, res) => {
 
         return {
             status: 200,
+            id_inserido: id_inserido,
             mensagem: 'Salvo com sucesso.'
         }
 
