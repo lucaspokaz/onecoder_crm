@@ -1,0 +1,208 @@
+<% include ../default/header.ejs %>
+
+<body class="vertical-layout vertical-menu content-detached-left-sidebar fixed-navbar" data-open="click"
+    data-menu="vertical-menu" data-col="content-detached-left-sidebar">
+
+    <% include ../default/navbar.ejs %>
+
+    <% include ../default/menu.ejs %>
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <% include ../default/messages.ejs %>
+
+            <div class="content-body">
+
+                <div class="content-header row mb-1">
+                    <div class="content-header-left col-md-12 mb-2">
+                        <h3 class="content-header-title">Deploys</h3>
+                        <div class="row breadcrumbs-top">
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/index">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item active"> NFácil
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+
+                                        <div class="card-header">
+                                            <h4 class="card-title">Arquivos</h4>
+                                            <a class="heading-elements-toggle"><i
+                                                    class="la la-ellipsis-h font-medium-3"></i></a>
+                                        </div>
+
+                                        <div class="card-content collapse show">
+                                            <div class="card-body">
+                                                <% if (data.length > 0) { %>
+
+                                                <div class="table-responsive">
+                                                    <table
+                                                        class="table table-hover dataTables-example dataTables_filter"
+                                                        id="mytable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Código</th>
+                                                                <th>Arquivo</th>
+                                                                <th>Versão</th>
+                                                                <th>Data de Atualização</th>
+                                                                <th>Especial</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% data.forEach(function(user){ %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%- user.id_update_files %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- user.arquivo %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- user.versao %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= moment(user.data_atualizacao).format('DD/MM/YYYY HH:mm')  %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- user.especial %>
+                                                                </td>
+                                                            </tr>
+                                                            <% }) %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <% } else { %>
+
+                                                <p class="text-center text-muted">Nenhum registro encontrado!</p>
+
+                                                <% } %>
+
+                                                <div class="card-header">
+                                                    <form id="arquivo" method="post" name="arquivo"
+                                                        action="/updates/nfacil/arquivos" class="dropzone">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <% include ../default/footer.ejs %>
+
+    <script>
+        $(document).ready(function () {
+
+            var dataTable = $('.dataTables-example').DataTable({
+                lengthMenu: [[200, 300, -1], [200, 300, "All"]],
+                bPaginate: false,
+                bProcessing: true,
+                bLengthChange: false,
+                bInfo: false,
+                bFilter: true,
+                responsive: false,
+                rowReorder: false,
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [],
+                order: [[1, "asc"]],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Pesquisar...",
+                    paginate: {
+                        previous: "Anterior",
+                        next: "Próximo"
+                    }
+                }
+            });
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone(".dropzone", {
+            dictDefaultMessage: "Arraste para cá os arquivos de atualização.",
+            maxFiles: 1,
+            maxfilesexceeded: function (file) {
+                this.removeAllFiles();
+                this.addFile(file);
+            },
+            init: function async() {
+                this.hiddenFileInput.removeAttribute('multiple');
+                this.on("queuecomplete", function async(file, res) {
+                    if (myDropzone.files[0].status != Dropzone.SUCCESS) {
+                        alert('Erro ao fazer o upload!');
+                    } else {
+
+                        Swal.fire({
+                            title: 'Informe a versão do arquivo',
+                            input: 'text',
+                            inputAttributes: {
+                                autocapitalize: 'off'
+                            },
+                            showCancelButton: false,
+                            confirmButtonText: 'OK',
+                            showLoaderOnConfirm: true,
+                            preConfirm: (versao) => {
+                                var vData = {
+                                    sistema: 'siembra',
+                                    nome: myDropzone.files[0].name,
+                                    versao: versao
+                                };
+                                console.log(vData)
+                                $.ajax({
+                                    type: 'POST', url: "/updates/siembra", data: vData
+                                })
+                                    .done(function (response) {
+                                        swal.fire({
+                                            title: response.mensagem, type: "success", timer: 1000
+                                        })
+                                            .then(function () {
+                                                location.reload();
+                                            });
+                                    })
+                                    .fail(function (response) {
+                                        swal.fire({
+                                            title: 'Erro ao inserir versão.', text: response.responseJSON, type: "error"
+                                        });
+                                    });
+                            },
+                            allowOutsideClick: () => !Swal.isLoading()
+                        }).then((result) => {
+                            if (result.value) {
+                                // window.location = '/updates/siembra/deploy';
+                            }
+                        })
+
+                    }
+                });
+            },
+        });
+    </script>
+
+</body>
+
+</html>
