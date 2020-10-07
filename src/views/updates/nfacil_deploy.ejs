@@ -168,13 +168,13 @@
                             showLoaderOnConfirm: true,
                             preConfirm: (versao) => {
                                 var vData = {
-                                    sistema: 'siembra',
+                                    sistema: 'nfacil',
                                     nome: myDropzone.files[0].name,
                                     versao: versao
                                 };
                                 console.log(vData)
                                 $.ajax({
-                                    type: 'POST', url: "/updates/siembra", data: vData
+                                    type: 'POST', url: "/updates/nfacil", data: vData
                                 })
                                     .done(function (response) {
                                         swal.fire({
@@ -193,7 +193,7 @@
                             allowOutsideClick: () => !Swal.isLoading()
                         }).then((result) => {
                             if (result.value) {
-                                // window.location = '/updates/siembra/deploy';
+                                // window.location = '/updates/nfacil/deploy';
                             }
                         })
 
