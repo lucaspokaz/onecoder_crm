@@ -1,4 +1,5 @@
 const database = require('../../config/database');
+const serialService = require('../services/serial_service');
 
 exports.get_id = (idCliente) => {
 	let SQL = `select * from cliente where id_cliente = ${idCliente}`;
@@ -78,6 +79,38 @@ exports.insert = async (cliente) => {
 		let SQL_INSERT = 'insert into cliente set ?';
 		let result_insert = await database.exec_promise(SQL_INSERT, cliente, 'Insert cliente');
 		let id_inserido = result_insert.insertId;
+
+		let data_atual = new Date();
+
+		const conteudo_sistema = cliente.cnpj + ';' +
+			cliente.fantasia + ';' +
+			data_atual.getFullYear() + ';' +
+			data_atual.getMonth() + ';' +
+			cliente.uf + ';' +
+			cliente.cidade + ';' +
+			'A' + ';';
+
+		dados = {
+			id_cliente: id_inserido,
+			mes: data_atual.getMonth(),
+			ano: data_atual.getFullYear(),
+			serial: conteudo_sistema,
+			serial_web: conteudo_sistema,
+			elysius_basico: 1,
+			elysius_nfce: 0,
+			elysius_nfe: 0,
+			elysius_os: 0,
+			elysius_gestor_mobile: 0,
+			elysius_food: 0,
+			elysius_reports: 0,
+			elysius_backup: 0,
+			nfacil_nfce: 1,
+			nfacil_nfe: 1,
+			nfacil_reports: 0,
+			nfacil_backup: 0,
+		}
+
+		await serialService.insert(dados);
 
 		return {
 			status: 200,

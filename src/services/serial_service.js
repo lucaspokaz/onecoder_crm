@@ -37,7 +37,6 @@ exports.insert = async (data) => {
       id_cliente: parseInt(data.id_cliente),
       mes: data.mes,
       ano: parseInt(data.ano),
-			serial: null,
 			serial: conteudo_sistema,
       serial_web: conteudo_sistema,
       elysius_basico: data.elysius_basico ? 1 : 0,
