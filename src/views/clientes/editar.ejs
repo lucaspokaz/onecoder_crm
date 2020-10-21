@@ -356,7 +356,8 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="form-section"> <i class="fas fa-users-cog"></i> Usuários Responsáveis </h4>
+                                    <h4 class="form-section"> <i class="fas fa-users-cog"></i> Usuários Responsáveis
+                                    </h4>
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
@@ -415,6 +416,178 @@
                                                                 onclick="remove_responsavel(<%- user.id_cliente_reponsavel %>)">
                                                                 <i class="far fa-trash-alt"></i> Remover
                                                             </button>
+                                                        </td>
+                                                    </tr>
+                                                    <% }) %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="form-section"> <i class="fas fa-users-cog"></i> Licenciamento
+                                    </h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body">
+                                        <div class="form-body">
+                                            <form class="form" method="post" id="form_usuarios" name="form_usuarios">
+                                                <div class="row">
+                                                    <div class="form-group col-md-3">
+                                                        <label>Ano</label>
+                                                        <input type="text" class="form-control" value=""
+                                                            id="serial_ano" name="serial_ano" />
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label>Mês Inicial</label>
+                                                        <input type="text" class="form-control" value=""
+                                                            id="serial_mes_inicial" name="serial_mes_inicial" />
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label>Mês Final</label>
+                                                        <input type="text" class="form-control" value=""
+                                                            id="serial_mes_final" name="serial_mes_final" />
+                                                    </div>
+                                                </div>
+                                                <div class="row skin skin-flat">
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset>
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_elysius_basico"
+                                                                    name="chk_elysius_basico"> Elysius Básico
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_elysius_os"
+                                                                    name="chk_elysius_os"> Elysius O.S.
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_elysius_nfce"
+                                                                    name="chk_elysius_nfce"> Elysius NFC-e
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_elysius_nfe"
+                                                                    name="chk_elysius_nfe"> Elysius NF-e
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_elysius_mobile"
+                                                                    name="chk_elysius_mobile"> Elysius Gestor Mobile
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_elysius_food"
+                                                                    name="chk_elysius_food"> Elysius Food
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_elysius_reports"
+                                                                    name="chk_elysius_reports"> Elysius Reports
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_elysius_backup"
+                                                                    name="chk_elysius_backup"> Elysius Backup
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <div class="row skin skin-flat">
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_nfacil_nfce"
+                                                                    name="chk_nfacil_nfce"> NFácil NFC-e
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_nfacil_nfe"
+                                                                    name="chk_nfacil_nfe"> NFácil NF-e
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_nfacil_reports"
+                                                                    name="chk_nfacil_reports"> NFácil Reports
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <fieldset class="checkboxsas">
+                                                            <label>
+                                                                <input type="checkbox" value="" id="chk_nfacil_backup"
+                                                                    name="chk_nfacil_backup"> NFácil Backup
+                                                            </label>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <button type="submit" class="btn btn-primary bg-info border-info"
+                                                        id="btn_insere_serial" data-id="<%- data.id_cliente %>" <i
+                                                        class="la la-plus"></i>
+                                                        Adicionar
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table table-hover dataTables-example dataTables_filter"
+                                                id="mytable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Ano</th>
+                                                        <th>Mês</th>
+                                                        <th>Serial Normal</th>
+                                                        <th>Serial Web</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="table_seriais">
+                                                    <% data_seriais.forEach(function(user){ %>
+                                                    <tr data-row-id="<%- user.id_cliente_serial %>">
+                                                        <td>
+                                                            <%- user.ano %>
+                                                        </td>
+                                                        <td>
+                                                            <%- user.mes %>
+                                                        </td>
+                                                        <td>
+                                                            <%- user.serial %>
+                                                        </td>
+                                                        <td>
+                                                            <%- user.serial_web %>
                                                         </td>
                                                     </tr>
                                                     <% }) %>

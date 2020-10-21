@@ -2,6 +2,7 @@ const clientesService = require('../services/cliente_service');
 const clientesReponsaveisService = require('../services/cliente_responsavel_service');
 const tarefasService = require('../services/tarefa_service');
 const contratosService = require('../services/contrato_service');
+const serialService = require('../services/serial_service');
 const loginService = require('../services/login_service');
 const config = require('../../config/configuration');
 const mail = require('../utils/mail');
@@ -54,6 +55,9 @@ exports.load = async (req, res, next) => {
 		let responsaveis = await clientesService.get_client_owners(req.params.id);
 		let dados_responsaveis = JSON.parse(responsaveis);
 
+		let seriais = await serialService.get_all_by_cliente(req.params.id);
+		let dados_seriais = JSON.parse(seriais);
+
 		res.render('clientes/editar', {
 			session: req.session,
 			menu: 'lista_cliente',
@@ -62,6 +66,7 @@ exports.load = async (req, res, next) => {
 			data_contratos: dados_geral_contratos[0],
 			data_responsaveis: dados_responsaveis,
 			data_usuarios: dados_usuario,
+			data_seriais: dados_seriais,
 			moment: require('moment'),
 			formatter: require('../utils/formatter')
 		})

@@ -1,4 +1,4 @@
-<script type="text/javascript" >
+<script type="text/javascript">
 
     // inserir responsavel
 
@@ -6,7 +6,7 @@
 
         event.preventDefault();
 
-        var vIdCliente =  $(this).attr('data-id');
+        var vIdCliente = $(this).attr('data-id');
         var vIdUsuarioResponsavel = document.querySelector("#id_usuario_responsavel").value;
         var vNomeUsuario = $("#id_usuario_responsavel").select2('data')[0].text;
 
@@ -22,9 +22,9 @@
             confirmButtonText: "Sim",
             cancelButtonText: "Não",
             showLoaderOnConfirm: true,
-            preConfirm: function(text_conclusao) {
-                return new Promise(function(resolve) {
-                    setTimeout(function() {
+            preConfirm: function (text_conclusao) {
+                return new Promise(function (resolve) {
+                    setTimeout(function () {
                         resolve()
                     }, 500)
                 })
@@ -34,15 +34,15 @@
                 $.ajax({
                     type: 'POST', url: "/clientes/adicionar-responsavel", data: vData
                 })
-                .done(function(response) {
-                    swal.fire({
-                        title: response.mensagem, type: "success", timer: 1000
-                    })
-                    .then(function() {
-                        // executar após inserção
-                        let html = '';
-                        html = html + document.getElementById("table_responsaveis").innerHTML;
-                        html = html + ` <tr>
+                    .done(function (response) {
+                        swal.fire({
+                            title: response.mensagem, type: "success", timer: 1000
+                        })
+                            .then(function () {
+                                // executar após inserção
+                                let html = '';
+                                html = html + document.getElementById("table_responsaveis").innerHTML;
+                                html = html + ` <tr>
                                             <td>
                                                 ${vNomeUsuario}
                                             </td>
@@ -53,26 +53,26 @@
                                                 </button>
                                             </td>
                                         </tr>`;
-                        document.getElementById("table_responsaveis").innerHTML = html;
+                                document.getElementById("table_responsaveis").innerHTML = html;
+                            });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        swal.fire({
+                            title: 'Erro adicionar responsável.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+                        });
                     });
-                })
-                .fail(function(response) {
-                    console.log(response);
-                    swal.fire({
-                        title: 'Erro adicionar responsável.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
-                    });
-                });
             }
         })
     });
 </script>
 
 
-<script type="text/javascript" >
+<script type="text/javascript">
 
     // remover responsavel
 
-    function remove_responsavel (vIdClienteResponsavel) {
+    function remove_responsavel(vIdClienteResponsavel) {
 
         event.preventDefault();
 
@@ -83,14 +83,98 @@
         $.ajax({
             type: 'POST', url: "/clientes/remover-responsavel", data: vData
         })
-        .done(function() {
-            // executar após inserção
-            $("tr[data-row-id='" + vIdClienteResponsavel + "']").remove();
-        })
-        .fail(function(response) {
-            swal.fire({
-                title: 'Erro remover responsável.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+            .done(function () {
+                // executar após inserção
+                $("tr[data-row-id='" + vIdClienteResponsavel + "']").remove();
+            })
+            .fail(function (response) {
+                swal.fire({
+                    title: 'Erro remover responsável.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+                });
             });
-        });
     }
+</script>
+
+<script type="text/javascript">
+
+    // inserir responsavel
+
+    $(document).on('click', "#btn_insere_serial", function () {
+
+        event.preventDefault();
+
+        var vIdCliente = $(this).attr('data-id');
+
+        var mes_inicial = document.querySelector("#serial_mes_inicial").value;
+        var mes_final = document.querySelector("#serial_mes_final").value;
+        var ano = document.querySelector("#serial_ano").value;
+
+        var elysius_basico = document.querySelector("#chk_elysius_basico").checked;
+        var elysius_os = document.querySelector("#chk_elysius_os").checked;
+        var elysius_nfce = document.querySelector("#chk_elysius_nfce").checked;
+        var elysius_nfe = document.querySelector("#chk_elysius_nfe").checked;
+        var elysius_gestor_mobile = document.querySelector("#chk_elysius_mobile").checked;
+        var elysius_food = document.querySelector("#chk_elysius_food").checked;
+        var elysius_reports = document.querySelector("#chk_elysius_reports").checked;
+        var elysius_backup = document.querySelector("#chk_elysius_backup").checked;
+
+        var nfacil_nfce = document.querySelector("#chk_nfacil_nfce").checked;
+        var nfacil_nfe = document.querySelector("#chk_nfacil_nfe").checked;
+        var nfacil_reports = document.querySelector("#chk_nfacil_reports").checked;
+        var nfacil_backup = document.querySelector("#chk_nfacil_backup").checked;
+
+        var vData = {
+            id_cliente: vIdCliente,
+            mes_inicial,
+            mes_final,
+            ano,
+            elysius_basico,
+            elysius_os,
+            elysius_nfce,
+            elysius_nfe,
+            elysius_gestor_mobile,
+            elysius_food,
+            elysius_reports,
+            elysius_backup,
+            nfacil_nfce,
+            nfacil_nfe,
+            nfacil_reports,
+            nfacil_backup,
+        };
+
+        swal.fire({
+            title: `Deseja realmente inserir os seriais
+                    Ano ${ano} do mês ${mes_inicial} até ${mes_final} ?`,
+            type: "question",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            cancelButtonText: "Não",
+            showLoaderOnConfirm: true,
+            preConfirm: function (text_conclusao) {
+                return new Promise(function (resolve) {
+                    $.ajax({
+                    type: 'POST', url: "/seriais/criar", data: vData
+                })
+                    .done(function (response) {
+                        swal.fire({
+                            title: response.mensagem, type: "success", timer: 1000
+                        })
+                            .then(function () {
+                                // executar após inserção
+                                let html = '';
+                            });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        swal.fire({
+                            title: 'Erro adicionar serial.', text: response.responseJSON, type: "error"
+                        });
+                    });
+                })
+            }
+        }).then(result => {
+
+        })
+
+    });
 </script>

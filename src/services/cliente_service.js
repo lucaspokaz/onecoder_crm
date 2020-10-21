@@ -1,10 +1,17 @@
 const database = require('../../config/database');
 
+exports.get_id = (idCliente) => {
+	let SQL = `select * from cliente where id_cliente = ${idCliente}`;
+	let retorno = database.exec_promise(SQL, [], 'Cliente');
+	return retorno;
+}
+
 exports.get_client_by_id = (idCliente) => {
 	let SQL = `select * from cliente where id_cliente = ${idCliente}`;
 	let retorno = database.exec_promise_json(SQL, [], 'Cliente');
 	return retorno;
 }
+
 
 exports.get_client_by_cnpj = (cnpj) => {
 	let SQL = `select * from cliente where cnpj = '${cnpj}'`;
