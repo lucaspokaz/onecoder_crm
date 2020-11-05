@@ -1,0 +1,168 @@
+<% include ../default/header.ejs %>
+
+<body class="vertical-layout vertical-menu content-detached-left-sidebar fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="content-detached-left-sidebar">
+
+    <% include ../default/navbar.ejs %>
+
+    <% include ../default/menu.ejs %>
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <% include ../default/messages.ejs %>
+
+            <div class="content-body">
+
+                <div class="content-header row mb-1">
+                    <div class="content-header-left col-md-12 mb-2">
+                        <h3 class="content-header-title">Consulta de Contratos</h3>
+                        <div class="row breadcrumbs-top">
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/index">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="/contratos/consulta">Contratos</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Lista de Contratos
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+
+                                        <div class="card-header">
+                                            <h4 class="card-title"> Contratos <span class="badge badge-info"> <%= data.length %> </span> </h4>
+                                            <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+                                        </div>
+
+                                        <div class="card-content collapse show">
+                                            <div class="card-body">
+                                                <% if (data.length > 0) { %>
+
+                                                <div class="form-group">
+                                                    <label>Pesquisa</label>
+                                                    <input type="text" class="form-control" name="filtro_pesquisa" id="filtro_pesquisa" placeholder="Digite aqui sua pesquisa" />
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover dataTables-example dataTables_filter" id="mytable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Código</th>
+                                                                <th>Projeto</th>
+                                                                <th>Cliente</th>
+                                                                <th class="text-center">Data Início</th>
+                                                                <th class="text-center">Data Fim</th>
+                                                                <th class="text-center">Dias Venc.</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% data.forEach(function(user){ %>
+                                                                <tr>
+                                                                    <td>
+                                                                        # <%- formatter.zero_esquerda(user.id_contrato, 4) %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%- user.desc_projeto %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%- user.nome %>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <%= moment(user.data_inicio).format('DD/MM/YYYY')  %>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <%= moment(user.data_fim).format('DD/MM/YYYY')  %>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <% if (user.dias_restantes < 0) { %>
+                                                                            <span class="badge badge-danger"> <%- user.dias_restantes %> </span>
+                                                                        <% } %>
+
+                                                                        <% if (user.dias_restantes >= 0 && user.dias_restantes < 30) { %>
+                                                                            <span class="badge badge-warning"> <%- user.dias_restantes %> </span>
+                                                                        <% } %>
+
+                                                                        <% if (user.dias_restantes >= 30 && user.dias_restantes <= 60 ) { %>
+                                                                            <span class="badge badge-warning"> <%- user.dias_restantes %> </span>
+                                                                        <% } %>
+
+                                                                        <% if (user.dias_restantes > 60) { %>
+                                                                            <span class="badge badge-success"> <%- user.dias_restantes %> </span>
+                                                                        <% } %>
+                                                                    </td>
+                                                                </tr>
+                                                            <% }) %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <% } else { %>
+
+                                                <p class="text-center text-muted">Nenhum registro encontrado!</p>
+
+                                                <% } %>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <% include ../default/footer.ejs %>
+
+    <script>
+
+        $(document).ready(function () {
+
+            var dataTable = $('.dataTables-example').DataTable({
+                lengthMenu: [[200, 300, -1], [200, 300, "All"]],
+                bPaginate: false,
+                bProcessing: true,
+                bLengthChange: false,
+                bInfo: false,
+                bFilter: true,
+                responsive: false,
+                rowReorder: false,
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [],
+                order: [[ 5, "asc" ]],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Pesquisar...",
+                    paginate: {
+                        previous: "Anterior",
+                        next: "Próximo"
+                    }
+                }
+            });
+
+            $('.dataTables_filter').addClass('pull-left');
+
+            $('#filtro_pesquisa').on('keyup change clear', function(){
+                dataTable.search(this.value).draw();
+            });
+        });
+    </script>
+
+    <% include acoes_contratos.ejs %>
+</body>
+
+</html>

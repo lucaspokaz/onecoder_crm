@@ -4,6 +4,7 @@ const controller = require('../controllers/contrato_controller')
 const auth = require('../../config/auth');
 
 router.get('/', auth.loggedIn, controller.list);
+router.get('/consulta', auth.loggedIn, controller.list_consulta);
 
 router.get('/criar', auth.loggedIn, controller.load);
 router.get('/editar/(:id)', auth.loggedIn, controller.load);

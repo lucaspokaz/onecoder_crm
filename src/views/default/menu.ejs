@@ -28,25 +28,36 @@
                     </ul>
                 </li>
 
-                <% if (session.codigo_usuario == 1 || session.codigo_usuario == 3) { %>
+                <% if (session.codigo_usuario == 1 || session.codigo_usuario == 2 || session.codigo_usuario == 3) { %>
                 <!-- somente administrador e lucas -->
                 <li class=" nav-item"><a href="#"> <i class="fas fa-id-card"></i> <span class="menu-title" data-i18n=""> Gestão </span></a>
                     <ul class="menu-content">
-                        <li class="nav-item <% if (menu === 'lista_projeto'){ %> active <% } %> ">
-                            <a href="/projetos"> <i class="fas fa-project-diagram"></i> Projetos </a>
-                        </li>
-                        <li class="nav-item <% if (menu === 'lista_cliente'){ %> active <% } %> ">
-                            <a href="/clientes"> <i class="fas fa-store-alt"></i> Clientes Ativos </a>
-                        </li>
-                        <li class="nav-item <% if (menu === 'lista_cliente_registrados'){ %> active <% } %> ">
-                            <a href="/clientes/registrados"> <i class="fas fa-store-alt"></i> Clientes Registrados </a>
-                        </li>
-                        <li class="nav-item <% if (menu === 'lista_contrato'){ %> active <% } %> ">
-                            <a href="/contratos"> <i class="far fa-newspaper"></i> Contratos </a>
-                        </li>
+                        <% if (session.codigo_usuario == 1 || session.codigo_usuario == 3) { %>
+                            <li class="nav-item <% if (menu === 'lista_projeto'){ %> active <% } %> ">
+                                <a href="/projetos"> <i class="fas fa-project-diagram"></i> Projetos </a>
+                            </li>
+                            <li class="nav-item <% if (menu === 'lista_cliente'){ %> active <% } %> ">
+                                <a href="/clientes"> <i class="fas fa-store-alt"></i> Clientes Ativos </a>
+                            </li>
+                            <li class="nav-item <% if (menu === 'lista_cliente_registrados'){ %> active <% } %> ">
+                                <a href="/clientes/registrados"> <i class="fas fa-store-alt"></i> Clientes Registrados </a>
+                            </li>
+                            <li class="nav-item <% if (menu === 'lista_contrato'){ %> active <% } %> ">
+                                <a href="/contratos"> <i class="far fa-newspaper"></i> Contratos </a>
+                            </li>
+                            <li class="nav-item <% if (menu === 'lista_contrato_consulta'){ %> active <% } %> ">
+                                <a href="/contratos/consulta"> <i class="far fa-newspaper"></i> Consulta de Contratos </a>
+                            </li>
+                        <% } else { %>
+                            <li class="nav-item <% if (menu === 'lista_contrato_consulta'){ %> active <% } %> ">
+                                <a href="/contratos/consulta"> <i class="far fa-newspaper"></i> Consulta de Contratos </a>
+                            </li>
+                        <% } %>
                     </ul>
                 </li>
+                <% } %>
 
+                <% if (session.codigo_usuario == 1 || session.codigo_usuario == 3) { %>
                 <li class=" nav-item"><a href="#"> <i class="fas fa-sync-alt"></i> <span class="menu-title" data-i18n=""> Updates </span></a>
                     <ul class="menu-content">
                         <li class="nav-item <% if (menu === 'lista_updates_elysius'){ %> active <% } %> ">
@@ -61,6 +72,8 @@
                     </ul>
                 </li>
                 <% } %>
+
+
             </ul>
         </div>
     </div>

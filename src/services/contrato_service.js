@@ -38,6 +38,28 @@ exports.get_contracts_active = () => {
     return retorno;
 }
 
+exports.get_contracts_active_responsavel = (idUsuario) => {
+
+    let SQL = `select
+                    contrato.*,
+                    cliente.nome,
+                    projeto.descricao as desc_projeto,
+                    datediff(data_fim, curdate()) as dias_restantes
+                from
+                    contrato
+                left join projeto on projeto.id_projeto = contrato.id_projeto
+                left join cliente on cliente.id_cliente = contrato.id_cliente
+                where
+                    contrato.ativo = 'S'
+                    and cliente.id_cliente in (select id_cliente from cliente_responsavel
+                                                where id_usuario = ${idUsuario})
+                order by
+                    dias_restantes`;
+
+    let retorno = database.exec_promise_json(SQL, [], 'Contratos');
+    return retorno;
+}
+
 exports.insert = async (req, res) => {
 
     try {

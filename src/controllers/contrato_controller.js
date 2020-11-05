@@ -19,6 +19,20 @@ exports.list = async (req, res, next) => {
     });
 };
 
+exports.list_consulta = async (req, res, next) => {
+
+    let results = await contratosService.get_contracts_active_responsavel(req.session.codigo_usuario);
+    let dados = JSON.parse(results);
+
+    res.render('contratos/consulta', {
+        session: req.session,
+        menu: 'lista_contrato_consulta',
+        data: dados,
+        moment: require('moment'),
+        formatter: require('../utils/formatter')
+    });
+};
+
 exports.load = async (req, res, next) => {
 
     let projetos = await projetosService.get_all();
