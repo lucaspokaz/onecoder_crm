@@ -26,31 +26,31 @@ exports.insert = async (data) => {
 	try {
 
 		const conteudo_sistema = data.cnpj + ';' +
-														 data.fantasia + ';' +
-														 data.ano + ';' +
-														 data.mes + ';' +
-														 data.uf + ';' +
-														 data.cidade + ';' +
-														 data.conteudo + ';';
+			data.fantasia + ';' +
+			data.ano + ';' +
+			data.mes + ';' +
+			data.uf + ';' +
+			data.cidade + ';' +
+			data.conteudo + ';';
 
 		dados = {
-      id_cliente: parseInt(data.id_cliente),
-      mes: data.mes,
-      ano: parseInt(data.ano),
+			id_cliente: parseInt(data.id_cliente),
+			mes: data.mes,
+			ano: parseInt(data.ano),
 			serial: conteudo_sistema,
-      serial_web: conteudo_sistema,
-      elysius_basico: data.elysius_basico ? 1 : 0,
-      elysius_nfce: data.elysius_nfce ? 1 : 0,
-      elysius_nfe: data.elysius_nfe ? 1 : 0,
-      elysius_os: data.elysius_os ? 1 : 0,
-      elysius_gestor_mobile: data.elysius_gestor_mobile ? 1 : 0,
-      elysius_food: data.elysius_food ? 1 : 0,
-      elysius_reports: data.elysius_reports ? 1 : 0,
-      elysius_backup: data.elysius_backup ? 1 : 0,
-      nfacil_nfce: data.nfacil_nfce ? 1 : 0,
-      nfacil_nfe: data.nfacil_nfe ? 1 : 0,
-      nfacil_reports: data.nfacil_reports ? 1 : 0,
-      nfacil_backup: data.nfacil_backup ? 1 : 0,
+			serial_web: conteudo_sistema,
+			elysius_basico: data.elysius_basico ? 1 : 0,
+			elysius_nfce: data.elysius_nfce ? 1 : 0,
+			elysius_nfe: data.elysius_nfe ? 1 : 0,
+			elysius_os: data.elysius_os ? 1 : 0,
+			elysius_gestor_mobile: data.elysius_gestor_mobile ? 1 : 0,
+			elysius_food: data.elysius_food ? 1 : 0,
+			elysius_reports: data.elysius_reports ? 1 : 0,
+			elysius_backup: data.elysius_backup ? 1 : 0,
+			nfacil_nfce: data.nfacil_nfce ? 1 : 0,
+			nfacil_nfe: data.nfacil_nfe ? 1 : 0,
+			nfacil_reports: data.nfacil_reports ? 1 : 0,
+			nfacil_backup: data.nfacil_backup ? 1 : 0,
 		}
 
 		let SQL_INSERT = 'insert into cliente_serial set ?';
@@ -80,15 +80,37 @@ exports.delete = async (id_cliente, ano, mes) => {
 		let result_delete = await database.exec_promise(SQL_DELETE, [], 'Delete serial');
 
 		return {
-				status: 200,
-				mensagem: 'Removido com sucesso.'
+			status: 200,
+			mensagem: 'Removido com sucesso.'
 		}
 
-} catch (error) {
+	} catch (error) {
 		console.log(error);
 		return {
-				status: 400,
-				mensagem: error
+			status: 400,
+			mensagem: error
 		}
+	}
+
 }
+
+exports.delete_serial = async (id_cliente_serial) => {
+
+	try {
+		let SQL_DELETE = `delete from cliente_serial where id_cliente_serial = ${id_cliente_serial}`;
+		let result_delete = await database.exec_promise(SQL_DELETE, [], 'Delete serial');
+
+		return {
+			status: 200,
+			mensagem: 'Removido com sucesso.'
+		}
+
+	} catch (error) {
+		console.log(error);
+		return {
+			status: 400,
+			mensagem: error
+		}
+	}
+
 }

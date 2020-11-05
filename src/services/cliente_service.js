@@ -88,12 +88,17 @@ exports.insert = async (cliente) => {
 			data_atual.getMonth() + ';' +
 			cliente.uf + ';' +
 			cliente.cidade + ';' +
-			'A' + ';';
+			'AIJ' + ';';
 
 		dados = {
 			id_cliente: id_inserido,
 			mes: data_atual.getMonth(),
 			ano: data_atual.getFullYear(),
+			cnpj: cliente.cnpj,
+			fantasia: cliente.fantasia,
+			uf: cliente.uf,
+			cidade: cliente.cidade,
+			conteudo_sistema: conteudo_sistema,
 			serial: conteudo_sistema,
 			serial_web: conteudo_sistema,
 			elysius_basico: 1,

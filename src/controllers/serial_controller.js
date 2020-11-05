@@ -50,3 +50,14 @@ exports.create_edit = async (req, res, next) => {
   }
 
 };
+
+exports.delete = async (req, res, next) => {
+
+	let retorno = await service.delete_serial(req.body.id_cliente_serial);
+
+	if (retorno.status == 200) {
+		return res.status(200).send(retorno);
+	} else {
+		return res.status(400).send(retorno);
+	}
+};

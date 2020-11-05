@@ -97,6 +97,33 @@
 
 <script type="text/javascript">
 
+    // remover responsavel
+
+    function remove_serial(vIdSerial) {
+
+        event.preventDefault();
+
+        var vData = {
+            id_cliente_serial: vIdSerial
+        };
+
+        $.ajax({
+            type: 'POST', url: "/seriais/remover", data: vData
+        })
+            .done(function () {
+                // executar após inserção
+                $("tr[data-row-id='" + vIdSerial + "']").remove();
+            })
+            .fail(function (response) {
+                swal.fire({
+                    title: 'Erro remover responsável.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+                });
+            });
+    }
+</script>
+
+<script type="text/javascript">
+
     // inserir responsavel
 
     $(document).on('click', "#btn_insere_serial", function () {

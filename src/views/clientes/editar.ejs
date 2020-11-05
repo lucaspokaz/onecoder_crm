@@ -571,7 +571,7 @@
                                                         <th>Ano</th>
                                                         <th>Mês</th>
                                                         <th>Serial Normal</th>
-                                                        <th>Serial Web</th>
+                                                        <th>Ações</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="table_seriais">
@@ -586,8 +586,11 @@
                                                         <td>
                                                             <%- user.serial %>
                                                         </td>
-                                                        <td>
-                                                            <%- user.serial_web %>
+                                                        <td class="text-right">
+                                                            <button type="button" class="btn btn-danger btn-sm" data-id="<%- user.id_cliente_serial %>"
+                                                                onclick="remove_serial(<%- user.id_cliente_serial %>)">
+                                                                <i class="far fa-trash-alt"></i> Remover
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                     <% }) %>
