@@ -17,12 +17,6 @@
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/icheck/icheck.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/icheck/custom.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/js/gallery/photo-swipe/photoswipe.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/js/gallery/photo-swipe/default-skin/default-skin.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/charts/leaflet.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/charts/apexcharts.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -69,12 +63,13 @@
                         <li class="timeline-line"></li>
 
                         <% if (data.length > 0) { %>
+                            <% moment.locale('pt-br'); %>
                             <% data.forEach(function(user, index){ %>
 
                                 <li class="timeline-item">
 
                                     <div class="timeline-badge">
-                                        <span class="bg-blue bg-lighten-1" data-toggle="tooltip" data-placement="right" title="Projeto Elysius">
+                                        <span class="bg-blue bg-lighten-1" data-toggle="tooltip" data-placement="right" title="Elysius ERP">
                                             <i class="fas fa-check"></i>
                                         </span>
                                     </div>
@@ -82,7 +77,11 @@
                                         <div class="card-header">
                                             <h4 class="card-title"><a href="#"> <%= user.titulo %> </a></h4>
                                             <p class="card-subtitle text-muted mb-0 pt-1">
-                                                <span class="font-small-3"> <i class="fas fa-calendar-alt"></i> <%= moment(user.data).format('LL') %> </span>
+                                                <% if ( moment(user.data).format('LL') === moment(new Date()).format('LL') ) { %>
+                                                    <span class="font-small-3 strong"> <i class="fas fa-calendar-alt"></i> Hoje </span>
+                                                <% } else { %>
+                                                    <span class="font-small-3"> <i class="fas fa-calendar-alt"></i> <%= moment(user.data).format('dddd') %>, <%= moment(user.data).format('LL') %> </span>
+                                                <% } %>
                                             </p>
                                             <p class="card-text">
                                                 <%- user.conteudo %>
@@ -106,15 +105,6 @@
     <script src="/app-assets/vendors/js/vendors.min.js"></script>
     <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="/app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
-    <script src="/app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js"></script>
-    <script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js"></script>
-    <script src="/app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js"></script>
-    <script src="/app-assets/vendors/js/charts/leaflet/leaflet.js"></script>
-    <script src="/app-assets/vendors/js/charts/apexcharts/apexcharts.min.js"></script>
-    <!-- END: Page Vendor JS-->
-
     <!-- BEGIN: Theme JS-->
     <script src="/app-assets/js/core/app-menu.js"></script>
     <script src="/app-assets/js/core/app.js"></script>
@@ -122,7 +112,6 @@
 
     <!-- BEGIN: Page JS-->
     <script src="/app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.js"></script>
-    <script src="/app-assets/js/scripts/pages/timeline.js"></script>
 
 </body>
 
