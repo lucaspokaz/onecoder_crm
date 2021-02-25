@@ -30,6 +30,16 @@ exports.get_clients = () => {
 	return retorno;
 }
 
+exports.get_clients_by_tipo = (tipo) => {
+
+	let SQL = ` select * from cliente
+	              where ativo = ${tipo}
+                order by nome asc`;
+
+	let retorno = database.exec_promise_json(SQL, [], 'Clientes');
+	return retorno;
+}
+
 exports.get_clients_registereds = () => {
 
 	let SQL = ` select * from cliente

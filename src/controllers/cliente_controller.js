@@ -9,9 +9,19 @@ const mail = require('../utils/mail');
 const { data_atual } = require('../utils/formatter');
 
 exports.list = async (req, res, next) => {
+	
+	let dados = {};
 
-	let results = await clientesService.get_clients();
-	let dados = JSON.parse(results);
+	if (req.query.status) {
+		let status = parseInt(req.query.status);
+		let results = await clientesService.get_clients_by_tipo(status);
+		dados = JSON.parse(results);
+		console.log('com query')
+	} else {
+		let results = await clientesService.get_clients();
+		dados = JSON.parse(results);
+		console.log('sem query')
+	}
 
 	res.render('clientes/index', {
 		session: req.session,
