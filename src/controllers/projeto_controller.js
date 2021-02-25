@@ -17,13 +17,15 @@ exports.list = async (req, res, next) => {
 
 exports.load = async (req, res, next) => {
 
-    let projeto = await projetosService.get_by_id(req.params.id);
-    let dados_projeto = JSON.parse(projeto);
+    
 
     let clientes = await clientesService.get_clients_responsibles(req.session.codigo_usuario);
     dados_cliente = JSON.parse(clientes);
 
     if ((req.params.id) && (req.params.id > 0)) {
+
+        let projeto = await projetosService.get_by_id(req.params.id);
+        let dados_projeto = JSON.parse(projeto);
 
         res.render('projetos/editar', {
             session: req.session,
@@ -40,6 +42,7 @@ exports.load = async (req, res, next) => {
             session: req.session,
             menu: 'cria_projeto',
             data: [],
+            data_clientes: dados_cliente,
             moment: require('moment'),
             formatter: require('../utils/formatter')
         })
