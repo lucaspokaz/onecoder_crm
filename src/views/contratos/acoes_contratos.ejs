@@ -1,16 +1,16 @@
 <script>
-    // ATENDER TAREFA
-    $(document).on('click', "#remover", function () {
+    // REMOVER CONTRATO
+    $(document).on('click', "#deletar", function () {
 
         event.preventDefault();
 
         var vIdContrato = $(this).attr('data-id');
 
         swal.fire({
-            title: 'Remover o Contrato #' + vIdContrato + '?',
+            title: 'Deletar o Contrato #' + vIdContrato + '?',
             type: "question",
             showCancelButton: true,
-            confirmButtonText: "Remover",
+            confirmButtonText: "Deletar",
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
             preConfirm: function(text_conclusao) {
@@ -47,4 +47,54 @@
             }
         })
     });
+
+    // RENOVAR CONTRATO
+    $(document).on('click', "#renovar", function () {
+
+        event.preventDefault();
+
+        var vIdContrato = $(this).attr('data-id');
+
+        swal.fire({
+            title: 'Renovar o Contrato #' + vIdContrato + ' por mais 1 ano?',
+            type: "question",
+            showCancelButton: true,
+            confirmButtonText: "Renovar",
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+            preConfirm: function(text_conclusao) {
+                return new Promise(function(resolve) {
+                    setTimeout(function() {
+                        resolve()
+                    }, 500)
+                })
+            }
+        }).then(result => {
+            if (result.value) {
+                var vData = {
+                    id: vIdContrato
+                };
+
+                $.ajax({
+                    type: 'POST', url: "/contratos/renovar", data: vData
+                })
+                .done(function(response) {
+                    console.log(response);
+                    swal.fire({
+                        title: response.mensagem, type: "success", timer: 1000
+                    })
+                    .then(function() {
+                        location.reload();
+                    });
+                })
+                .fail(function(response) {
+                    console.log(response);
+                    swal.fire({
+                        title: 'Erro ao remover o contrato.', text: response.responseJSON.mensagem.sqlMessage, type: "error"
+                    });
+                });
+            }
+        })
+    });
+
 </script>

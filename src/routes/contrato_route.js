@@ -11,5 +11,6 @@ router.get('/editar/(:id)', auth.loggedIn, controller.load);
 router.post('/criar', auth.loggedIn, controller.create);
 router.post('/editar/(:id)', auth.loggedIn, controller.edit);
 router.post('/remover', auth.loggedIn, controller.delete);
+router.post('/renovar', auth.loggedIn, controller.renew);
 
 module.exports = router;

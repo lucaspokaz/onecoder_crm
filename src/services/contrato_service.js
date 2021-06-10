@@ -157,3 +157,47 @@ exports.delete = async (idContrato) => {
     }
 
 }
+
+exports.renew = async (idContrato) => {
+
+    try {
+
+        let contrato = await this.get_contract_by_id(idContrato)
+        let contrato_atual = JSON.parse(contrato)
+        let contrato_novo = contrato_atual[0]
+
+        var novo = {
+            id_cliente: contrato_novo.id_cliente,
+            data_inicio: moment(contrato_novo.data_inicio).add(1, 'year').format('YYYY-MM-DD HH:mm:ss'),
+            data_fim: moment(contrato_novo.data_fim).add(1, 'year').format('YYYY-MM-DD HH:mm:ss'),
+            observacao: contrato_novo.observacao,
+            renovacao: 'S',
+            id_projeto: contrato_novo.id_projeto,
+            valor: contrato_novo.valor,
+            ativo: contrato_novo.ativo
+        }
+
+        let SQL_INSERT = 'insert into contrato set ?';
+        let result_insert = await database.exec_promise(SQL_INSERT, novo, 'Renovacao contrato novo');
+
+        var antigo = {
+            ativo: 'N'
+        }
+
+        let SQL_UPDATE = `update contrato set ? where id_contrato = ${idContrato}`;
+        let result_update = await database.exec_promise(SQL_UPDATE, antigo, 'Renovacao contrato update');
+
+        return {
+            status: 200,
+            mensagem: 'Renovado com sucesso.'
+        }
+
+    } catch (error) {
+        console.log(error);
+        return {
+            status: 400,
+            mensagem: error
+        }
+    }
+
+}

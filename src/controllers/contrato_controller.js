@@ -143,3 +143,15 @@ exports.delete = async (req, res, next) => {
         return res.status(400).send(deleted);
     }
 };
+
+exports.renew = async (req, res, next) => {
+
+    let idContrato = req.body.id;
+    let renovado = await contratosService.renew(idContrato);
+
+    if (renovado.status == 200) {
+        return res.status(200).send(renovado);
+    } else {
+        return res.status(400).send(renovado);
+    }
+};
